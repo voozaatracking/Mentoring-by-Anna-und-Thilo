@@ -5,11 +5,11 @@ export const metadata: Metadata = { title: meta.impressumTitel };
 
 export default function ImpressumSeite() {
   return (
-    <main>
+    <div className="rahmen abschnitt">
       <h1>{impressum.titel}</h1>
       <p>
         <strong>{impressum.entwurfTitel}</strong> {impressum.entwurfText}
       </p>
-    </main>
+    </div>
   );
 }

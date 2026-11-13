@@ -1,6 +1,501 @@
 @import "tailwindcss";
 
-/* Kein Dark Mode: Die Seite ist bewusst nur hell gestaltet. */
+/*
+ * Designsystem Mentoring by Anna & Thilo (Hygge Homes).
+ * Warmes Creme, Greige und dunkles warmes Grau. Kein Schwarz, kein reines
+ * Weiß, keine Schatten (Ausnahme: Overlays). Salbei ist der Hauptakzent,
+ * Ziegel steht nur für Fehlermeldungen.
+ */
 :root {
+  /* Kein Dark Mode: Die Seite ist bewusst nur hell gestaltet. */
   color-scheme: light;
+
+  --bg: #f4efe6;
+  --card: #fbf8f2;
+  --soft: #f0eadd;
+  --greige: #e6dfd1;
+  --line: #e0d8c8;
+  --text: #3b3733;
+  --muted: #6b6657;
+  --link: #6f675c;
+  /* Taupe nur für Linien, Dekor und Schrift ab 24px. */
+  --taupe: #8c8377;
+  --sage: #6f7f67;
+  --sage-light: #ebefe7;
+  --ochre: #96794a;
+  --ochre-light: #f3ecdc;
+  --brick: #a05f54;
+  --brick-light: #f4e6e2;
+
+  /* Raster */
+  --inhalt-max: 1120px;
+  --rand: 16px;
+  --abschnitt-abstand: 72px;
+  --kopf-hoehe: 72px;
+  --kopf-hoehe-schmal: 60px;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --rand: 32px;
+    --abschnitt-abstand: 120px;
+    --kopf-hoehe: 88px;
+    --kopf-hoehe-schmal: 64px;
+  }
+}
+
+@theme inline {
+  /* Nur die eigene Palette: Standardfarben von Tailwind sind entfernt. */
+  --color-*: initial;
+  --color-bg: var(--bg);
+  --color-card: var(--card);
+  --color-soft: var(--soft);
+  --color-greige: var(--greige);
+  --color-line: var(--line);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-link: var(--link);
+  --color-taupe: var(--taupe);
+  --color-sage: var(--sage);
+  --color-sage-light: var(--sage-light);
+  --color-ochre: var(--ochre);
+  --color-ochre-light: var(--ochre-light);
+  --color-brick: var(--brick);
+  --color-brick-light: var(--brick-light);
+
+  --font-display: var(--font-oswald), "Arial Narrow", "Helvetica Neue", sans-serif;
+  --font-sans: var(--font-jost), "Segoe UI", system-ui, sans-serif;
+
+  --radius-karte: 12px;
+  --radius-knopf: 8px;
+}
+
+/* ------------------------------------------------------------------ */
+/* Grundlagen                                                          */
+/* ------------------------------------------------------------------ */
+
+@layer base {
+  html {
+    scroll-padding-top: calc(var(--kopf-hoehe-schmal) + 16px);
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-size: 1.125rem;
+    line-height: 1.65;
+    overflow-wrap: break-word;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    /* Trennung nur an weichen Trennzeichen aus den Inhalten. */
+    hyphens: manual;
+    overflow-wrap: break-word;
+    text-wrap: balance;
+  }
+
+  h1 {
+    font-size: clamp(1.75rem, 4.5vw, 3.5rem);
+  }
+
+  h2 {
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+  }
+
+  h3 {
+    font-size: 1.125rem;
+    line-height: 1.3;
+  }
+
+  p,
+  li {
+    max-width: 65ch;
+  }
+
+  a {
+    color: var(--link);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+  }
+
+  a:hover {
+    color: var(--text);
+  }
+
+  /* Sichtbarer Fokus für Tastaturnavigation */
+  :focus-visible {
+    outline: 2px solid var(--sage);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background: var(--sage-light);
+    color: var(--text);
+  }
+
+  /* Ziel eines Sprunglinks: Fokus ohne Rahmen um den ganzen Bereich. */
+  main:focus {
+    outline: none;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Bausteine                                                           */
+/* ------------------------------------------------------------------ */
+
+@layer components {
+  /* Raster: Inhalt maximal 1120px, Seitenrand 16px mobil, 32px ab 768px. */
+  .rahmen {
+    width: 100%;
+    max-width: calc(var(--inhalt-max) + 2 * var(--rand));
+    margin-inline: auto;
+    padding-inline: var(--rand);
+  }
+
+  .abschnitt {
+    padding-block: var(--abschnitt-abstand);
+    background: var(--bg);
+    scroll-margin-top: var(--kopf-hoehe-schmal);
+  }
+
+  .abschnitt[data-ton="soft"] {
+    background: var(--soft);
+  }
+
+  /* Kleinzeile über Überschriften */
+  .kleinzeile {
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--link);
+  }
+
+  .text-klein {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .karte {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-karte);
+    padding: 20px;
+  }
+
+  @media (min-width: 768px) {
+    .karte {
+      padding: 24px;
+    }
+  }
+
+  .karte[data-akzent="salbei"] {
+    background: var(--sage-light);
+    border-color: var(--sage);
+  }
+
+  /* Nummern in Karten und Reihen: Taupe ist ab 24px erlaubt. */
+  .nummer {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 0.08em;
+    color: var(--taupe);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .knopf {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 48px;
+    padding: 0.7rem 1.25rem;
+    border: 1px solid var(--text);
+    border-radius: var(--radius-knopf);
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition:
+      background-color 160ms ease,
+      color 160ms ease;
+  }
+
+  .knopf:focus-visible {
+    border-radius: var(--radius-knopf);
+  }
+
+  .knopf-primaer {
+    background: var(--text);
+    color: var(--bg);
+  }
+
+  .knopf-primaer:hover {
+    background: color-mix(in srgb, var(--text) 86%, var(--bg));
+    color: var(--bg);
+  }
+
+  .knopf-sekundaer {
+    background: transparent;
+    color: var(--text);
+  }
+
+  .knopf-sekundaer:hover {
+    background: var(--greige);
+    color: var(--text);
+  }
+
+  .knopf[disabled],
+  .knopf[aria-disabled="true"] {
+    cursor: progress;
+    opacity: 0.7;
+  }
+
+  .knopf-klein {
+    min-height: 40px;
+    padding: 0.45rem 1rem;
+    font-size: 0.8rem;
+  }
+
+  /* Hinweise: Rahmenkasten in heller Statusfarbe mit Rahmen in der Statusfarbe */
+  .hinweis {
+    border: 1px solid var(--ochre);
+    border-radius: var(--radius-karte);
+    background: var(--ochre-light);
+    color: var(--text);
+    padding: 16px 20px;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .hinweis[data-status="erfolg"] {
+    border-color: var(--sage);
+    background: var(--sage-light);
+  }
+
+  .hinweis[data-status="fehler"] {
+    border-color: var(--brick);
+    background: var(--brick-light);
+  }
+
+  /* Platzhalter: Rahmen in Ocker, heller Ockergrund */
+  .platzhalter-zeile {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem;
+    max-width: 100%;
+  }
+
+  .platzhalter-etikett {
+    display: inline-block;
+    border: 1px solid var(--ochre);
+    border-radius: 4px;
+    background: var(--ochre-light);
+    color: var(--text);
+    padding: 0.1rem 0.45rem;
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .platzhalter-hinweis {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--muted);
+  }
+
+  .platzhalter-box {
+    border: 1px dashed var(--ochre);
+    border-radius: var(--radius-karte);
+    background: var(--ochre-light);
+    padding: 14px 16px;
+  }
+
+  /* Markierung [PRÜFEN: ...] auf den Rechtsseiten */
+  .pruefen {
+    border: 1px solid var(--ochre);
+    border-radius: 4px;
+    background: var(--ochre-light);
+    color: var(--text);
+    padding: 0.05rem 0.35rem;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+
+  /* Sprunglink: erst bei Fokus sichtbar */
+  .sprunglink {
+    position: absolute;
+    left: var(--rand);
+    top: 8px;
+    z-index: 100;
+    transform: translateY(-200%);
+    background: var(--text);
+    color: var(--bg);
+    padding: 0.6rem 1rem;
+    border-radius: var(--radius-knopf);
+    font-size: 1rem;
+    text-decoration: none;
+  }
+
+  .sprunglink:focus {
+    transform: translateY(0);
+    color: var(--bg);
+  }
+
+  /* Bildflächen: alle Bilder mit Radius 12px */
+  .bild {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-karte);
+    background: var(--greige);
+  }
+
+  .bild-platzhalter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 12px;
+    background: var(--greige);
+    color: var(--text);
+    font-size: 0.95rem;
+    line-height: 1.4;
+    text-align: center;
+    overflow-wrap: anywhere;
+  }
+
+  /* Formularfelder */
+  .feld-label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  .feld {
+    display: block;
+    width: 100%;
+    min-height: 48px;
+    border: 1px solid var(--taupe);
+    border-radius: var(--radius-knopf);
+    background: var(--bg);
+    color: var(--text);
+    padding: 0.6rem 0.8rem;
+    font: inherit;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .feld:focus-visible {
+    border-radius: var(--radius-knopf);
+    outline-offset: 2px;
+  }
+
+  .feld[aria-invalid="true"] {
+    border-color: var(--brick);
+    border-width: 2px;
+  }
+
+  .feld-fehler {
+    margin-top: 6px;
+    border-left: 3px solid var(--brick);
+    padding-left: 8px;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    color: var(--text);
+  }
+
+  /* FAQ mit details und summary */
+  .faq {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .faq:first-child {
+    border-top: 1px solid var(--line);
+  }
+
+  .faq > summary {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px 4px;
+    cursor: pointer;
+    list-style: none;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  .faq > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq > summary::after {
+    content: "";
+    flex: none;
+    width: 12px;
+    height: 12px;
+    margin-top: 0.35em;
+    border-right: 2px solid var(--sage);
+    border-bottom: 2px solid var(--sage);
+    transform: rotate(45deg);
+    transition: transform 200ms ease;
+  }
+
+  .faq[open] > summary::after {
+    transform: translateY(4px) rotate(-135deg);
+  }
+
+  .faq > div {
+    padding: 0 4px 20px;
+    color: var(--text);
+  }
+}
+
+/* Bewegung reduzieren: alle Übergänge und Animationen aus */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+    scroll-behavior: auto !important;
+  }
 }

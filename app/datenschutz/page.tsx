@@ -5,11 +5,11 @@ export const metadata: Metadata = { title: meta.datenschutzTitel };
 
 export default function DatenschutzSeite() {
   return (
-    <main>
+    <div className="rahmen abschnitt">
       <h1>{datenschutz.titel}</h1>
       <p>
         <strong>{datenschutz.entwurfTitel}</strong> {datenschutz.entwurfText}
       </p>
-    </main>
+    </div>
   );
 }
