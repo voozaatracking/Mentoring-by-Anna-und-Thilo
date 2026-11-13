@@ -1,5 +1,6 @@
 import { Abschnitt, AbschnittsKopf } from "@/components/ui/Abschnitt";
 import { Bild } from "@/components/ui/Bild";
+import { EINBLENDEN, staffel } from "@/components/effekte/bewegung";
 import { ueberUns } from "@/content/site";
 
 export function UeberUns() {
@@ -15,7 +16,7 @@ export function UeberUns() {
         <Bild
           name="bank"
           sizes="(min-width: 1024px) 50vw, 100vw"
-          className="aspect-[3/2] w-full"
+          className={`${EINBLENDEN} aspect-[3/2] w-full`}
         />
       </div>
 
@@ -27,7 +28,8 @@ export function UeberUns() {
         {ueberUns.stationen.map((station, index) => (
           <li
             key={station.titel}
-            className="flex flex-col gap-3 border-t border-taupe pt-5"
+            className={`${EINBLENDEN} flex flex-col gap-3 border-t border-taupe pt-5`}
+            style={staffel(index)}
           >
             <span className="nummer" aria-hidden="true">
               {String(index + 1).padStart(2, "0")}
@@ -40,10 +42,11 @@ export function UeberUns() {
 
       {/* Zwei Rollenkarten mit Porträt */}
       <ul className="mt-14 grid gap-4 md:mt-20 md:gap-6 lg:grid-cols-2">
-        {ueberUns.rollen.map((rolle) => (
+        {ueberUns.rollen.map((rolle, index) => (
           <li
             key={rolle.name}
-            className="karte flex flex-col gap-5 sm:flex-row sm:gap-6"
+            className={`karte ${EINBLENDEN} flex flex-col gap-5 sm:flex-row sm:gap-6`}
+            style={staffel(index)}
           >
             <Bild
               name={rolle.bild}
@@ -67,7 +70,7 @@ export function UeberUns() {
         ))}
       </ul>
 
-      <blockquote className="zitat mt-14 md:mt-20">
+      <blockquote className={`zitat ${EINBLENDEN} mt-14 md:mt-20`}>
         <p>{ueberUns.zitat}</p>
       </blockquote>
     </Abschnitt>

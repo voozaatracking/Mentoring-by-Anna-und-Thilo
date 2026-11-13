@@ -754,3 +754,85 @@
     overflow: hidden;
   }
 }
+
+/* ------------------------------------------------------------------ */
+/* Effekte (ohne Bibliothek)                                           */
+/* ------------------------------------------------------------------ */
+
+/*
+ * 1. Einstiegsbild: beim Laden Skalierung 1.06 auf 1 in 1,8s, beim Scrollen
+ *    Verschiebung bis 40px über --hero-versatz. Das Bild ist 40px höher als
+ *    sein Rahmen, damit beim Verschieben oben keine Lücke entsteht.
+ */
+.hero-bild {
+  top: -40px !important;
+  height: calc(100% + 40px) !important;
+  translate: 0 var(--hero-versatz, 0px);
+  animation: hero-zoom 1.8s cubic-bezier(0.2, 0.6, 0.2, 1) both;
+  will-change: translate;
+}
+
+@keyframes hero-zoom {
+  from {
+    scale: 1.06;
+  }
+  to {
+    scale: 1;
+  }
+}
+
+/*
+ * 2. Einblenden beim Scrollen. Der verborgene Zustand gilt nur, wenn
+ *    JavaScript aktiv ist (data-einblenden setzt ScrollEinblenden).
+ */
+html[data-einblenden] .reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 600ms ease,
+    transform 600ms ease;
+  transition-delay: calc(var(--reveal-i, 0) * 80ms);
+}
+
+html[data-einblenden] .reveal.ist-sichtbar {
+  opacity: 1;
+  transform: none;
+}
+
+/* 5. Selbsttest: weicher Wechsel zwischen den Fragen */
+.selbsttest-schritt {
+  animation: schritt-ein 320ms ease both;
+}
+
+@keyframes schritt-ein {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.fortschritt > span {
+  transition: width 320ms ease;
+}
+
+/* Bei prefers-reduced-motion sind alle Effekte aus. */
+@media (prefers-reduced-motion: reduce) {
+  .hero-bild {
+    translate: none;
+    animation: none;
+  }
+
+  .selbsttest-schritt {
+    animation: none;
+  }
+
+  html[data-einblenden] .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

@@ -1,4 +1,6 @@
 import { Abschnitt, AbschnittsKopf } from "@/components/ui/Abschnitt";
+import { EINBLENDEN, staffel } from "@/components/effekte/bewegung";
+import { Zaehler } from "@/components/effekte/Zaehler";
 import { Bild } from "@/components/ui/Bild";
 import { KnopfLink } from "@/components/ui/Knopf";
 import { PlatzhalterBox } from "@/components/ui/Platzhalter";
@@ -21,10 +23,7 @@ export function Zahlen() {
                 className="flex flex-col gap-2 border-t border-taupe pt-4"
               >
                 <dd className="kennzahl">
-                  {kennzahl.vorsatz ? (
-                    <span className="kennzahl-vorsatz">{kennzahl.vorsatz} </span>
-                  ) : null}
-                  {kennzahl.wert}
+                  <Zaehler wert={kennzahl.wert} vorsatz={kennzahl.vorsatz} />
                 </dd>
                 <dt className="text-klein text-muted">{kennzahl.label}</dt>
               </div>
@@ -35,7 +34,7 @@ export function Zahlen() {
         <Bild
           name="ruecken"
           sizes="(min-width: 1024px) 50vw, 100vw"
-          className="aspect-[3/2] w-full"
+          className={`${EINBLENDEN} aspect-[3/2] w-full`}
         />
       </div>
 
@@ -46,8 +45,12 @@ export function Zahlen() {
           aria-labelledby="stimmen-titel"
           className="mt-6 grid gap-4 md:grid-cols-3 md:gap-6"
         >
-          {zahlen.stimmen.map((stimme) => (
-            <li key={stimme.hinweis}>
+          {zahlen.stimmen.map((stimme, index) => (
+            <li
+              key={stimme.hinweis}
+              className={EINBLENDEN}
+              style={staffel(index)}
+            >
               <PlatzhalterBox
                 platzhalter={stimme}
                 className="flex min-h-[140px] items-start"
@@ -58,7 +61,9 @@ export function Zahlen() {
       </div>
 
       {/* Podcast: nur ein Link, nichts eingebettet */}
-      <div className="mt-10 flex flex-col gap-4 border-t border-line pt-8 md:mt-14 md:flex-row md:items-center md:justify-between md:gap-8">
+      <div
+        className={`${EINBLENDEN} mt-10 flex flex-col gap-4 border-t border-line pt-8 md:mt-14 md:flex-row md:items-center md:justify-between md:gap-8`}
+      >
         <p>{zahlen.podcast.text}</p>
         <KnopfLink
           href={zahlen.podcast.link.href}

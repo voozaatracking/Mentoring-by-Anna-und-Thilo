@@ -1,3 +1,4 @@
+import { EINBLENDEN } from "@/components/effekte/bewegung";
 import { Abschnitt } from "@/components/ui/Abschnitt";
 import { KnopfLink } from "@/components/ui/Knopf";
 import { PlatzhalterEtikett } from "@/components/ui/Platzhalter";
@@ -8,8 +9,10 @@ export function Paket() {
   const { karte } = paket;
   return (
     <Abschnitt id={paket.id} titelId="paket-titel">
-      <h2 id="paket-titel">{paket.titel}</h2>
-      <div className="karte mt-10 flex max-w-[640px] flex-col gap-6 md:mt-14 md:p-8">
+      <h2 id="paket-titel" className={EINBLENDEN}>{paket.titel}</h2>
+      <div
+        className={`karte ${EINBLENDEN} mt-10 flex max-w-[640px] flex-col gap-6 md:mt-14 md:p-8`}
+      >
         <h3 id="paket-karte-titel">{karte.titel}</h3>
         <ul aria-labelledby="paket-karte-titel" className="flex flex-col gap-3">
           {karte.punkte.map((punkt) =>

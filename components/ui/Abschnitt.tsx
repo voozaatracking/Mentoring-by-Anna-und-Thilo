@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { EINBLENDEN } from "@/components/effekte/bewegung";
 
 /** Abschnitt des Onepagers. Der Ton wechselt zwischen --bg und --soft. */
 export function Abschnitt({
@@ -42,7 +43,7 @@ export function AbschnittsKopf({
   className?: string;
 }) {
   return (
-    <div className={`flex flex-col gap-4 ${className}`}>
+    <div className={`${EINBLENDEN} flex flex-col gap-4 ${className}`}>
       {kleinzeile ? <p className="kleinzeile">{kleinzeile}</p> : null}
       <h2 id={titelId}>{titel}</h2>
       {text ? <p>{text}</p> : null}

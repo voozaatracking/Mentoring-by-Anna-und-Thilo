@@ -1,3 +1,4 @@
+import { EINBLENDEN } from "@/components/effekte/bewegung";
 import { Selbsttest } from "@/components/Selbsttest";
 import { Abschnitt, AbschnittsKopf } from "@/components/ui/Abschnitt";
 import { selbsttest } from "@/content/site";
@@ -12,7 +13,9 @@ export function SelbsttestAbschnitt() {
           titelId="selbsttest-titel"
           text={selbsttest.text}
         />
-        <Selbsttest inhalt={selbsttest} />
+        <div className={EINBLENDEN}>
+          <Selbsttest inhalt={selbsttest} />
+        </div>
       </div>
     </Abschnitt>
   );

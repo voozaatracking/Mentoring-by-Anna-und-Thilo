@@ -1,3 +1,4 @@
+import { HeroBewegung } from "@/components/effekte/HeroBewegung";
 import { Bild } from "@/components/ui/Bild";
 import { KnopfLink } from "@/components/ui/Knopf";
 import { einstieg } from "@/content/site";
@@ -18,15 +19,15 @@ export function Einstieg() {
         nur Heide unterhalb der beiden ab. Die Breite endet bei 1920px, sonst
         würde der Ausschnitt auf sehr breiten Bildschirmen zu flach.
       */}
-      <div className="mx-auto max-w-[calc(1920px+2*var(--rand))] px-[var(--rand)]">
+      <HeroBewegung className="mx-auto max-w-[calc(1920px+2*var(--rand))] px-[var(--rand)]">
         <Bild
           name="hero"
           sizes="(min-width: 1984px) 1920px, 100vw"
           vorrang
           className="aspect-[4/3] w-full md:aspect-auto md:h-[min(78vh,720px)]"
-          bildKlasse="object-[35%_50%] md:object-[50%_70%]"
+          bildKlasse="hero-bild object-[35%_50%] md:object-[50%_70%]"
         />
-      </div>
+      </HeroBewegung>
 
       {/* Ab 1024px steht die Zahlenzeile rechts neben der Karte, direkt unter dem Bild. */}
       <div className="rahmen lg:grid lg:grid-cols-[minmax(0,560px)_minmax(0,1fr)] lg:items-start lg:gap-16">

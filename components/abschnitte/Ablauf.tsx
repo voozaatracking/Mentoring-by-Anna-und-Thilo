@@ -1,4 +1,6 @@
 import { Abschnitt, AbschnittsKopf } from "@/components/ui/Abschnitt";
+import { EINBLENDEN } from "@/components/effekte/bewegung";
+import { Zeitleiste } from "@/components/effekte/Zeitleiste";
 import { Bild } from "@/components/ui/Bild";
 import { PlatzhalterBox, PlatzhalterEtikett } from "@/components/ui/Platzhalter";
 import { ablauf } from "@/content/site";
@@ -18,10 +20,10 @@ export function Ablauf() {
         <Bild
           name="weg"
           sizes="(min-width: 768px) 40vw, 100vw"
-          className="aspect-[2/3] w-full max-w-[420px]"
+          className={`${EINBLENDEN} aspect-[2/3] w-full max-w-[420px]`}
         />
         <div className="flex flex-col gap-8">
-          <ol aria-label={ablauf.zeitleisteLabel} className="zeitleiste">
+          <Zeitleiste label={ablauf.zeitleisteLabel}>
             {ablauf.eintraege.map((eintrag) => (
               <li key={eintrag.label} className="zeitleiste-eintrag">
                 <span className="zeitleiste-punkt" aria-hidden="true" />
@@ -33,7 +35,7 @@ export function Ablauf() {
                 </p>
               </li>
             ))}
-          </ol>
+          </Zeitleiste>
           <PlatzhalterBox platzhalter={ablauf.format} />
         </div>
       </div>

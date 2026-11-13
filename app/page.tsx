@@ -9,6 +9,7 @@ import { Paket } from "@/components/abschnitte/Paket";
 import { SelbsttestAbschnitt } from "@/components/abschnitte/SelbsttestAbschnitt";
 import { UeberUns } from "@/components/abschnitte/UeberUns";
 import { Zahlen } from "@/components/abschnitte/Zahlen";
+import { ScrollEinblenden } from "@/components/effekte/ScrollEinblenden";
 
 /* Onepager. Die Abschnitte wechseln zwischen --bg und --soft. */
 export default function Startseite() {
@@ -25,6 +26,7 @@ export default function Startseite() {
       <Paket />
       <Fragen />
       <Erstgespraech />
+      <ScrollEinblenden />
     </>
   );
 }

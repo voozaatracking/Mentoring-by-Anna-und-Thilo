@@ -1,4 +1,5 @@
 import { Abschnitt, AbschnittsKopf } from "@/components/ui/Abschnitt";
+import { EINBLENDEN, staffel } from "@/components/effekte/bewegung";
 import { frage } from "@/content/site";
 
 export function Frage() {
@@ -11,8 +12,12 @@ export function Frage() {
         text={frage.text}
       />
       <ul className="mt-10 grid gap-4 md:mt-14 md:grid-cols-3 md:gap-6">
-        {frage.karten.map((karte) => (
-          <li key={karte.titel} className="karte flex flex-col gap-3">
+        {frage.karten.map((karte, index) => (
+          <li
+            key={karte.titel}
+            className={`karte ${EINBLENDEN} flex flex-col gap-3`}
+            style={staffel(index)}
+          >
             <h3>{karte.titel}</h3>
             <p className="text-klein">{karte.text}</p>
           </li>

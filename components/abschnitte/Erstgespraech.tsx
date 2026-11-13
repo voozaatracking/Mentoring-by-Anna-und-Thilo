@@ -1,3 +1,4 @@
+import { EINBLENDEN } from "@/components/effekte/bewegung";
 import { AnfrageFormular } from "@/components/AnfrageFormular";
 import { Abschnitt, AbschnittsKopf } from "@/components/ui/Abschnitt";
 import { Bild } from "@/components/ui/Bild";
@@ -19,10 +20,12 @@ export function Erstgespraech() {
           <Bild
             name="erstgespraech"
             sizes="(min-width: 1024px) 50vw, 100vw"
-            className="aspect-[3/2] w-full"
+            className={`${EINBLENDEN} aspect-[3/2] w-full`}
           />
         </div>
-        <AnfrageFormular inhalt={formular} kontaktEmail={CONTACT_EMAIL} />
+        <div className={EINBLENDEN}>
+          <AnfrageFormular inhalt={formular} kontaktEmail={CONTACT_EMAIL} />
+        </div>
       </div>
     </Abschnitt>
   );
