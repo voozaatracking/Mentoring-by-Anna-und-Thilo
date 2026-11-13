@@ -66,6 +66,6 @@ Datenschutz:
 
 - Rate-Limit liegt im Arbeitsspeicher und gilt bei Vercel je Instanz. Für einen härteren Schutz wäre ein gemeinsamer Speicher nötig. Das widerspricht der Vorgabe „keine Datenbank“ und ist deshalb offen.
 - Das Formular braucht JavaScript. Ohne JavaScript zeigt es die Ausweichadresse.
-- Favicon ist ein neutrales Zeichen. Ein Logo von Hygge Homes fehlt.
+- Das Favicon (`app/icon.svg`) ist ein neutrales Hauszeichen in den Seitenfarben. Ein Logo von Hygge Homes fehlt.
 - Wortmarke in der Kopfzeile ist reiner Text. Ein Logo kann sie später ersetzen.
 - Sitemap und robots.txt fehlen bewusst, solange die Seite nicht indexiert werden soll.
