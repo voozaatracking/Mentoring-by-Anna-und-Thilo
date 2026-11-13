@@ -21,28 +21,14 @@ Alle Einträge stehen in `content/site.ts` und sind dort mit `placeholder: true`
 | 11 | Paket | Preis | `paket.karte.preis` |
 | 12 | Erstgespräch | Dauer, Kosten und Ablauf des Erstgesprächs | `erstgespraech.rahmen` |
 
-## Fehlende Bilder
+## Bilder
 
-Der Ordner `assets/images/` war beim ersten Wurf nicht im Repository. Alle zwölf Bilder erscheinen deshalb als Fläche „Bild folgt“. Ablauf zum Nachliefern: siehe README, Abschnitt Bilder.
+Alle zwölf Bilder liegen unter ihren Zielnamen in `assets/images/`. Es gibt kein Platzhalterbild mehr.
 
-- `hero-heide.jpg`
-- `anna-thilo-bank.jpg`
-- `anna-portrait.jpg`
-- `thilo-portrait.jpg`
-- `anna-thilo-laptop.jpg`
-- `anna-thilo-weg.jpg`
-- `hygge-homes-ruecken.jpg`
-- `anna-thilo-erstgespraech.jpg`
-- `wohnung-schlafen.jpg`
-- `wohnung-wohnen.png`
-- `wohnung-essen.png`
-- `wohnung-studio.jpg`
-
-Nach dem Nachliefern:
-
-- Alt-Texte gegen die Fotos prüfen. Sie sind ohne Sichtung formuliert.
-- Bildausschnitte prüfen, vor allem Einstieg, Porträts (4:5) und Ablauf (Hochformat).
+- Alt-Texte sind anhand der Fotos formuliert, ohne Ortsangaben.
+- Bildausschnitte sind geprüft: Einstieg (mobil und Desktop), Porträts (4:5, Gesicht im oberen Drittel), übrige Fotos im Originalformat 3:2 oder 2:3.
 - Das Open-Graph-Bild entsteht automatisch aus dem Einstiegsbild.
+- Die Originalfotos sind 2500 Pixel breit. `next/image` liefert passende Größen aus.
 
 ## Rechtsseiten
 
@@ -70,7 +56,7 @@ Datenschutz:
 ## Vor dem Livegang
 
 - [ ] Alle Platzhalter ersetzt, dann `SHOW_PLACEHOLDER_MARKS = false`
-- [ ] Bilder geliefert, Alt-Texte geprüft
+- [x] Bilder geliefert, Alt-Texte geprüft
 - [ ] Rechtsseiten geprüft, Hinweis „Entwurf“ entfernt
 - [ ] Umgebungsvariablen in Vercel gesetzt, Testanfrage auf der Preview gesendet
 - [ ] Endgültige Domain festgelegt und als `SITE_URL` gesetzt

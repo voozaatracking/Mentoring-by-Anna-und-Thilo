@@ -617,7 +617,7 @@
   }
 
   .kennzahl-vorsatz {
-    font-size: 0.4em;
+    font-size: max(0.4em, 0.8rem);
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--muted);
@@ -625,7 +625,7 @@
 
   .kennzahl-klein {
     font-family: var(--font-display);
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     font-weight: 500;
     line-height: 1.1;
     letter-spacing: 0.08em;

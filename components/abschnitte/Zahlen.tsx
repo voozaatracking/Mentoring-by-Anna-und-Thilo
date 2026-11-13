@@ -35,7 +35,7 @@ export function Zahlen() {
         <Bild
           name="ruecken"
           sizes="(min-width: 1024px) 50vw, 100vw"
-          className="aspect-[4/5] w-full max-w-[520px] lg:justify-self-end"
+          className="aspect-[3/2] w-full"
         />
       </div>
 

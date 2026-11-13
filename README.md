@@ -109,10 +109,11 @@ Quelle ist der Ordner `assets/images/`. Die Seite bindet Bilder über statische 
 
 So kommen die Bilder auf die Seite:
 
-1. Originaldateien nach `assets/images/` legen und mit `git add` aufnehmen.
-2. `npm run bilder:umbenennen` ausführen. Das Skript benennt die bekannten Originalnamen per `git mv` auf die Zielnamen um.
+1. Originaldateien nach `assets/images/` oder ins Hauptverzeichnis legen und mit `git add` aufnehmen.
+2. `npm run bilder:umbenennen` ausführen. Das Skript verschiebt die bekannten Originalnamen per `git mv` nach `assets/images/` und benennt sie auf die Zielnamen um.
 3. `npm run bilder` ausführen. Das Skript schreibt `lib/bilder.generated.ts` mit den Importen aller vorhandenen Dateien. Vor `npm run dev` und `npm run build` läuft es automatisch.
-4. Alt-Texte in `content/site.ts` (Objekt `bilder`) gegen die Fotos prüfen. Keine Ortsangaben.
+4. Alt-Texte in `content/site.ts` (Objekt `bilder`) an das Foto anpassen. Keine Ortsangaben.
+5. Bildausschnitt prüfen. Er wird je Abschnitt über `bildKlasse` gesetzt, zum Beispiel `object-top` bei den Porträts.
 
 Zuordnung:
 
@@ -126,7 +127,7 @@ Zuordnung:
 | `2026_09_10_Hygge_Homes-77.jpg` | `anna-thilo-weg.jpg` | Ablauf, Hochformat |
 | `2026_09_10_Hygge_Homes-57.jpg` | `hygge-homes-ruecken.jpg` | Zahlen |
 | `2026_09_10_Hygge_Homes-37.jpg` | `anna-thilo-erstgespraech.jpg` | Formular |
-| `gamleby_slider01.jpg` | `wohnung-schlafen.jpg` | Kachel Schlafen |
+| `gamleby_slider01-2.jpg` | `wohnung-schlafen.jpg` | Kachel Schlafen |
 | `celle_1og_homeslider-600x600.png` | `wohnung-wohnen.png` | Kachel Wohnen |
 | `scandi-sunset_card_slide_01.png` | `wohnung-essen.png` | Kachel Essen |
 | `rosengarten_titel_quadratisch.jpg` | `wohnung-studio.jpg` | Kachel Studio |

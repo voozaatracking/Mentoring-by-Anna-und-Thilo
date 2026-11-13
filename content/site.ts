@@ -109,58 +109,55 @@ export const ui = {
 /* Bilder                                                              */
 /* ------------------------------------------------------------------ */
 
-/*
- * Die Alt-Texte sind ohne Sichtung der Fotos formuliert und müssen nach
- * Eingang der Bilder geprüft werden. Keine Ortsangaben.
- */
+/* Alt-Texte beschreiben das Foto. Keine Ortsangaben. */
 export const bilder: Record<BildName, BildEintrag> = {
   hero: {
     datei: "hero-heide.jpg",
-    alt: "Heidelandschaft im weichen Licht",
+    alt: "Anna und Thilo stehen Arm in Arm in der blühenden Heide und lachen sich an",
   },
   bank: {
     datei: "anna-thilo-bank.jpg",
-    alt: "Anna und Thilo sitzen nebeneinander auf einer Bank",
+    alt: "Anna sitzt auf einer Holzbank, Thilo steht neben ihr, beide lächeln in die Kamera",
   },
   anna: {
     datei: "anna-portrait.jpg",
-    alt: "Porträt von Anna",
+    alt: "Porträt von Anna in weißer Bluse, sie lächelt in die Kamera",
   },
   thilo: {
     datei: "thilo-portrait.jpg",
-    alt: "Porträt von Thilo",
+    alt: "Porträt von Thilo mit Brille und hellblauem Hemd, er lächelt in die Kamera",
   },
   laptop: {
     datei: "anna-thilo-laptop.jpg",
-    alt: "Anna und Thilo arbeiten gemeinsam am Laptop",
+    alt: "Anna und Thilo sitzen auf einer Bank und schauen gemeinsam auf einen Laptop mit dem Logo von Hygge Homes",
   },
   weg: {
     datei: "anna-thilo-weg.jpg",
-    alt: "Anna und Thilo gehen zusammen einen Weg entlang",
+    alt: "Anna und Thilo gehen nebeneinander einen Sandweg durch die Heide entlang",
   },
   ruecken: {
     datei: "hygge-homes-ruecken.jpg",
-    alt: "Anna und Thilo von hinten in Kleidung mit dem Schriftzug Hygge Homes",
+    alt: "Anna und Thilo von hinten in grauen Shirts mit dem Aufdruck Hygge Homes, vor ihnen blühende Heide",
   },
   erstgespraech: {
     datei: "anna-thilo-erstgespraech.jpg",
-    alt: "Anna und Thilo im Gespräch",
+    alt: "Thilo stützt sich auf eine Banklehne, Anna steht hinter ihm, beide lächeln in die Kamera",
   },
   wohnungSchlafen: {
     datei: "wohnung-schlafen.jpg",
-    alt: "Schlafzimmer einer Ferienwohnung mit gemachtem Bett",
+    alt: "Schlafzimmer mit Doppelbett, grauer Tagesdecke und Nachttischlampe",
   },
   wohnungWohnen: {
     datei: "wohnung-wohnen.png",
-    alt: "Wohnbereich einer Ferienwohnung mit Sofa",
+    alt: "Wohnbereich mit dunklem Sofa, Stehlampe und runden Beistelltischen",
   },
   wohnungEssen: {
     datei: "wohnung-essen.png",
-    alt: "Essbereich einer Ferienwohnung mit Tisch und Stühlen",
+    alt: "Gedeckter Esstisch aus Holz vor einer hellen Einbauküche",
   },
   wohnungStudio: {
     datei: "wohnung-studio.jpg",
-    alt: "Eingerichtetes Studio einer Ferienwohnung",
+    alt: "Studio mit Essplatz am Fenster, Bett und Holzboden",
   },
 };
 
@@ -200,10 +197,10 @@ export const einstieg = {
   } satisfies Verweis,
   zahlenLabel: "Hygge Homes in Zahlen",
   zahlen: [
-    { wert: "24", label: "Ferienwohnungen" },
-    { wert: "rund 125", label: "Betten" },
-    { wert: "5", label: "Standorte" },
-  ],
+    { wert: 24, label: "Ferienwohnungen" },
+    { vorsatz: "rund", wert: 125, label: "Betten" },
+    { wert: 5, label: "Standorte" },
+  ] satisfies Kennzahl[],
 };
 
 /* ------------------------------------------------------------------ */

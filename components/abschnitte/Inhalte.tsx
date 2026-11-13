@@ -16,7 +16,7 @@ export function Inhalte() {
         <Bild
           name="laptop"
           sizes="(min-width: 1024px) 50vw, 100vw"
-          className="aspect-[4/3] w-full"
+          className="aspect-[3/2] w-full"
         />
       </div>
 

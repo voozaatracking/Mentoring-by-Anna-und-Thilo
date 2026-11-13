@@ -18,7 +18,7 @@ export function Ablauf() {
         <Bild
           name="weg"
           sizes="(min-width: 768px) 40vw, 100vw"
-          className="aspect-[3/4] w-full max-w-[420px]"
+          className="aspect-[2/3] w-full max-w-[420px]"
         />
         <div className="flex flex-col gap-8">
           <ol aria-label={ablauf.zeitleisteLabel} className="zeitleiste">

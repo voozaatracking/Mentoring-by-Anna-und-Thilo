@@ -15,7 +15,7 @@ export function UeberUns() {
         <Bild
           name="bank"
           sizes="(min-width: 1024px) 50vw, 100vw"
-          className="aspect-[4/3] w-full"
+          className="aspect-[3/2] w-full"
         />
       </div>
 
@@ -49,6 +49,8 @@ export function UeberUns() {
               name={rolle.bild}
               sizes="(min-width: 640px) 180px, 220px"
               className="aspect-[4/5] w-full max-w-[220px] shrink-0 self-start sm:w-[180px]"
+              // Hochformat 2:3 im Rahmen 4:5: oben ausrichten, Gesicht im oberen Drittel.
+              bildKlasse="object-top"
             />
             <div className="flex flex-col gap-3">
               <div className="flex flex-col gap-1">

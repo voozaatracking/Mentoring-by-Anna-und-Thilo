@@ -19,7 +19,11 @@ const wurzel = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const bildOrdner = path.join(wurzel, "assets", "images");
 const zielDatei = path.join(wurzel, "lib", "bilder.generated.ts");
 
-/** Originalname -> Zielname. Die Zielnamen stehen auch in content/site.ts. */
+/**
+ * Originalname -> Zielname. Die Zielnamen stehen auch in content/site.ts.
+ * Die Originaldateien dürfen in assets/images/ oder im Hauptverzeichnis
+ * liegen. Das Ziel ist immer assets/images/.
+ */
 export const ZUORDNUNG = {
   "2026_09_10_Hygge_Homes-67.jpg": "hero-heide.jpg",
   "2026_09_10_Hygge_Homes-10.jpg": "anna-thilo-bank.jpg",
@@ -29,7 +33,7 @@ export const ZUORDNUNG = {
   "2026_09_10_Hygge_Homes-77.jpg": "anna-thilo-weg.jpg",
   "2026_09_10_Hygge_Homes-57.jpg": "hygge-homes-ruecken.jpg",
   "2026_09_10_Hygge_Homes-37.jpg": "anna-thilo-erstgespraech.jpg",
-  "gamleby_slider01.jpg": "wohnung-schlafen.jpg",
+  "gamleby_slider01-2.jpg": "wohnung-schlafen.jpg",
   "celle_1og_homeslider-600x600.png": "wohnung-wohnen.png",
   "scandi-sunset_card_slide_01.png": "wohnung-essen.png",
   "rosengarten_titel_quadratisch.jpg": "wohnung-studio.jpg",
@@ -81,9 +85,11 @@ function schreibeRegister() {
 function benenneUm() {
   let anzahl = 0;
   for (const [original, ziel] of Object.entries(ZUORDNUNG)) {
-    const von = path.join(bildOrdner, original);
+    const von = [bildOrdner, wurzel]
+      .map((ordner) => path.join(ordner, original))
+      .find((pfad) => existsSync(pfad));
     const nach = path.join(bildOrdner, ziel);
-    if (!existsSync(von)) continue;
+    if (!von) continue;
     if (existsSync(nach)) {
       console.log(`[bilder] Übersprungen, Ziel existiert schon: ${ziel}`);
       continue;
