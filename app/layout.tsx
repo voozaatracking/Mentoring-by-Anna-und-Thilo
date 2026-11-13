@@ -1,7 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import { ALLOW_INDEXING, SITE_NAME, meta, ui } from "@/content/site";
+import { ALLOW_INDEXING, SITE_NAME, bilder, meta, ui } from "@/content/site";
+import { bildDateien } from "@/lib/bilder.generated";
 import { siteUrl } from "@/lib/site-url";
 
 /*
@@ -22,6 +23,22 @@ const jost = localFont({
   display: "swap",
 });
 
+/*
+ * Open-Graph-Bild aus dem Einstiegsbild, über die Bildoptimierung auf
+ * 1200px Breite verkleinert. Fehlt das Einstiegsbild, entfällt die Angabe.
+ */
+const heroDatei = bildDateien[bilder.hero.datei];
+const ogBilder = heroDatei
+  ? [
+      {
+        url: `/_next/image?url=${encodeURIComponent(heroDatei.src)}&w=1200&q=75`,
+        width: 1200,
+        height: Math.round((1200 * heroDatei.height) / heroDatei.width),
+        alt: bilder.hero.alt,
+      },
+    ]
+  : undefined;
+
 export const metadata: Metadata = {
   metadataBase: siteUrl(),
   title: meta.titel,
@@ -35,6 +52,13 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     title: meta.titel,
     description: meta.beschreibung,
+    images: ogBilder,
+  },
+  twitter: {
+    card: ogBilder ? "summary_large_image" : "summary",
+    title: meta.titel,
+    description: meta.beschreibung,
+    images: ogBilder,
   },
 };
 

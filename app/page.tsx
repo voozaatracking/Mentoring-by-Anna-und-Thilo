@@ -1,8 +1,16 @@
 import { Abschnitt, AbschnittsKopf } from "@/components/ui/Abschnitt";
+import { Bild } from "@/components/ui/Bild";
 import { Hinweis } from "@/components/ui/Hinweis";
 import { KnopfLink } from "@/components/ui/Knopf";
 import { PlatzhalterBox } from "@/components/ui/Platzhalter";
-import { einstieg, erstgespraech, frage, inhalte } from "@/content/site";
+import {
+  bilder,
+  einstieg,
+  erstgespraech,
+  frage,
+  inhalte,
+  type BildName,
+} from "@/content/site";
 
 /* Vorläufige Startseite: zeigt die Bausteine des Designsystems. */
 export default function Startseite() {
@@ -42,6 +50,17 @@ export default function Startseite() {
           <p>{inhalte.hinweis}</p>
         </Hinweis>
         <PlatzhalterBox className="mt-4" platzhalter={erstgespraech.rahmen} />
+        <ul className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-4">
+          {(Object.keys(bilder) as BildName[]).map((name) => (
+            <li key={name}>
+              <Bild
+                name={name}
+                sizes="(min-width: 768px) 25vw, 50vw"
+                className="aspect-square"
+              />
+            </li>
+          ))}
+        </ul>
       </Abschnitt>
     </>
   );

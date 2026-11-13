@@ -8,7 +8,11 @@
     "start": "next start",
     "lint": "eslint",
     "test": "vitest run",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "bilder": "node scripts/bilder.mjs",
+    "bilder:umbenennen": "node scripts/bilder.mjs --umbenennen",
+    "predev": "node scripts/bilder.mjs",
+    "prebuild": "node scripts/bilder.mjs"
   },
   "dependencies": {
     "next": "16.4.6",
