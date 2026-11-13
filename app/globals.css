@@ -76,7 +76,8 @@
 
 @layer base {
   html {
-    scroll-padding-top: calc(var(--kopf-hoehe-schmal) + 16px);
+    /* Sprungziele landen direkt unter der schmalen Kopfzeile. */
+    scroll-padding-top: var(--kopf-hoehe-schmal);
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
   }
@@ -173,7 +174,6 @@
   .abschnitt {
     padding-block: var(--abschnitt-abstand);
     background: var(--bg);
-    scroll-margin-top: var(--kopf-hoehe-schmal);
   }
 
   .abschnitt[data-ton="soft"] {
@@ -835,4 +835,11 @@ html[data-einblenden] .reveal.ist-sichtbar {
     transform: none;
     transition: none;
   }
+}
+
+/* Rechtsseiten: kleinere Zwischenüberschriften */
+.recht-titel {
+  font-size: 1.25rem;
+  line-height: 1.3;
+  margin-top: 0.5rem;
 }
