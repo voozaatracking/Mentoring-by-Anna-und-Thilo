@@ -138,32 +138,13 @@ export function AnfrageFormular({
 
   return (
     <div className="karte md:p-8">
-      {/* Statusmeldungen: Der Bereich bleibt im DOM, damit Screenreader Änderungen ansagen. */}
+      {/* Erfolgsmeldung: Der Bereich bleibt im DOM, damit Screenreader sie ansagen. */}
       <div aria-live="polite" aria-atomic="true">
         {status === "erfolg" ? (
           <Hinweis status="erfolg">
             <p ref={(element) => element?.focus()} tabIndex={-1}>
               {inhalt.erfolg}
             </p>
-          </Hinweis>
-        ) : null}
-        {status === "fehler" ? (
-          <Hinweis status="fehler" className="mb-6">
-            <p>
-              <MitEmail text={inhalt.fehler} email={kontaktEmail} />
-            </p>
-          </Hinweis>
-        ) : null}
-        {status === "zu_viele" ? (
-          <Hinweis status="fehler" className="mb-6">
-            <p>
-              <MitEmail text={inhalt.zuVieleAnfragen} email={kontaktEmail} />
-            </p>
-          </Hinweis>
-        ) : null}
-        {hatFeldFehler ? (
-          <Hinweis status="fehler" className="mb-6">
-            <p>{inhalt.fehlerZusammenfassung}</p>
           </Hinweis>
         ) : null}
       </div>
@@ -349,6 +330,29 @@ export function AnfrageFormular({
               value={werte.website}
               onChange={(e) => setze("website", e.target.value)}
             />
+          </div>
+
+          {/* Fehlermeldungen stehen direkt über dem Knopf und werden angesagt. */}
+          <div role="alert" className="flex flex-col gap-3 empty:hidden">
+            {status === "fehler" ? (
+              <Hinweis status="fehler">
+                <p>
+                  <MitEmail text={inhalt.fehler} email={kontaktEmail} />
+                </p>
+              </Hinweis>
+            ) : null}
+            {status === "zu_viele" ? (
+              <Hinweis status="fehler">
+                <p>
+                  <MitEmail text={inhalt.zuVieleAnfragen} email={kontaktEmail} />
+                </p>
+              </Hinweis>
+            ) : null}
+            {hatFeldFehler ? (
+              <Hinweis status="fehler">
+                <p>{inhalt.fehlerZusammenfassung}</p>
+              </Hinweis>
+            ) : null}
           </div>
 
           <button
