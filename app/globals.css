@@ -1,0 +1,6 @@
+@import "tailwindcss";
+
+/* Kein Dark Mode: Die Seite ist bewusst nur hell gestaltet. */
+:root {
+  color-scheme: light;
+}
