@@ -1,7 +1,16 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import { ALLOW_INDEXING, SITE_NAME, bilder, meta, ui } from "@/content/site";
+import { Fusszeile } from "@/components/Fusszeile";
+import { Kopfzeile } from "@/components/Kopfzeile";
+import {
+  ALLOW_INDEXING,
+  SITE_NAME,
+  bilder,
+  kopfzeile,
+  meta,
+  ui,
+} from "@/content/site";
 import { bildDateien } from "@/lib/bilder.generated";
 import { siteUrl } from "@/lib/site-url";
 
@@ -82,9 +91,23 @@ export default function RootLayout({
         <a href="#inhalt" className="sprunglink">
           {ui.sprunglink}
         </a>
-        <main id="inhalt" tabIndex={-1}>
+        <Kopfzeile
+          wortmarke={kopfzeile.wortmarke}
+          links={kopfzeile.links}
+          cta={kopfzeile.cta}
+          texte={{
+            hauptnavigation: ui.hauptnavigation,
+            menue: ui.menue,
+            menueOeffnen: ui.menueOeffnen,
+            menueSchliessen: ui.menueSchliessen,
+            schliessen: ui.schliessen,
+            zurStartseite: ui.zurStartseite,
+          }}
+        />
+        <main id="inhalt" tabIndex={-1} className="seiteninhalt">
           {children}
         </main>
+        <Fusszeile />
       </body>
     </html>
   );

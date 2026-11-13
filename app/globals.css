@@ -499,3 +499,258 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* ------------------------------------------------------------------ */
+/* Seite: Kopfzeile, Menü, Zeitleiste, Kennzahlen, Selbsttest          */
+/* ------------------------------------------------------------------ */
+
+@layer components {
+  /* Platz für die fixierte Kopfzeile */
+  .seiteninhalt {
+    padding-top: var(--kopf-hoehe);
+  }
+
+  /*
+   * Fixierte Kopfzeile. Nach 80px Scrollen wird sie schmaler und erhält
+   * die Linie unten. Die Fläche ist von Anfang an --bg, damit Inhalte
+   * beim Scrollen nicht unter der Wortmarke durchscheinen.
+   */
+  .kopfzeile {
+    position: fixed;
+    inset: 0 0 auto 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    height: var(--kopf-hoehe);
+    background: var(--bg);
+    border-bottom: 1px solid transparent;
+    transition:
+      height 240ms ease,
+      border-color 240ms ease;
+  }
+
+  .kopfzeile[data-schmal="true"] {
+    height: var(--kopf-hoehe-schmal);
+    border-bottom-color: var(--line);
+  }
+
+  .wortmarke {
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--text);
+  }
+
+  @media (min-width: 480px) {
+    .wortmarke {
+      font-size: 0.95rem;
+    }
+  }
+
+  .nav-link {
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--text);
+    padding-block: 0.4rem;
+    border-bottom: 1px solid transparent;
+    transition: border-color 160ms ease;
+  }
+
+  .nav-link:hover {
+    border-bottom-color: var(--sage);
+  }
+
+  /* Mobiles Menü als Overlay über die ganze Fläche */
+  .menue-overlay {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: var(--bg);
+    color: var(--text);
+    overflow-y: auto;
+  }
+
+  .menue-overlay::backdrop {
+    background: var(--bg);
+  }
+
+  .menue-link {
+    display: block;
+    padding-block: 1rem;
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--text);
+  }
+
+  /* Kein Scrollen der Seite, solange das Menü offen ist */
+  html:has(.menue-overlay[open]) {
+    overflow: hidden;
+  }
+
+  /* Kennzahlen */
+  .kennzahl {
+    font-family: var(--font-display);
+    font-size: clamp(2.25rem, 5vw, 3.25rem);
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 0.06em;
+    font-variant-numeric: tabular-nums;
+    color: var(--text);
+  }
+
+  .kennzahl-vorsatz {
+    font-size: 0.4em;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .kennzahl-klein {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  /* Zitat groß in Oswald */
+  .zitat {
+    border-top: 1px solid var(--taupe);
+    border-bottom: 1px solid var(--taupe);
+    padding-block: 2rem;
+    text-align: center;
+  }
+
+  .zitat p {
+    max-width: 28ch;
+    margin-inline: auto;
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 3.4vw, 2.5rem);
+    font-weight: 400;
+    line-height: 1.25;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-wrap: balance;
+  }
+
+  /* Senkrechte Zeitleiste. --fortschritt (0 bis 1) füllt die Linie. */
+  .zeitleiste {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 2.25rem;
+    padding-left: 40px;
+  }
+
+  .zeitleiste::before,
+  .zeitleiste::after {
+    content: "";
+    position: absolute;
+    left: 7px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: var(--line);
+  }
+
+  .zeitleiste::after {
+    background: var(--sage);
+    transform-origin: top;
+    transform: scaleY(var(--fortschritt, 1));
+  }
+
+  .zeitleiste-eintrag {
+    position: relative;
+    max-width: none;
+  }
+
+  .zeitleiste-punkt {
+    position: absolute;
+    left: -40px;
+    top: 2px;
+    z-index: 1;
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--sage);
+    border-radius: 50%;
+    background: var(--bg);
+  }
+
+  /* Selbsttest */
+  .fortschritt {
+    height: 4px;
+    border-radius: 2px;
+    background: var(--greige);
+    overflow: hidden;
+  }
+
+  .fortschritt > span {
+    display: block;
+    height: 100%;
+    border-radius: 2px;
+    background: var(--sage);
+  }
+
+  .selbsttest-titel {
+    font-size: 1.5rem;
+  }
+
+  .selbsttest-titel:focus {
+    outline: none;
+  }
+
+  .text-knopf {
+    font-size: 1rem;
+    color: var(--link);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+    cursor: pointer;
+  }
+
+  .text-knopf:hover {
+    color: var(--text);
+  }
+
+  /* Formular: Kontrollkästchen und Honeypot */
+  .haken-feld {
+    flex: none;
+    width: 22px;
+    height: 22px;
+    margin-top: 0.15em;
+    accent-color: var(--sage);
+  }
+
+  .haken-feld[aria-invalid="true"] {
+    outline: 2px solid var(--brick);
+    outline-offset: 2px;
+  }
+
+  .honeypot {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+}
