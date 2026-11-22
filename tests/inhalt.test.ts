@@ -90,9 +90,27 @@ describe("Inhalte in content/site.ts", () => {
       /Rabatt/i,
       /\bStunden\b[^.]*\b(im|pro|je) Monat/i,
     ];
-    const treffer = texte.filter(([, text]) =>
-      preis.some((muster) => muster.test(text)),
+
+    // Einzige Ausnahme: die Faustformel zur Einrichtung in den häufigen
+    // Fragen. Sie ist kein Preis des Mentorings. Erlaubt ist genau dieser
+    // Wortlaut an genau dieser Stelle.
+    const ausnahmeFrage = "Was kostet die Einrichtung einer Wohnung?";
+    const ausnahmeText = "140 bis 180 Euro je Quadratmeter";
+    const index = inhalt.fragen.eintraege.findIndex(
+      (eintrag) => eintrag.frage === ausnahmeFrage,
     );
+    expect(index).toBeGreaterThanOrEqual(0);
+    const ausnahmePfad = `site.fragen.eintraege[${index}].antwort`;
+    expect(inhalt.fragen.eintraege[index].antwort).toContain(ausnahmeText);
+
+    const treffer = texte
+      .map(([pfad, text]): [string, string] => [
+        pfad,
+        // replace ersetzt nur das erste Vorkommen: Ein zweiter Betrag in
+        // derselben Antwort lässt den Test scheitern.
+        pfad === ausnahmePfad ? text.replace(ausnahmeText, "") : text,
+      ])
+      .filter(([, text]) => preis.some((muster) => muster.test(text)));
     expect(treffer).toEqual([]);
   });
 
@@ -117,6 +135,25 @@ describe("Inhalte in content/site.ts", () => {
     expect(treffer).toEqual([]);
     expect(inhalt.paket.enthalten.punkte).toContain("Persönliche 1:1-Calls");
     expect(inhalt.paket.enthalten.punkte).toHaveLength(5);
+  });
+
+  it("beantworten Dauer und Kosten des Mentorings ohne Zahl", () => {
+    const fragen = inhalt.fragen.eintraege;
+    expect(fragen).toHaveLength(9);
+    expect(fragen.slice(-2)).toEqual([
+      {
+        frage: "Wie lange dauert das Mentoring?",
+        antwort:
+          "Das stimmen wir individuell ab. Es hängt davon ab, wo du gerade stehst und was du erreichen willst.",
+      },
+      {
+        frage: "Was kostet das Mentoring?",
+        antwort:
+          "Das hängt vom Umfang ab. Wir stimmen es im Erstgespräch mit dir ab. Das Erstgespräch selbst ist kostenlos.",
+      },
+    ]);
+    // Jede Frage steht nur einmal da.
+    expect(new Set(fragen.map((eintrag) => eintrag.frage)).size).toBe(9);
   });
 
   it("zeigen keine Teilnehmerstimmen", () => {

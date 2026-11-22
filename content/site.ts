@@ -359,7 +359,7 @@ export const ablauf = {
   id: "ablauf",
   titel: "So läuft es ab",
   unterzeile: "Schritt für Schritt",
-  text: "In persönlichen 1:1-Calls sind wir deine Begleiter im Mentoring. Den genauen Ablauf stimmen wir auf dein Ziel ab.",
+  text: "In persönlichen 1:1-Calls sind wir deine Begleiter im Mentoring. Wir begleiten dich so lange, wie es für dein Ziel sinnvoll ist. Dauer, Umfang und Ablauf stimmen wir gemeinsam ab.",
   zeitleisteLabel: "Ablauf des Mentorings",
   /*
    * Vier Schritte ohne Zeitangabe. Das Mentoring hat keine feste Dauer.
@@ -592,7 +592,7 @@ export const fragen = {
     {
       frage: "Was kostet die Einrichtung einer Wohnung?",
       antwort:
-        "Das hängt von Größe und Zustand der Wohnung ab. Die Reihenfolge ist wichtiger als die Summe: erst Betten, dann Sitzmöbel, Licht und Küche, zuletzt Dekoration. Den Budgetrahmen planen wir im Mentoring für deine Wohnung.",
+        "Als Faustformel rechnen wir mit 140 bis 180 Euro je Quadratmeter. Die Reihenfolge ist wichtiger als die Summe: erst Betten, dann Sitzmöbel, Licht und Küche, zuletzt Dekoration.",
     },
     {
       frage: "Geht das neben dem Beruf?",
@@ -609,6 +609,16 @@ export const fragen = {
       antwort:
         "Nein. Wir teilen unsere Erfahrung aus der Praxis. Für Verträge, Nutzungsänderung und Steuern brauchst du Fachleute. Wir sagen dir, wann.",
     },
+    {
+      frage: "Wie lange dauert das Mentoring?",
+      antwort:
+        "Das stimmen wir individuell ab. Es hängt davon ab, wo du gerade stehst und was du erreichen willst.",
+    },
+    {
+      frage: "Was kostet das Mentoring?",
+      antwort:
+        "Das hängt vom Umfang ab. Wir stimmen es im Erstgespräch mit dir ab. Das Erstgespräch selbst ist kostenlos.",
+    },
   ],
 };
 
@@ -620,8 +630,7 @@ export const erstgespraech = {
   id: "erstgespraech",
   kleinzeile: "Erstgespräch",
   titel: "Lass uns sprechen",
-  text: "Im Erstgespräch lernen wir uns kennen und klären, wo du stehst und ob das Mentoring zu dir passt. Schreib uns kurz, wir melden uns bei dir.",
-  rahmen:
+  text:
     "Das Erstgespräch führst du mit Anna oder Thilo. Es ist kostenlos und dauert rund 30 Minuten. Wir schauen auf deinen aktuellen Stand und darauf, wo du in den nächsten Monaten stehen willst. Innerhalb von ein bis vier Tagen bekommst du einen klaren Plan, wie wir dein Ziel gemeinsam erreichen können. Ins Mentoring nehmen wir nur Menschen auf, die wirklich umsetzen wollen.",
 };
 

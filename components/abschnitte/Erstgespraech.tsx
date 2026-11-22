@@ -13,7 +13,7 @@ export function Erstgespraech() {
             kleinzeile={erstgespraech.kleinzeile}
             titel={erstgespraech.titel}
             titelId="erstgespraech-titel"
-            text={[erstgespraech.text, erstgespraech.rahmen]}
+            text={erstgespraech.text}
           />
           <Bild
             name="erstgespraech"

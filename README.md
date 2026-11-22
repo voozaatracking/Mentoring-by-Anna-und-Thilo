@@ -92,7 +92,7 @@ Schalter in `content/site.ts`:
 
 Diese Punkte sind entschieden. Tests in `tests/inhalt.test.ts` schützen sie.
 
-- Auf der Seite steht kein Preis. Auch kein Euro-Betrag, kein Stundensatz und kein Rabatt.
+- Auf der Seite steht kein Preis. Auch kein Euro-Betrag, kein Stundensatz und kein Rabatt. Einzige Ausnahme ist die Faustformel zur Einrichtung in den häufigen Fragen („140 bis 180 Euro je Quadratmeter“). Der Test erlaubt genau diesen Wortlaut an genau dieser Stelle.
 - Das Mentoring hat keine feste Dauer. Eine Dauer steht nur im Beispielpaket (Abschnitt `paket`).
 - Schwerpunkt ist die Kurzzeitvermietung. Der Überbau ist Business-Aufbau, der zum Familienleben passt.
 - Es gibt noch keine Teilnehmerstimmen.

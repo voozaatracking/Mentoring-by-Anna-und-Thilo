@@ -6,8 +6,8 @@ Stand: Feedback von Thilo eingearbeitet (Runde 1, Branch `feat/feedback-thilo-1`
 
 Diese Punkte sind entschieden und werden nicht neu diskutiert. Tests in `tests/inhalt.test.ts` schützen sie.
 
-- **Kein Preis.** Auf der Seite steht niemals ein Preis. Auch kein Euro-Betrag, kein Stundensatz, kein Rabatt.
-- **Keine feste Dauer.** Angaben wie „drei Monate“ oder „zwölf Wochen“ stehen nur im Beispielpaket (`paket`).
+- **Kein Preis.** Auf der Seite steht niemals ein Preis. Auch kein Euro-Betrag, kein Stundensatz, kein Rabatt. Einzige Ausnahme: die Faustformel zur Einrichtung („140 bis 180 Euro je Quadratmeter“) in den häufigen Fragen. Sie ist kein Preis des Mentorings.
+- **Keine feste Dauer.** Angaben wie „drei Monate“ oder „zwölf Wochen“ stehen nur im Beispielpaket (`paket`). Der Ablauf sagt: so lange, wie es für das Ziel sinnvoll ist.
 - **Positionierung.** Schwerpunkt ist die Kurzzeitvermietung. Der Überbau ist Business-Aufbau, der zum Familienleben passt.
 - **Keine Teilnehmerstimmen.** Es gibt noch keine. Der Block ist entfernt.
 - **Telefon ist Pflichtfeld** im Formular.
@@ -75,12 +75,12 @@ Datenschutz:
 - [ ] Endgültige Domain festgelegt und als `SITE_URL` gesetzt
 - [ ] `ALLOW_INDEXING = true`
 
-## Offene Rückfragen aus Runde 1
+## Beantwortete Rückfragen aus Runde 1
 
-- **Satz zur Dauer.** Der Ersatzsatz „Wir begleiten dich so lange, wie es für dein Ziel sinnvoll ist. Dauer und Umfang stimmen wir gemeinsam ab.“ steht nirgends auf der Seite. Alle Stellen mit fester Dauer haben in den Paketen 1, 5 und 7 wörtlich vorgegebene neue Texte bekommen. Soll der Satz zusätzlich stehen, und wo?
-- **Faustformel zur Einrichtung.** Die Antwort „140 bis 180 Euro je Quadratmeter“ in den häufigen Fragen ist wegen „kein Euro-Betrag“ entfernt. Soll die Faustformel als Ausnahme zurück?
-- **Häufige Fragen zu Dauer, Preis und Erstgespräch.** Keine der sieben Fragen behandelt diese Themen, und neue Fragen waren ausgeschlossen. Die vorgegebenen Antworten stehen deshalb nirgends. Sollen drei Fragen dazukommen?
-- **Erstgespräch, zwei Absätze.** Der bisherige Einleitungstext steht weiter über dem neuen Text. Soll er entfallen?
+- Satz zur Dauer: steht in der Einleitung von „So läuft es ab“.
+- Häufige Fragen: zwei neue Fragen zu Dauer und Kosten des Mentorings, ohne Zahl.
+- Erstgespräch: der alte Einleitungsabsatz ist gestrichen.
+- Faustformel zur Einrichtung: wiederhergestellt, als einzige erlaubte Ausnahme im Test.
 
 ## Offene Punkte und Ideen
 
