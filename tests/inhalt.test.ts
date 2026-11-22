@@ -106,6 +106,19 @@ describe("Inhalte in content/site.ts", () => {
     expect(instagram.rel).toBe("noopener noreferrer");
   });
 
+  it("erwähnen keine Gruppencalls", () => {
+    // Entscheidung: Das Mentoring läuft über persönliche 1:1-Calls.
+    // Eine WhatsApp-Gruppe wäre davon nicht betroffen.
+    const treffer = texte.filter(
+      ([, text]) =>
+        /Gruppencall/i.test(text) ||
+        /\bGruppen?\b/i.test(text.replace(/WhatsApp-Gruppe/gi, "")),
+    );
+    expect(treffer).toEqual([]);
+    expect(inhalt.paket.enthalten.punkte).toContain("Persönliche 1:1-Calls");
+    expect(inhalt.paket.enthalten.punkte).toHaveLength(5);
+  });
+
   it("zeigen keine Teilnehmerstimmen", () => {
     // Entscheidung: Es gibt noch keine Teilnehmerstimmen.
     expect(Object.keys(inhalt.zahlen)).not.toContain("stimmen");

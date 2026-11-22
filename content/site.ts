@@ -359,9 +359,13 @@ export const ablauf = {
   id: "ablauf",
   titel: "So läuft es ab",
   unterzeile: "Schritt für Schritt",
-  text: "In Einzelcalls und Gruppencalls sind wir deine persönlichen Begleiter im Mentoring. Den genauen Ablauf stimmen wir auf dein Ziel ab.",
+  text: "In persönlichen 1:1-Calls sind wir deine Begleiter im Mentoring. Den genauen Ablauf stimmen wir auf dein Ziel ab.",
   zeitleisteLabel: "Ablauf des Mentorings",
-  /* Vier Schritte ohne Zeitangabe. Das Mentoring hat keine feste Dauer. */
+  /*
+   * Vier Schritte ohne Zeitangabe. Das Mentoring hat keine feste Dauer.
+   * Es läuft über persönliche 1:1-Calls. Andere Formate stehen erst auf der
+   * Seite, wenn es sie gibt (siehe ROADMAP).
+   */
   schritte: [
     {
       titel: "Erstgespräch",
@@ -373,7 +377,7 @@ export const ablauf = {
     },
     {
       titel: "Umsetzung mit Begleitung",
-      text: "Du setzt um, wir begleiten dich. In Einzelcalls, in Gruppencalls und per WhatsApp zwischen den Terminen. Dazu Videos und Vorlagen, die du nutzt, wenn es in deinen Alltag passt.",
+      text: "Du setzt um, wir begleiten dich. In persönlichen 1:1-Calls und per WhatsApp zwischen den Terminen. Dazu Videos und Vorlagen, die du nutzt, wenn es in deinen Alltag passt.",
     },
     {
       titel: "Wie es weitergeht",
@@ -550,8 +554,7 @@ export const paket = {
     titel: "Enthalten",
     /* Die Objektanalyse wird bewusst nicht verlinkt. */
     punkte: [
-      "Einzelcalls",
-      "Gruppencalls",
+      "Persönliche 1:1-Calls",
       "WhatsApp-Austausch zwischen den Terminen",
       "Lernvideos und Vorlagen",
       "Zugang zu unserer Objektanalyse im vereinbarten Umfang",

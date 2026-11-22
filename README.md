@@ -97,6 +97,7 @@ Diese Punkte sind entschieden. Tests in `tests/inhalt.test.ts` schützen sie.
 - Schwerpunkt ist die Kurzzeitvermietung. Der Überbau ist Business-Aufbau, der zum Familienleben passt.
 - Es gibt noch keine Teilnehmerstimmen.
 - Telefon ist Pflichtfeld im Formular.
+- Das Mentoring läuft über persönliche 1:1-Calls. Gruppencalls werden auf der Seite nicht erwähnt.
 
 ## Platzhalter
 

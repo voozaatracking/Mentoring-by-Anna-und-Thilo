@@ -11,6 +11,11 @@ Diese Punkte sind entschieden und werden nicht neu diskutiert. Tests in `tests/i
 - **Positionierung.** Schwerpunkt ist die Kurzzeitvermietung. Der Überbau ist Business-Aufbau, der zum Familienleben passt.
 - **Keine Teilnehmerstimmen.** Es gibt noch keine. Der Block ist entfernt.
 - **Telefon ist Pflichtfeld** im Formular.
+- **Persönliche 1:1-Calls.** Das Mentoring läuft über persönliche 1:1-Calls. Gruppencalls werden auf der Seite nicht erwähnt.
+
+## Geplant
+
+- Gruppencalls geplant, freiwillig, erst nach Start auf die Seite.
 
 ## Platzhalter auf der Seite
 
