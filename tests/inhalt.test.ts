@@ -52,7 +52,7 @@ describe("Inhalte in content/site.ts", () => {
     expect(treffer).toEqual([]);
   });
 
-  it("markieren jeden Platzhalter mit einem Hinweis", () => {
+  it("enthalten keinen Platzhalter mehr", () => {
     const platzhalter: inhalt.Platzhalter[] = [];
     const sammle = (wert: unknown) => {
       if (typeof wert !== "object" || wert === null) return;
@@ -60,10 +60,7 @@ describe("Inhalte in content/site.ts", () => {
       for (const eintrag of Object.values(wert)) sammle(eintrag);
     };
     sammle(inhalt);
-    expect(platzhalter).toHaveLength(0);
-    for (const eintrag of platzhalter) {
-      expect(eintrag.hinweis.trim().length).toBeGreaterThan(5);
-    }
+    expect(platzhalter).toEqual([]);
   });
 
   it("nennen eine feste Dauer nur im Beispielpaket", () => {
@@ -123,8 +120,8 @@ describe("Inhalte in content/site.ts", () => {
     );
   });
 
-  it("setzen die Schalter für den ersten Wurf", () => {
-    expect(inhalt.SHOW_PLACEHOLDER_MARKS).toBe(true);
+  it("setzen die Schalter: keine Platzhalter, keine Indexierung", () => {
+    expect(inhalt.SHOW_PLACEHOLDER_MARKS).toBe(false);
     expect(inhalt.ALLOW_INDEXING).toBe(false);
     expect(inhalt.CONTACT_EMAIL).toBe("info@hygge-homes.de");
   });

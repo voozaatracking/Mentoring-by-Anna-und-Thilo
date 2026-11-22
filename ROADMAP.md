@@ -1,34 +1,41 @@
 # Roadmap
 
-Stand: erster Wurf. Diese Datei sammelt alle Platzhalter und offenen Punkte.
+Stand: Feedback von Thilo eingearbeitet (Runde 1, Branch `feat/feedback-thilo-1`). Diese Datei sammelt Entscheidungen, Platzhalter und offene Punkte.
+
+## Entscheidungen
+
+Diese Punkte sind entschieden und werden nicht neu diskutiert. Tests in `tests/inhalt.test.ts` schützen sie.
+
+- **Kein Preis.** Auf der Seite steht niemals ein Preis. Auch kein Euro-Betrag, kein Stundensatz, kein Rabatt.
+- **Keine feste Dauer.** Angaben wie „drei Monate“ oder „zwölf Wochen“ stehen nur im Beispielpaket (`paket`).
+- **Positionierung.** Schwerpunkt ist die Kurzzeitvermietung. Der Überbau ist Business-Aufbau, der zum Familienleben passt.
+- **Keine Teilnehmerstimmen.** Es gibt noch keine. Der Block ist entfernt.
+- **Telefon ist Pflichtfeld** im Formular.
 
 ## Platzhalter auf der Seite
 
-Alle Einträge stehen in `content/site.ts` und sind dort mit `placeholder: true` markiert.
+Keine. `SHOW_PLACEHOLDER_MARKS` steht auf `false`.
 
-| Nr. | Abschnitt | Was fehlt | Objekt in `content/site.ts` |
-| --- | --- | --- | --- |
-| 1 | Ablauf | Monat 1: Inhalt laut Thilo | `ablauf.eintraege[0]` |
-| 2 | Ablauf | Monat 2: Inhalt laut Thilo | `ablauf.eintraege[1]` |
-| 3 | Ablauf | Monat 3: Inhalt laut Thilo | `ablauf.eintraege[2]` |
-| 4 | Ablauf | Danach: Inhalt laut Thilo | `ablauf.eintraege[3]` |
-| 5 | Ablauf | Format der Termine (Video oder vor Ort, einzeln oder Gruppe) | `ablauf.format` |
-| 6 | Zahlen | Erfahrungswert je Wohnung. Nur nach Freigabe durch Thilo, mit Zusatz „eigene Erfahrung, kein Versprechen“ | `zahlen.erfahrungswert` |
-| 7 | Zahlen | Stimme eines Teilnehmers (1) | `zahlen.stimmen[0]` |
-| 8 | Zahlen | Stimme eines Teilnehmers (2) | `zahlen.stimmen[1]` |
-| 9 | Zahlen | Stimme eines Teilnehmers (3) | `zahlen.stimmen[2]` |
-| 10 | Paket | Weitere Bestandteile des Pakets | `paket.karte.punkte[2]` |
-| 11 | Paket | Preis | `paket.karte.preis` |
-| 12 | Erstgespräch | Dauer, Kosten und Ablauf des Erstgesprächs | `erstgespraech.rahmen` |
+Erledigt in Runde 1:
+
+| Früherer Platzhalter | Ersetzt durch |
+| --- | --- |
+| Ablauf Monat 1 bis 3 und Danach | Vier Schritte ohne Zeitangabe |
+| Format der Termine | Einleitung und Schritt 3 im Ablauf |
+| Erfahrungswert je Wohnung | Satz ohne Zahl im Abschnitt Zahlen |
+| Drei Teilnehmerstimmen | Block entfernt |
+| Weitere Bestandteile des Pakets | Liste „Enthalten“ im Beispielpaket |
+| Preis | Schlusszeile im Beispielpaket, ohne Preis |
+| Dauer, Kosten und Ablauf des Erstgesprächs | Text über dem Formular |
 
 ## Bilder
 
-Alle zwölf Bilder liegen unter ihren Zielnamen in `assets/images/`. Es gibt kein Platzhalterbild mehr.
+Alle zwölf Bilder liegen unter ihren Zielnamen in `assets/images/`. Es gibt kein Platzhalterbild.
 
 - Alt-Texte sind anhand der Fotos formuliert, ohne Ortsangaben.
 - Bildausschnitte sind geprüft: Einstieg (mobil und Desktop), Porträts (4:5, Gesicht im oberen Drittel), übrige Fotos im Originalformat 3:2 oder 2:3.
+- Die vier Wohnungsbilder haben keine Beschriftung mehr.
 - Das Open-Graph-Bild entsteht automatisch aus dem Einstiegsbild.
-- Die Originalfotos sind 2500 Pixel breit. `next/image` liefert passende Größen aus.
 
 ## Rechtsseiten
 
@@ -46,6 +53,7 @@ Datenschutz:
 
 - Anschriften der Dienstleister (Vercel, Strato)
 - Rechtsgrundlagen (Hosting, Anfrageformular)
+- Erforderlichkeit der Telefonnummer als Pflichtangabe (neu in Runde 1)
 - Auftragsverarbeitung mit Vercel und Strato, Übermittlung in Drittländer
 - Umfang und Speicherdauer der Verbindungsdaten bei Vercel
 - Speicherdauer der Anfragen im Postfach
@@ -55,12 +63,19 @@ Datenschutz:
 
 ## Vor dem Livegang
 
-- [ ] Alle Platzhalter ersetzt, dann `SHOW_PLACEHOLDER_MARKS = false`
+- [x] Alle Platzhalter ersetzt, `SHOW_PLACEHOLDER_MARKS = false`
 - [x] Bilder geliefert, Alt-Texte geprüft
 - [ ] Rechtsseiten geprüft, Hinweis „Entwurf“ entfernt
 - [ ] Umgebungsvariablen in Vercel gesetzt, Testanfrage auf der Preview gesendet
 - [ ] Endgültige Domain festgelegt und als `SITE_URL` gesetzt
 - [ ] `ALLOW_INDEXING = true`
+
+## Offene Rückfragen aus Runde 1
+
+- **Satz zur Dauer.** Der Ersatzsatz „Wir begleiten dich so lange, wie es für dein Ziel sinnvoll ist. Dauer und Umfang stimmen wir gemeinsam ab.“ steht nirgends auf der Seite. Alle Stellen mit fester Dauer haben in den Paketen 1, 5 und 7 wörtlich vorgegebene neue Texte bekommen. Soll der Satz zusätzlich stehen, und wo?
+- **Faustformel zur Einrichtung.** Die Antwort „140 bis 180 Euro je Quadratmeter“ in den häufigen Fragen ist wegen „kein Euro-Betrag“ entfernt. Soll die Faustformel als Ausnahme zurück?
+- **Häufige Fragen zu Dauer, Preis und Erstgespräch.** Keine der sieben Fragen behandelt diese Themen, und neue Fragen waren ausgeschlossen. Die vorgegebenen Antworten stehen deshalb nirgends. Sollen drei Fragen dazukommen?
+- **Erstgespräch, zwei Absätze.** Der bisherige Einleitungstext steht weiter über dem neuen Text. Soll er entfallen?
 
 ## Offene Punkte und Ideen
 
@@ -69,3 +84,4 @@ Datenschutz:
 - Das Favicon (`app/icon.svg`) ist ein neutrales Hauszeichen in den Seitenfarben. Ein Logo von Hygge Homes fehlt.
 - Wortmarke in der Kopfzeile ist reiner Text. Ein Logo kann sie später ersetzen.
 - Sitemap und robots.txt fehlen bewusst, solange die Seite nicht indexiert werden soll.
+- `CLAUDE.md` und `docs/PROJEKTSTATUS.md` gibt es im Repository nicht. Projektregeln stehen in `AGENTS.md`, der Stand in dieser Datei.

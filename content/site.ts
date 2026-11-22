@@ -17,8 +17,11 @@ import type { Stufe } from "@/lib/selbsttest";
 /* Schalter und Konstanten                                             */
 /* ------------------------------------------------------------------ */
 
-/** Zeigt das Etikett „Platzhalter“ an allen markierten Stellen. */
-export const SHOW_PLACEHOLDER_MARKS = true;
+/**
+ * Zeigt das Etikett „Platzhalter“ an allen markierten Stellen. Derzeit gibt
+ * es keinen Platzhalter. Kommt wieder einer dazu, auf true setzen.
+ */
+export const SHOW_PLACEHOLDER_MARKS = false;
 
 /** Solange false, setzt die Seite robots auf noindex. */
 export const ALLOW_INDEXING = false;
