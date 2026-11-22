@@ -605,24 +605,25 @@ export const erstgespraech = {
   kleinzeile: "Erstgespräch",
   titel: "Lass uns sprechen",
   text: "Im Erstgespräch lernen wir uns kennen und klären, wo du stehst und ob das Mentoring zu dir passt. Schreib uns kurz, wir melden uns bei dir.",
-  rahmen: {
-    placeholder: true,
-    hinweis: "Dauer, Kosten und Ablauf des Erstgesprächs.",
-  } satisfies Platzhalter,
+  rahmen:
+    "Das Erstgespräch führst du mit Anna oder Thilo. Es ist kostenlos und dauert rund 30 Minuten. Wir schauen auf deinen aktuellen Stand und darauf, wo du in den nächsten Monaten stehen willst. Innerhalb von ein bis vier Tagen bekommst du einen klaren Plan, wie wir dein Ziel gemeinsam erreichen können. Ins Mentoring nehmen wir nur Menschen auf, die wirklich umsetzen wollen.",
 };
 
 export const formular = {
   titel: "Anfrage für ein Erstgespräch",
   pflichtHinweis: "Felder mit Stern sind Pflichtfelder.",
   pflichtZeichen: "*",
-  optional: "(optional)",
+  /* Pflichtfelder: Name, E-Mail, Telefon, Stand und Zustimmung. */
   felder: {
     name: "Name",
     email: "E-Mail",
     telefon: "Telefon",
     stand: "Wo stehst du gerade?",
-    nachricht: "Nachricht",
+    nachricht:
+      "Nachricht (optional: Was möchtest du mit deinem Business erreichen? Ein, zwei Sätze reichen.)",
   },
+  nachrichtPlatzhalter:
+    "Zum Beispiel: Ich möchte neben dem Job eine erste Ferienwohnung starten.",
   standBitteWaehlen: "Bitte wählen",
   standOptionen: {
     informieren: "Ich informiere mich noch",
@@ -661,7 +662,11 @@ export const formular = {
   /** Genauere Meldungen für einzelne Felder, sonst gilt feldFehler. */
   feldFehlerGenau: {
     email: { format: "Bitte gib eine gültige E-Mail-Adresse ein." },
-    telefon: { format: "Bitte gib eine gültige Telefonnummer ein." },
+    telefon: {
+      pflicht: "Bitte gib eine Telefonnummer an, unter der wir dich erreichen.",
+      format: "Bitte gib eine Telefonnummer an, unter der wir dich erreichen.",
+      zu_lang: "Bitte gib eine Telefonnummer an, unter der wir dich erreichen.",
+    },
     stand: { pflicht: "Bitte wähle aus, wo du gerade stehst." },
     zustimmung: {
       pflicht: "Bitte stimme der Datenschutzerklärung zu.",
@@ -810,9 +815,9 @@ export const datenschutz: RechtsSeite = {
         "Wenn du uns über das Formular schreibst, verarbeiten wir diese Angaben:",
       ],
       liste: [
-        "Name",
-        "E-Mail-Adresse",
-        "Telefonnummer, wenn du sie angibst",
+        "Name (Pflichtangabe)",
+        "E-Mail-Adresse (Pflichtangabe)",
+        "Telefonnummer (Pflichtangabe)",
         "deine Auswahl zur Frage, wo du gerade stehst",
         "deine Nachricht, wenn du eine schreibst",
         "Zeitpunkt der Anfrage",
@@ -823,6 +828,7 @@ export const datenschutz: RechtsSeite = {
       absaetze: [
         "Wir nutzen deine Angaben nur, um deine Anfrage zu bearbeiten und uns für ein Erstgespräch bei dir zu melden.",
         "[PRÜFEN: Rechtsgrundlage für die Verarbeitung der Anfrage]",
+        "[PRÜFEN: Erforderlichkeit der Telefonnummer als Pflichtangabe]",
       ],
     },
     {

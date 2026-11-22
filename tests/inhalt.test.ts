@@ -60,8 +60,7 @@ describe("Inhalte in content/site.ts", () => {
       for (const eintrag of Object.values(wert)) sammle(eintrag);
     };
     sammle(inhalt);
-    // Rahmen des Erstgesprächs
-    expect(platzhalter).toHaveLength(1);
+    expect(platzhalter).toHaveLength(0);
     for (const eintrag of platzhalter) {
       expect(eintrag.hinweis.trim().length).toBeGreaterThan(5);
     }

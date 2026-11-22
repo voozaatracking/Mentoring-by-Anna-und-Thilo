@@ -432,6 +432,11 @@
     line-height: 1.5;
   }
 
+  .feld::placeholder {
+    color: var(--muted);
+    opacity: 1;
+  }
+
   .feld:focus-visible {
     border-radius: var(--radius-knopf);
     outline-offset: 2px;

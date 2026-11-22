@@ -10,7 +10,7 @@ import {
 const gueltig = {
   name: "Erika Beispiel",
   email: "erika@example.org",
-  telefon: "",
+  telefon: "+49 4171 60 888 20",
   stand: "suche",
   nachricht: "",
   zustimmung: true,
@@ -44,14 +44,18 @@ describe("pruefeAnfrage", () => {
     });
   });
 
-  it("kommt ohne Telefon und Nachricht aus", () => {
-    const ergebnis = pruefeAnfrage({
+  it("kommt ohne Nachricht aus, aber nicht ohne Telefon", () => {
+    const ohneNachricht = {
       name: "Erika Beispiel",
       email: "erika@example.org",
+      telefon: "04171/6088820",
       stand: "informieren",
       zustimmung: true,
+    };
+    expect(pruefeAnfrage(ohneNachricht).ok).toBe(true);
+    expect(fehlerVon({ ...ohneNachricht, telefon: undefined })).toEqual({
+      telefon: "pflicht",
     });
-    expect(ergebnis.ok).toBe(true);
   });
 
   it("lehnt Eingaben ab, die kein Objekt sind", () => {
@@ -59,6 +63,7 @@ describe("pruefeAnfrage", () => {
       expect(fehlerVon(eingabe)).toEqual({
         name: "pflicht",
         email: "pflicht",
+        telefon: "pflicht",
         stand: "pflicht",
         zustimmung: "pflicht",
       });
@@ -121,23 +126,46 @@ describe("pruefeAnfrage", () => {
   });
 
   describe("Telefon", () => {
-    it("ist optional, prüft aber Format und Länge", () => {
-      expect(fehlerVon({ ...gueltig, telefon: "" }).telefon).toBeUndefined();
+    it("ist Pflicht: eine fehlende Telefonnummer wird abgelehnt", () => {
+      for (const telefon of ["", "   ", undefined, null, 4171]) {
+        expect(fehlerVon({ ...gueltig, telefon }).telefon).toBe("pflicht");
+      }
+    });
+
+    it("nimmt gültige Formate an", () => {
+      for (const telefon of [
+        "+49 4171 60 888 20",
+        "04171/6088820",
+        "(04171) 60 888-20",
+        "0151 2345678",
+        "123456",
+      ]) {
+        expect(fehlerVon({ ...gueltig, telefon }).telefon, telefon).toBeUndefined();
+      }
+    });
+
+    it("lehnt ungültige Telefonnummern ab", () => {
+      for (const telefon of [
+        "ruf mich an",
+        "12345", // weniger als 6 Zeichen
+        "+49 (0) 1", // weniger als 6 Ziffern
+        "0151.2345678", // Punkt ist nicht erlaubt
+        "0151 2345678 abends",
+        "0151 2345678;5",
+      ]) {
+        expect(fehlerVon({ ...gueltig, telefon }).telefon, telefon).toBe("format");
+      }
+    });
+
+    it("erlaubt 6 bis 30 Zeichen", () => {
+      expect(GRENZEN.telefonMin).toBe(6);
+      expect(GRENZEN.telefonMax).toBe(30);
       expect(
-        fehlerVon({ ...gueltig, telefon: "04171 60 888 20" }).telefon,
+        fehlerVon({ ...gueltig, telefon: "1".repeat(30) }).telefon,
       ).toBeUndefined();
-      expect(fehlerVon({ ...gueltig, telefon: "ruf mich an" }).telefon).toBe(
-        "format",
+      expect(fehlerVon({ ...gueltig, telefon: "1".repeat(31) }).telefon).toBe(
+        "zu_lang",
       );
-      expect(fehlerVon({ ...gueltig, telefon: "123" }).telefon).toBe("format");
-      expect(
-        fehlerVon({ ...gueltig, telefon: "1".repeat(GRENZEN.telefonMax) })
-          .telefon,
-      ).toBeUndefined();
-      expect(
-        fehlerVon({ ...gueltig, telefon: "1".repeat(GRENZEN.telefonMax + 1) })
-          .telefon,
-      ).toBe("zu_lang");
     });
   });
 
@@ -185,10 +213,11 @@ describe("Hilfsfunktionen", () => {
     expect(istEmail(`${"a".repeat(250)}@ex.de`)).toBe(false);
   });
 
-  it("istTelefon verlangt mindestens fünf Ziffern", () => {
-    expect(istTelefon("1234")).toBe(false);
-    expect(istTelefon("12345")).toBe(true);
+  it("istTelefon verlangt mindestens sechs Ziffern", () => {
+    expect(istTelefon("12345")).toBe(false);
+    expect(istTelefon("123456")).toBe(true);
     expect(istTelefon("+49 (4171) 60 888-20")).toBe(true);
+    expect(istTelefon("+ / ( ) - -")).toBe(false);
   });
 
   it("istHoneypotGefuellt erkennt Inhalt im Feld website", () => {

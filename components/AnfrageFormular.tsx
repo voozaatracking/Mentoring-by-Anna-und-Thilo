@@ -132,9 +132,6 @@ export function AnfrageFormular({
       {inhalt.pflichtZeichen}
     </span>
   );
-  const optional = (
-    <span className="ml-1 font-normal text-muted">{inhalt.optional}</span>
-  );
 
   return (
     <div className="karte md:p-8">
@@ -216,7 +213,7 @@ export function AnfrageFormular({
           <div>
             <label htmlFor="anfrage-telefon" className="feld-label">
               {inhalt.felder.telefon}
-              {optional}
+              {stern}
             </label>
             <input
               id="anfrage-telefon"
@@ -224,6 +221,7 @@ export function AnfrageFormular({
               type="tel"
               autoComplete="tel"
               inputMode="tel"
+              required
               maxLength={GRENZEN.telefonMax}
               className="feld"
               value={werte.telefon}
@@ -264,12 +262,12 @@ export function AnfrageFormular({
           <div>
             <label htmlFor="anfrage-nachricht" className="feld-label">
               {inhalt.felder.nachricht}
-              {optional}
             </label>
             <textarea
               id="anfrage-nachricht"
               name="nachricht"
               rows={5}
+              placeholder={inhalt.nachrichtPlatzhalter}
               maxLength={GRENZEN.nachrichtMax}
               className="feld"
               value={werte.nachricht}

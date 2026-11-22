@@ -2,7 +2,6 @@ import { EINBLENDEN } from "@/components/effekte/bewegung";
 import { AnfrageFormular } from "@/components/AnfrageFormular";
 import { Abschnitt, AbschnittsKopf } from "@/components/ui/Abschnitt";
 import { Bild } from "@/components/ui/Bild";
-import { PlatzhalterBox } from "@/components/ui/Platzhalter";
 import { CONTACT_EMAIL, erstgespraech, formular } from "@/content/site";
 
 export function Erstgespraech() {
@@ -14,9 +13,8 @@ export function Erstgespraech() {
             kleinzeile={erstgespraech.kleinzeile}
             titel={erstgespraech.titel}
             titelId="erstgespraech-titel"
-            text={erstgespraech.text}
+            text={[erstgespraech.text, erstgespraech.rahmen]}
           />
-          <PlatzhalterBox platzhalter={erstgespraech.rahmen} />
           <Bild
             name="erstgespraech"
             sizes="(min-width: 1024px) 50vw, 100vw"

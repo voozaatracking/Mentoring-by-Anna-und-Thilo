@@ -87,6 +87,17 @@ describe("POST /api/anfrage", () => {
     expect(sendMail).not.toHaveBeenCalled();
   });
 
+  it("antwortet mit 400, wenn die Telefonnummer fehlt oder ungültig ist", async () => {
+    setzeSmtp();
+    const ohne = await POST(anfrage({ ...gueltig, telefon: "" }));
+    expect(ohne.status).toBe(400);
+    expect((await ohne.json()).felder).toEqual({ telefon: "pflicht" });
+    const falsch = await POST(anfrage({ ...gueltig, telefon: "ruf mich an" }));
+    expect(falsch.status).toBe(400);
+    expect((await falsch.json()).felder).toEqual({ telefon: "format" });
+    expect(sendMail).not.toHaveBeenCalled();
+  });
+
   it("antwortet mit 400 bei kaputtem JSON", async () => {
     setzeSmtp();
     const antwort = await POST(anfrage("{kaputt"));

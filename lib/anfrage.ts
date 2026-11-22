@@ -17,7 +17,8 @@ export const GRENZEN = {
   nameMin: 2,
   nameMax: 100,
   emailMax: 254,
-  telefonMax: 40,
+  telefonMin: 6,
+  telefonMax: 30,
   nachrichtMax: 2000,
 } as const;
 
@@ -73,9 +74,16 @@ export function istEmail(wert: string): boolean {
   return /^[^\s@<>(),;:"]+@[^\s@<>(),;:"]+\.[^\s@<>(),;:".]{2,}$/.test(wert);
 }
 
+/**
+ * Telefonnummer: 6 bis 30 Zeichen, nur Ziffern, Leerzeichen und + / ( ) -,
+ * dazu mindestens 6 Ziffern.
+ */
 export function istTelefon(wert: string): boolean {
-  if (!/^[0-9+()/\s.-]+$/.test(wert)) return false;
-  return wert.replace(/\D/g, "").length >= 5;
+  if (wert.length < GRENZEN.telefonMin || wert.length > GRENZEN.telefonMax) {
+    return false;
+  }
+  if (!/^[0-9 +/()-]+$/.test(wert)) return false;
+  return wert.replace(/\D/g, "").length >= 6;
 }
 
 export function istStand(wert: unknown): wert is Stand {
@@ -105,8 +113,9 @@ export function pruefeAnfrage(eingabe: unknown): Pruefergebnis {
   else if (!istEmail(email)) fehler.email = "format";
 
   const telefon = einzeilig(daten.telefon);
-  if (telefon.length > GRENZEN.telefonMax) fehler.telefon = "zu_lang";
-  else if (telefon.length > 0 && !istTelefon(telefon)) fehler.telefon = "format";
+  if (telefon.length === 0) fehler.telefon = "pflicht";
+  else if (telefon.length > GRENZEN.telefonMax) fehler.telefon = "zu_lang";
+  else if (!istTelefon(telefon)) fehler.telefon = "format";
 
   const stand = daten.stand;
   if (stand === undefined || stand === null || stand === "") {
