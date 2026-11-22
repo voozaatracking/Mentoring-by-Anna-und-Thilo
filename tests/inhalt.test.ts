@@ -68,6 +68,24 @@ describe("Inhalte in content/site.ts", () => {
     }
   });
 
+  it("nennen eine feste Dauer nur im Beispielpaket", () => {
+    // Entscheidung: Das Mentoring hat keine feste Dauer. Angaben wie
+    // "drei Monate" oder "zwölf Wochen" stehen nur im Abschnitt paket.
+    const dauer = [
+      /\b(drei|3|zwölf|12)[\s-]*(Monat|Woche)/i,
+      /dreimonat/i,
+      /\bMonat \d/i,
+      /Stunden[^.]*\b(im|pro|je) Monat/i,
+      /\b\d+ Tage\b/i,
+    ];
+    const treffer = texte.filter(
+      ([pfad, text]) =>
+        !pfad.startsWith("site.paket") &&
+        dauer.some((muster) => muster.test(text)),
+    );
+    expect(treffer).toEqual([]);
+  });
+
   it("halten die Beschreibung für Suchmaschinen bei höchstens 155 Zeichen", () => {
     expect(inhalt.meta.beschreibung.length).toBeLessThanOrEqual(155);
     expect(inhalt.meta.titel).toBe(

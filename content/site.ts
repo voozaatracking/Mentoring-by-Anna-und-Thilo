@@ -352,28 +352,28 @@ export type AblaufEintrag = Vorlaeufig<{
 export const ablauf = {
   id: "ablauf",
   kleinzeile: "So läuft es ab",
-  titel: "Drei Monate, Schritt für Schritt",
-  text: "Das Mentoring läuft über drei Monate mit vier Stunden persönlicher Begleitung im Monat.",
+  titel: "Schritt für Schritt",
+  text: "Wir begleiten dich so lange, wie es für dein Ziel sinnvoll ist. Dauer und Umfang stimmen wir gemeinsam ab.",
   zeitleisteLabel: "Ablauf des Mentorings",
   eintraege: [
     {
       placeholder: true,
       hinweis: ablaufHinweis,
-      label: "Monat 1",
+      label: "Schritt 1",
       titel: "Standort und Fundament",
       text: "Markt, Positionierung, Zahlen und Rollen.",
     },
     {
       placeholder: true,
       hinweis: ablaufHinweis,
-      label: "Monat 2",
+      label: "Schritt 2",
       titel: "Wohnung und Vermieter",
       text: "Suche, Objektprüfung, Gespräche und Vertrag.",
     },
     {
       placeholder: true,
       hinweis: ablaufHinweis,
-      label: "Monat 3",
+      label: "Schritt 3",
       titel: "Einrichtung und Start",
       text: "Einrichtung, Inserat, Preise und erste Gäste.",
     },
@@ -382,7 +382,7 @@ export const ablauf = {
       hinweis: ablaufHinweis,
       label: "Danach",
       titel: "Weiter begleitet",
-      text: "Nach den drei Monaten kannst du die Begleitung fortsetzen.",
+      text: "Danach kannst du die Begleitung fortsetzen.",
     },
   ] satisfies AblaufEintrag[],
   format: {
@@ -535,9 +535,9 @@ export const paket = {
   id: "paket",
   titel: "Das Paket",
   karte: {
-    titel: "Mentoring über drei Monate",
+    titel: "Persönliches Mentoring",
     punkte: [
-      "Vier Stunden persönliche Begleitung im Monat",
+      "Persönliche Begleitung",
       "Werkzeuge und Vorlagen für jeden Schritt",
       {
         placeholder: true,
