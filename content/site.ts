@@ -17,8 +17,11 @@ import type { Stufe } from "@/lib/selbsttest";
 /* Schalter und Konstanten                                             */
 /* ------------------------------------------------------------------ */
 
-/** Zeigt das Etikett „Platzhalter“ an allen markierten Stellen. */
-export const SHOW_PLACEHOLDER_MARKS = true;
+/**
+ * Zeigt das Etikett „Platzhalter“ an allen markierten Stellen. Derzeit gibt
+ * es keinen Platzhalter. Kommt wieder einer dazu, auf true setzen.
+ */
+export const SHOW_PLACEHOLDER_MARKS = false;
 
 /** Solange false, setzt die Seite robots auf noindex. */
 export const ALLOW_INDEXING = false;
@@ -32,6 +35,16 @@ export const PODCAST_URL =
   "https://open.spotify.com/show/3lxmZmT0iVF92A5kc4oFx8";
 
 export const HYGGE_HOMES_URL = "https://hygge-homes.de";
+
+/** Telefonnummer, wie sie auf der Seite steht. */
+export const TELEFON = "+49 4171 60 888 20";
+
+/** Ziel des Telefonlinks: dieselbe Nummer ohne Leerzeichen. */
+export const TELEFON_HREF = "tel:+4941716088820";
+
+export const INSTAGRAM_NAME = "@hyggehomes.official";
+
+export const INSTAGRAM_URL = "https://www.instagram.com/hyggehomes.official/";
 
 /** Weiches Trennzeichen für lange Wörter in Überschriften. */
 const SHY = "­";
@@ -84,9 +97,10 @@ export type Kennzahl = { vorsatz?: string; wert: number; label: string };
 /* ------------------------------------------------------------------ */
 
 export const meta = {
-  titel: "Mentoring by Anna & Thilo | Kurzzeitvermietung mit Familie",
+  titel: "Mentoring by Anna & Thilo: Ein Business, das zum Familienleben passt",
+  /* Höchstens 155 Zeichen, du-Ansprache, kein Versprechen. Ein Test prüft die Länge. */
   beschreibung:
-    "Drei Monate persönliche Begleitung beim Aufbau deiner Kurzzeitvermietung. Ehrlich gerechnet und passend zum Familienleben.",
+    "Persönliche Begleitung beim Aufbau deines Business, passend zu deinem Familienleben. Unser Schwerpunkt ist die Kurzzeitvermietung.",
   impressumTitel: "Impressum | Mentoring by Anna & Thilo",
   datenschutzTitel: "Datenschutz | Mentoring by Anna & Thilo",
 };
@@ -188,8 +202,8 @@ export const kopfzeile = {
 
 export const einstieg = {
   kleinzeile: SITE_NAME,
-  titel: `Kurzzeit${SHY}vermietung, die zu deinem Familien${SHY}leben passt`,
-  text: "Wir begleiten dich drei Monate lang beim Aufbau deiner Kurzzeitvermietung. Ehrlich gerechnet, klar strukturiert und mit Blick auf das, was deine Familie tragen kann.",
+  titel: `Ein Business aufbauen, das zu deinem Familien${SHY}leben passt`,
+  text: "Wir begleiten dich persönlich beim Aufbau. Unser Schwerpunkt ist die Kurzzeitvermietung. Damit haben wir selbst 24 Ferienwohnungen aufgebaut.",
   primaer: erstgespraechVerweis,
   sekundaer: {
     label: "Passt das zu uns? Zum Selbsttest",
@@ -236,7 +250,7 @@ export const ueberUns = {
   id: "ueber-uns",
   kleinzeile: "Wer wir sind",
   titel: "Wir haben selbst so angefangen",
-  text: "Wir sind Anna und Thilo Westerwiede. Wir leben mit unserer Familie in einem Schwedenhaus in der Lüneburger Heide und führen Hygge Homes. Alles, was wir im Mentoring weitergeben, haben wir selbst ausprobiert, falsch gemacht und besser gelöst.",
+  text: "Wir sind Anna und Thilo Westerwiede. Wir leben mit unserer Familie in einem Schwedenhaus in der Lüneburger Heide und führen Hygge Homes. Alles, was wir im Mentoring weitergeben, haben wir selbst ausprobiert, Herausforderungen angenommen und gelöst.",
   stationenLabel: "Unser Weg in vier Stationen",
   stationen: [
     {
@@ -292,7 +306,10 @@ export const inhalte = {
   id: "inhalte",
   kleinzeile: "Woran wir arbeiten",
   titel: "Sechs Themen, ein roter Faden",
-  text: "Wir gehen die Schritte in der Reihenfolge durch, in der sie bei dir anstehen. Du bekommst Werkzeuge und Vorlagen an die Hand und wendest sie auf deine Situation an.",
+  text: [
+    "Wir gehen die Schritte in der Reihenfolge durch, in der sie bei dir anstehen. Du bekommst Werkzeuge und Vorlagen an die Hand und wendest sie auf deine Situation an.",
+    "Unser Schwerpunkt ist die Kurzzeitvermietung. Du baust ein anderes Business auf? Viele Fragen sind dieselben: Zahlen, Struktur, Abläufe und deine Zeit. Auch dabei begleiten wir dich.",
+  ],
   themen: [
     {
       titel: `Markt und Positio${SHY}nierung`,
@@ -321,13 +338,14 @@ export const inhalte = {
   ] satisfies TitelText[],
   wohnungen: {
     titel: "Aus unseren Wohnungen",
-    text: "Neutrale Basis, natürliche Materialien, Akzente über Textilien.",
+    text: "Ein paar Beispiele aus unseren Wohnungen. So kann auch deine Wohnung aussehen: gemütlich eingerichtet und abgestimmt auf dein Konzept und deine Gäste.",
+    /* Kacheln ohne Beschriftung. Die Alt-Texte stehen im Objekt bilder. */
     kacheln: [
-      { bild: "wohnungSchlafen", label: "Schlafen" },
-      { bild: "wohnungWohnen", label: "Wohnen" },
-      { bild: "wohnungEssen", label: "Essen" },
-      { bild: "wohnungStudio", label: "Studio" },
-    ] satisfies { bild: BildName; label: string }[],
+      "wohnungSchlafen",
+      "wohnungWohnen",
+      "wohnungEssen",
+      "wohnungStudio",
+    ] satisfies BildName[],
   },
   hinweis:
     "Das Mentoring ersetzt keine Rechts- oder Steuerberatung. Wir sagen dir, an welchen Stellen du sie brauchst.",
@@ -337,54 +355,35 @@ export const inhalte = {
 /* 6. Ablauf                                                           */
 /* ------------------------------------------------------------------ */
 
-const ablaufHinweis = "Ablauf laut Thilo ergänzen";
-
-export type AblaufEintrag = Vorlaeufig<{
-  label: string;
-  titel: string;
-  text: string;
-}>;
-
 export const ablauf = {
   id: "ablauf",
-  kleinzeile: "So läuft es ab",
-  titel: "Drei Monate, Schritt für Schritt",
-  text: "Das Mentoring läuft über drei Monate mit vier Stunden persönlicher Begleitung im Monat.",
+  titel: "So läuft es ab",
+  unterzeile: "Schritt für Schritt",
+  text: "In persönlichen 1:1-Calls sind wir deine Begleiter im Mentoring. Den genauen Ablauf stimmen wir auf dein Ziel ab.",
   zeitleisteLabel: "Ablauf des Mentorings",
-  eintraege: [
+  /*
+   * Vier Schritte ohne Zeitangabe. Das Mentoring hat keine feste Dauer.
+   * Es läuft über persönliche 1:1-Calls. Andere Formate stehen erst auf der
+   * Seite, wenn es sie gibt (siehe ROADMAP).
+   */
+  schritte: [
     {
-      placeholder: true,
-      hinweis: ablaufHinweis,
-      label: "Monat 1",
-      titel: "Standort und Fundament",
-      text: "Markt, Positionierung, Zahlen und Rollen.",
+      titel: "Erstgespräch",
+      text: "Du lernst uns kennen, wir lernen dich kennen. Wir schauen auf deinen aktuellen Stand und darauf, wo du hinwillst. Kostenlos, rund 30 Minuten.",
     },
     {
-      placeholder: true,
-      hinweis: ablaufHinweis,
-      label: "Monat 2",
-      titel: "Wohnung und Vermieter",
-      text: "Suche, Objektprüfung, Gespräche und Vertrag.",
+      titel: "Dein Plan",
+      text: "Innerhalb von ein bis vier Tagen bekommst du einen klaren Plan, wie wir dein Ziel gemeinsam erreichen.",
     },
     {
-      placeholder: true,
-      hinweis: ablaufHinweis,
-      label: "Monat 3",
-      titel: "Einrichtung und Start",
-      text: "Einrichtung, Inserat, Preise und erste Gäste.",
+      titel: "Umsetzung mit Begleitung",
+      text: "Du setzt um, wir begleiten dich. In persönlichen 1:1-Calls und per WhatsApp zwischen den Terminen. Dazu Videos und Vorlagen, die du nutzt, wenn es in deinen Alltag passt.",
     },
     {
-      placeholder: true,
-      hinweis: ablaufHinweis,
-      label: "Danach",
-      titel: "Weiter begleitet",
-      text: "Nach den drei Monaten kannst du die Begleitung fortsetzen.",
+      titel: "Wie es weitergeht",
+      text: "Am Ende schauen wir gemeinsam, was erreicht ist und was als Nächstes kommt. Auf Wunsch begleiten wir dich weiter.",
     },
-  ] satisfies AblaufEintrag[],
-  format: {
-    placeholder: true,
-    hinweis: "Format der Termine (Video oder vor Ort, einzeln oder Gruppe).",
-  } satisfies Platzhalter,
+  ] satisfies TitelText[],
 };
 
 /* ------------------------------------------------------------------ */
@@ -489,7 +488,7 @@ export const fuerWen = {
 };
 
 /* ------------------------------------------------------------------ */
-/* 9. Zahlen und Stimmen                                               */
+/* 9. Zahlen                                                           */
 /* ------------------------------------------------------------------ */
 
 export const zahlen = {
@@ -506,17 +505,9 @@ export const zahlen = {
       label: "Besichtigungen bis zur ersten Wohnung",
     },
   ] satisfies Kennzahl[],
-  erfahrungswert: {
-    placeholder: true,
-    hinweis:
-      "Erfahrungswert je Wohnung. Nur nach Freigabe durch Thilo, mit Zusatz „eigene Erfahrung, kein Versprechen“.",
-  } satisfies Platzhalter,
-  stimmenTitel: "Stimmen von Teilnehmern",
-  stimmen: [
-    { placeholder: true, hinweis: "Stimme eines Teilnehmers ergänzen (1)." },
-    { placeholder: true, hinweis: "Stimme eines Teilnehmers ergänzen (2)." },
-    { placeholder: true, hinweis: "Stimme eines Teilnehmers ergänzen (3)." },
-  ] satisfies Platzhalter[],
+  /* Bewusst ohne Zahl: kein Erfahrungswert je Wohnung, kein Versprechen. */
+  hinweis:
+    "Jede Wohnung und jeder Standort ist anders. Was sich rechnet, prüfen wir für dein Objekt im Detail.",
   podcast: {
     text: "Im Podcast „HYGGE HOMES family & business“ erzählen wir offen, was gut läuft und was nicht.",
     link: { label: "Zum Podcast", href: PODCAST_URL } satisfies Verweis,
@@ -524,30 +515,55 @@ export const zahlen = {
 };
 
 /* ------------------------------------------------------------------ */
-/* 10. Paket                                                           */
+/* 10. Beispielpaket                                                   */
 /* ------------------------------------------------------------------ */
 
+/*
+ * Nur in diesem Abschnitt darf eine Dauer stehen ("zwölf Wochen",
+ * "90 Tage"), weil er ausdrücklich ein Beispiel zeigt. Ein Preis, ein
+ * Euro-Betrag oder Stunden pro Monat stehen auch hier nicht.
+ */
 export const paket = {
   id: "paket",
-  titel: "Das Paket",
-  karte: {
-    titel: "Mentoring über drei Monate",
+  titel: "Ein Beispiel",
+  text: "Jedes Mentoring stellen wir individuell zusammen. So kann es aussehen: unser Einstieg in die Kurzzeitvermietung über zwölf Wochen.",
+  phasenLabel: "Phasen des Beispiels",
+  phasen: [
+    {
+      titel: "Start und Standort",
+      text: "Ziel, Zeitbudget und Wunschregion festlegen. Standorte bewerten, Objektsuche starten.",
+    },
+    {
+      titel: "Objektsuche und Kalkulation",
+      text: "Objekte finden, Vermieter ansprechen, mit Szenarien rechnen und entscheiden.",
+    },
+    {
+      titel: "Einrichtung und Abläufe",
+      text: "Budget und Ausstattung planen, Reinigung, Check-in und Dienstleister organisieren.",
+    },
+    {
+      titel: "Vermarktung, Verträge, Betrieb",
+      text: "Inserat und Preise vorbereiten, rechtliche Fragen sammeln und mit Fachleuten klären, Kennzahlen festlegen.",
+    },
+    {
+      titel: "Abschluss",
+      text: "Ergebnisse sichern und einen Plan für die nächsten 90 Tage machen.",
+    },
+  ] satisfies TitelText[],
+  enthalten: {
+    titel: "Enthalten",
+    /* Die Objektanalyse wird bewusst nicht verlinkt. */
     punkte: [
-      "Vier Stunden persönliche Begleitung im Monat",
-      "Werkzeuge und Vorlagen für jeden Schritt",
-      {
-        placeholder: true,
-        hinweis: "Weitere Bestandteile des Pakets ergänzen.",
-      },
-    ] satisfies (string | Platzhalter)[],
-    preisLabel: "Preis",
-    preis: {
-      placeholder: true,
-      hinweis: "Preis des Mentorings ergänzen.",
-    } satisfies Platzhalter,
-    satz: "Den genauen Rahmen besprechen wir im Erstgespräch.",
-    cta: erstgespraechVerweis,
+      "Persönliche 1:1-Calls",
+      "WhatsApp-Austausch zwischen den Terminen",
+      "Lernvideos und Vorlagen",
+      "Zugang zu unserer Objektanalyse im vereinbarten Umfang",
+      "Dein persönlicher Fahrplan",
+    ],
   },
+  schlusszeile:
+    "Umfang, Dauer und Preis stimmen wir im Erstgespräch individuell ab.",
+  cta: erstgespraechVerweis,
 };
 
 /* ------------------------------------------------------------------ */
@@ -576,7 +592,7 @@ export const fragen = {
     {
       frage: "Was kostet die Einrichtung einer Wohnung?",
       antwort:
-        "Als Faustformel rechnen wir mit 140 bis 180 Euro je Quadratmeter. Die Reihenfolge ist wichtiger als die Summe: erst Betten, dann Sitzmöbel, Licht und Küche, zuletzt Dekoration.",
+        "Das hängt von Größe und Zustand der Wohnung ab. Die Reihenfolge ist wichtiger als die Summe: erst Betten, dann Sitzmöbel, Licht und Küche, zuletzt Dekoration. Den Budgetrahmen planen wir im Mentoring für deine Wohnung.",
     },
     {
       frage: "Geht das neben dem Beruf?",
@@ -605,24 +621,25 @@ export const erstgespraech = {
   kleinzeile: "Erstgespräch",
   titel: "Lass uns sprechen",
   text: "Im Erstgespräch lernen wir uns kennen und klären, wo du stehst und ob das Mentoring zu dir passt. Schreib uns kurz, wir melden uns bei dir.",
-  rahmen: {
-    placeholder: true,
-    hinweis: "Dauer, Kosten und Ablauf des Erstgesprächs.",
-  } satisfies Platzhalter,
+  rahmen:
+    "Das Erstgespräch führst du mit Anna oder Thilo. Es ist kostenlos und dauert rund 30 Minuten. Wir schauen auf deinen aktuellen Stand und darauf, wo du in den nächsten Monaten stehen willst. Innerhalb von ein bis vier Tagen bekommst du einen klaren Plan, wie wir dein Ziel gemeinsam erreichen können. Ins Mentoring nehmen wir nur Menschen auf, die wirklich umsetzen wollen.",
 };
 
 export const formular = {
   titel: "Anfrage für ein Erstgespräch",
   pflichtHinweis: "Felder mit Stern sind Pflichtfelder.",
   pflichtZeichen: "*",
-  optional: "(optional)",
+  /* Pflichtfelder: Name, E-Mail, Telefon, Stand und Zustimmung. */
   felder: {
     name: "Name",
     email: "E-Mail",
     telefon: "Telefon",
     stand: "Wo stehst du gerade?",
-    nachricht: "Nachricht",
+    nachricht:
+      "Nachricht (optional: Was möchtest du mit deinem Business erreichen? Ein, zwei Sätze reichen.)",
   },
+  nachrichtPlatzhalter:
+    "Zum Beispiel: Ich möchte neben dem Job eine erste Ferienwohnung starten.",
   standBitteWaehlen: "Bitte wählen",
   standOptionen: {
     informieren: "Ich informiere mich noch",
@@ -661,7 +678,11 @@ export const formular = {
   /** Genauere Meldungen für einzelne Felder, sonst gilt feldFehler. */
   feldFehlerGenau: {
     email: { format: "Bitte gib eine gültige E-Mail-Adresse ein." },
-    telefon: { format: "Bitte gib eine gültige Telefonnummer ein." },
+    telefon: {
+      pflicht: "Bitte gib eine Telefonnummer an, unter der wir dich erreichen.",
+      format: "Bitte gib eine Telefonnummer an, unter der wir dich erreichen.",
+      zu_lang: "Bitte gib eine Telefonnummer an, unter der wir dich erreichen.",
+    },
     stand: { pflicht: "Bitte wähle aus, wo du gerade stehst." },
     zustimmung: {
       pflicht: "Bitte stimme der Datenschutzerklärung zu.",
@@ -696,14 +717,33 @@ export const mail = {
 /* 13. Fußzeile                                                        */
 /* ------------------------------------------------------------------ */
 
+export type FussVerweis = Verweis & {
+  /** Öffnet in neuem Tab. */
+  extern?: boolean;
+  /** Wert für rel bei externen Verweisen, sonst gilt noopener. */
+  rel?: string;
+};
+
 export const fusszeile = {
   text: "Mentoring by Anna & Thilo. Ein Angebot der Westerwiede & Westerwiede GbR.",
+  kontaktLabel: "Kontakt",
+  /* Instagram ist nur ein Link. Nichts wird eingebettet, kein Skript geladen. */
+  kontakt: [
+    { art: "Telefon", label: TELEFON, href: TELEFON_HREF },
+    {
+      art: "Instagram",
+      label: INSTAGRAM_NAME,
+      href: INSTAGRAM_URL,
+      extern: true,
+      rel: "noopener noreferrer",
+    },
+  ] satisfies (FussVerweis & { art: string })[],
   links: [
     { label: "Impressum", href: "/impressum" },
     { label: "Datenschutz", href: "/datenschutz" },
     { label: "Podcast", href: PODCAST_URL, extern: true },
     { label: "hygge-homes.de", href: HYGGE_HOMES_URL, extern: true },
-  ] satisfies (Verweis & { extern?: boolean })[],
+  ] satisfies FussVerweis[],
 };
 
 /* ------------------------------------------------------------------ */
@@ -736,7 +776,7 @@ const anbieterZeilen = [
 
 const kontaktZeilen = [
   `E-Mail: ${CONTACT_EMAIL}`,
-  "Telefon: +49 4171 60 888 20",
+  `Telefon: ${TELEFON}`,
 ];
 
 export const impressum: RechtsSeite = {
@@ -810,9 +850,9 @@ export const datenschutz: RechtsSeite = {
         "Wenn du uns über das Formular schreibst, verarbeiten wir diese Angaben:",
       ],
       liste: [
-        "Name",
-        "E-Mail-Adresse",
-        "Telefonnummer, wenn du sie angibst",
+        "Name (Pflichtangabe)",
+        "E-Mail-Adresse (Pflichtangabe)",
+        "Telefonnummer (Pflichtangabe)",
         "deine Auswahl zur Frage, wo du gerade stehst",
         "deine Nachricht, wenn du eine schreibst",
         "Zeitpunkt der Anfrage",
@@ -823,6 +863,7 @@ export const datenschutz: RechtsSeite = {
       absaetze: [
         "Wir nutzen deine Angaben nur, um deine Anfrage zu bearbeiten und uns für ein Erstgespräch bei dir zu melden.",
         "[PRÜFEN: Rechtsgrundlage für die Verarbeitung der Anfrage]",
+        "[PRÜFEN: Erforderlichkeit der Telefonnummer als Pflichtangabe]",
       ],
     },
     {

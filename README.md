@@ -2,7 +2,7 @@
 
 Verkaufsseite für das Mentoring von Hygge Homes. Ein Onepager mit zwei Rechtsseiten und einem Anfrageformular, das per E-Mail versendet.
 
-Stand: erster Wurf. Fehlende Inhalte sind auf der Seite sichtbar als Platzhalter markiert. Die vollständige Liste steht in [ROADMAP.md](ROADMAP.md).
+Stand: Feedback von Thilo eingearbeitet (Runde 1). Es gibt keine Platzhalter mehr. Offene Punkte stehen in [ROADMAP.md](ROADMAP.md).
 
 ## Technik
 
@@ -84,22 +84,36 @@ Schalter in `content/site.ts`:
 
 | Konstante | Wirkung |
 | --- | --- |
-| `SHOW_PLACEHOLDER_MARKS` | Zeigt die Etiketten „Platzhalter“. Auf `false` setzen, wenn alle Platzhalter ersetzt sind |
+| `SHOW_PLACEHOLDER_MARKS` | Zeigt die Etiketten „Platzhalter“. Steht auf `false`, weil es keinen Platzhalter gibt |
 | `ALLOW_INDEXING` | Solange `false`, steht robots auf noindex |
 | `CONTACT_EMAIL` | Sichtbare Ausweichadresse im Formular |
 
-## Platzhalter ersetzen
+## Feste Entscheidungen für die Inhalte
 
-Jeder Platzhalter ist im Inhalt so markiert:
+Diese Punkte sind entschieden. Tests in `tests/inhalt.test.ts` schützen sie.
+
+- Auf der Seite steht kein Preis. Auch kein Euro-Betrag, kein Stundensatz und kein Rabatt.
+- Das Mentoring hat keine feste Dauer. Eine Dauer steht nur im Beispielpaket (Abschnitt `paket`).
+- Schwerpunkt ist die Kurzzeitvermietung. Der Überbau ist Business-Aufbau, der zum Familienleben passt.
+- Es gibt noch keine Teilnehmerstimmen.
+- Telefon ist Pflichtfeld im Formular.
+- Das Mentoring läuft über persönliche 1:1-Calls. Gruppencalls werden auf der Seite nicht erwähnt.
+
+## Platzhalter
+
+Derzeit gibt es keinen Platzhalter, `SHOW_PLACEHOLDER_MARKS` steht auf `false`. Der Mechanismus bleibt für spätere Lücken erhalten.
+
+Ein Platzhalter ist im Inhalt so markiert:
 
 ```ts
-{ placeholder: true, hinweis: "Preis des Mentorings ergänzen." }
+{ placeholder: true, hinweis: "Was hier noch fehlt." }
 ```
 
-Es gibt zwei Arten:
+So nutzt du ihn:
 
-1. Reine Platzhalter ohne Inhalt, zum Beispiel der Preis. Zum Ersetzen den Eintrag durch den echten Text ersetzen. Dafür ist an der Stelle eine kleine Anpassung am Typ nötig, wenn dort bisher nur ein Platzhalter erlaubt ist.
-2. Vorläufige Inhalte mit Markierung, zum Beispiel die Einträge im Ablauf. Zum Ersetzen den Text anpassen und die beiden Felder `placeholder` und `hinweis` entfernen.
+1. Eintrag in `content/site.ts` als Platzhalter anlegen und in der Komponente mit `PlatzhalterBox` oder `PlatzhalterEtikett` aus `components/ui/Platzhalter.tsx` darstellen.
+2. `SHOW_PLACEHOLDER_MARKS` auf `true` setzen, damit das Etikett sichtbar ist.
+3. Den Test „enthalten keinen Platzhalter mehr“ anpassen und den Eintrag in `ROADMAP.md` aufnehmen.
 
 Eine Suche nach `placeholder: true` in `content/site.ts` findet alle Stellen.
 

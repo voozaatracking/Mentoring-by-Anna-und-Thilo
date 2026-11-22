@@ -33,20 +33,28 @@ export function AbschnittsKopf({
   kleinzeile,
   titel,
   titelId,
+  unterzeile,
   text,
   className = "",
 }: {
   kleinzeile?: string;
   titel: string;
   titelId: string;
-  text?: string;
+  /** Kurze Zeile direkt unter der Überschrift. */
+  unterzeile?: string;
+  /** Ein Absatz oder mehrere Absätze. */
+  text?: string | string[];
   className?: string;
 }) {
+  const absaetze = text === undefined ? [] : [text].flat();
   return (
     <div className={`${EINBLENDEN} flex flex-col gap-4 ${className}`}>
       {kleinzeile ? <p className="kleinzeile">{kleinzeile}</p> : null}
       <h2 id={titelId}>{titel}</h2>
-      {text ? <p>{text}</p> : null}
+      {unterzeile ? <p className="unterzeile">{unterzeile}</p> : null}
+      {absaetze.map((absatz) => (
+        <p key={absatz}>{absatz}</p>
+      ))}
     </div>
   );
 }

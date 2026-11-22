@@ -82,7 +82,7 @@ export function baueMail(anfrage: Anfrage, zeitpunkt: Date): MailInhalt {
     "",
     `${felder.name}: ${anfrage.name}`,
     `${felder.email}: ${anfrage.email}`,
-    `${felder.telefon}: ${anfrage.telefon || leer}`,
+    `${felder.telefon}: ${anfrage.telefon}`,
     `${felder.stand}: ${formular.standOptionen[anfrage.stand]}`,
     `${felder.zustimmung}: ${mailTexte.zustimmungErteilt}`,
     `${felder.zeitpunkt}: ${zeitFormat.format(zeitpunkt)} Uhr`,

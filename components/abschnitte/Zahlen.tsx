@@ -1,9 +1,8 @@
 import { Abschnitt, AbschnittsKopf } from "@/components/ui/Abschnitt";
-import { EINBLENDEN, staffel } from "@/components/effekte/bewegung";
+import { EINBLENDEN } from "@/components/effekte/bewegung";
 import { Zaehler } from "@/components/effekte/Zaehler";
 import { Bild } from "@/components/ui/Bild";
 import { KnopfLink } from "@/components/ui/Knopf";
-import { PlatzhalterBox } from "@/components/ui/Platzhalter";
 import { zahlen } from "@/content/site";
 
 export function Zahlen() {
@@ -29,35 +28,13 @@ export function Zahlen() {
               </div>
             ))}
           </dl>
-          <PlatzhalterBox platzhalter={zahlen.erfahrungswert} />
+          <p className="text-klein">{zahlen.hinweis}</p>
         </div>
         <Bild
           name="ruecken"
           sizes="(min-width: 1024px) 50vw, 100vw"
           className={`${EINBLENDEN} aspect-[3/2] w-full`}
         />
-      </div>
-
-      {/* Stimmen von Teilnehmern: drei Platzhalterkarten */}
-      <div className="mt-14 md:mt-20">
-        <h3 id="stimmen-titel">{zahlen.stimmenTitel}</h3>
-        <ul
-          aria-labelledby="stimmen-titel"
-          className="mt-6 grid gap-4 md:grid-cols-3 md:gap-6"
-        >
-          {zahlen.stimmen.map((stimme, index) => (
-            <li
-              key={stimme.hinweis}
-              className={EINBLENDEN}
-              style={staffel(index)}
-            >
-              <PlatzhalterBox
-                platzhalter={stimme}
-                className="flex min-h-[140px] items-start"
-              />
-            </li>
-          ))}
-        </ul>
       </div>
 
       {/* Podcast: nur ein Link, nichts eingebettet */}

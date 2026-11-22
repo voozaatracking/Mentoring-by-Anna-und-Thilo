@@ -52,7 +52,7 @@ describe("Inhalte in content/site.ts", () => {
     expect(treffer).toEqual([]);
   });
 
-  it("markieren jeden Platzhalter mit einem Hinweis", () => {
+  it("enthalten keinen Platzhalter mehr", () => {
     const platzhalter: inhalt.Platzhalter[] = [];
     const sammle = (wert: unknown) => {
       if (typeof wert !== "object" || wert === null) return;
@@ -60,16 +60,81 @@ describe("Inhalte in content/site.ts", () => {
       for (const eintrag of Object.values(wert)) sammle(eintrag);
     };
     sammle(inhalt);
-    // 4 Einträge im Ablauf, Format der Termine, Erfahrungswert, 3 Stimmen,
-    // weitere Bestandteile, Preis, Rahmen des Erstgesprächs
-    expect(platzhalter).toHaveLength(12);
-    for (const eintrag of platzhalter) {
-      expect(eintrag.hinweis.trim().length).toBeGreaterThan(5);
-    }
+    expect(platzhalter).toEqual([]);
   });
 
-  it("setzen die Schalter für den ersten Wurf", () => {
-    expect(inhalt.SHOW_PLACEHOLDER_MARKS).toBe(true);
+  it("nennen eine feste Dauer nur im Beispielpaket", () => {
+    // Entscheidung: Das Mentoring hat keine feste Dauer. Angaben wie
+    // "drei Monate" oder "zwölf Wochen" stehen nur im Abschnitt paket.
+    const dauer = [
+      /\b(drei|3|zwölf|12)[\s-]*(Monat|Woche)/i,
+      /dreimonat/i,
+      /\bMonat \d/i,
+      /Stunden[^.]*\b(im|pro|je) Monat/i,
+      /\b\d+ Tage\b/i,
+    ];
+    const treffer = texte.filter(
+      ([pfad, text]) =>
+        !pfad.startsWith("site.paket") &&
+        dauer.some((muster) => muster.test(text)),
+    );
+    expect(treffer).toEqual([]);
+  });
+
+  it("nennen keinen Preis, keinen Euro-Betrag, keinen Stundensatz und keinen Rabatt", () => {
+    // Entscheidung: Auf der Seite steht niemals ein Preis.
+    const preis = [
+      /\d[\d.,]*\s*(€|Euro\b|EUR\b)/i,
+      /€/,
+      /Stundensatz/i,
+      /Rabatt/i,
+      /\bStunden\b[^.]*\b(im|pro|je) Monat/i,
+    ];
+    const treffer = texte.filter(([, text]) =>
+      preis.some((muster) => muster.test(text)),
+    );
+    expect(treffer).toEqual([]);
+  });
+
+  it("verlinken Telefon und Instagram in der Fußzeile richtig", () => {
+    const [telefon, instagram] = inhalt.fusszeile.kontakt;
+    expect(telefon.label).toBe("+49 4171 60 888 20");
+    // Im href steht die Nummer ohne Leerzeichen.
+    expect(telefon.href).toBe("tel:+4941716088820");
+    expect(instagram.label).toBe("@hyggehomes.official");
+    expect(instagram.href).toBe("https://www.instagram.com/hyggehomes.official/");
+    expect(instagram.rel).toBe("noopener noreferrer");
+  });
+
+  it("erwähnen keine Gruppencalls", () => {
+    // Entscheidung: Das Mentoring läuft über persönliche 1:1-Calls.
+    // Eine WhatsApp-Gruppe wäre davon nicht betroffen.
+    const treffer = texte.filter(
+      ([, text]) =>
+        /Gruppencall/i.test(text) ||
+        /\bGruppen?\b/i.test(text.replace(/WhatsApp-Gruppe/gi, "")),
+    );
+    expect(treffer).toEqual([]);
+    expect(inhalt.paket.enthalten.punkte).toContain("Persönliche 1:1-Calls");
+    expect(inhalt.paket.enthalten.punkte).toHaveLength(5);
+  });
+
+  it("zeigen keine Teilnehmerstimmen", () => {
+    // Entscheidung: Es gibt noch keine Teilnehmerstimmen.
+    expect(Object.keys(inhalt.zahlen)).not.toContain("stimmen");
+    const treffer = texte.filter(([, text]) => /Teilnehmerstimme|Stimmen von/i.test(text));
+    expect(treffer).toEqual([]);
+  });
+
+  it("halten die Beschreibung für Suchmaschinen bei höchstens 155 Zeichen", () => {
+    expect(inhalt.meta.beschreibung.length).toBeLessThanOrEqual(155);
+    expect(inhalt.meta.titel).toBe(
+      "Mentoring by Anna & Thilo: Ein Business, das zum Familienleben passt",
+    );
+  });
+
+  it("setzen die Schalter: keine Platzhalter, keine Indexierung", () => {
+    expect(inhalt.SHOW_PLACEHOLDER_MARKS).toBe(false);
     expect(inhalt.ALLOW_INDEXING).toBe(false);
     expect(inhalt.CONTACT_EMAIL).toBe("info@hygge-homes.de");
   });
