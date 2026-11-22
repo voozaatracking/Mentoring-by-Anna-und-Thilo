@@ -1055,7 +1055,7 @@ export const datenschutz: RechtsSeite = {
       bloecke: [
         {
           zeilen: [
-            "Diese Seite enthält Links zu Instagram, Spotify und hygge-homes.de. Es handelt sich um einfache Links, nichts davon ist eingebettet. Eine Verbindung zu diesen Anbietern entsteht erst, wenn du einen Link anklickst. Dann gilt die Datenschutzerklärung des jeweiligen Anbieters.",
+            "Diese Seite enthält Links zu Instagram, Spotify, hygge-homes.de und zu den Websites unserer Partner GoLet GmbH und Mertens Schabow Steuerberatung. Es handelt sich um einfache Links, nichts davon ist eingebettet. Eine Verbindung zu diesen Anbietern entsteht erst, wenn du einen Link anklickst. Dann gilt die Datenschutzerklärung des jeweiligen Anbieters.",
           ],
         },
       ],
