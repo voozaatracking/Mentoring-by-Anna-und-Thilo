@@ -325,13 +325,14 @@ export const inhalte = {
   ] satisfies TitelText[],
   wohnungen: {
     titel: "Aus unseren Wohnungen",
-    text: "Neutrale Basis, natürliche Materialien, Akzente über Textilien.",
+    text: "Ein paar Beispiele aus unseren Wohnungen. So kann auch deine Wohnung aussehen: gemütlich eingerichtet und abgestimmt auf dein Konzept und deine Gäste.",
+    /* Kacheln ohne Beschriftung. Die Alt-Texte stehen im Objekt bilder. */
     kacheln: [
-      { bild: "wohnungSchlafen", label: "Schlafen" },
-      { bild: "wohnungWohnen", label: "Wohnen" },
-      { bild: "wohnungEssen", label: "Essen" },
-      { bild: "wohnungStudio", label: "Studio" },
-    ] satisfies { bild: BildName; label: string }[],
+      "wohnungSchlafen",
+      "wohnungWohnen",
+      "wohnungEssen",
+      "wohnungStudio",
+    ] satisfies BildName[],
   },
   hinweis:
     "Das Mentoring ersetzt keine Rechts- oder Steuerberatung. Wir sagen dir, an welchen Stellen du sie brauchst.",

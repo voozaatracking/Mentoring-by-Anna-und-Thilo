@@ -46,20 +46,17 @@ export function Inhalte() {
           aria-labelledby="wohnungen-titel"
           className="mt-6 grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6"
         >
-          {inhalte.wohnungen.kacheln.map((kachel, index) => (
+          {inhalte.wohnungen.kacheln.map((bild, index) => (
             <li
-              key={kachel.bild}
+              key={bild}
               className={`${EINBLENDEN} w-full max-w-[280px]`}
               style={staffel(index)}
             >
-              <figure className="flex flex-col gap-2">
-                <Bild
-                  name={kachel.bild}
-                  sizes="(min-width: 768px) 280px, 50vw"
-                  className="aspect-square w-full"
-                />
-                <figcaption className="kleinzeile">{kachel.label}</figcaption>
-              </figure>
+              <Bild
+                name={bild}
+                sizes="(min-width: 768px) 280px, 50vw"
+                className="aspect-square w-full"
+              />
             </li>
           ))}
         </ul>
