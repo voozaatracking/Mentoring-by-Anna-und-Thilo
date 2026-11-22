@@ -84,9 +84,10 @@ export type Kennzahl = { vorsatz?: string; wert: number; label: string };
 /* ------------------------------------------------------------------ */
 
 export const meta = {
-  titel: "Mentoring by Anna & Thilo | Kurzzeitvermietung mit Familie",
+  titel: "Mentoring by Anna & Thilo: Ein Business, das zum Familienleben passt",
+  /* Höchstens 155 Zeichen, du-Ansprache, kein Versprechen. Ein Test prüft die Länge. */
   beschreibung:
-    "Drei Monate persönliche Begleitung beim Aufbau deiner Kurzzeitvermietung. Ehrlich gerechnet und passend zum Familienleben.",
+    "Persönliche Begleitung beim Aufbau deines Business, passend zu deinem Familienleben. Unser Schwerpunkt ist die Kurzzeitvermietung.",
   impressumTitel: "Impressum | Mentoring by Anna & Thilo",
   datenschutzTitel: "Datenschutz | Mentoring by Anna & Thilo",
 };
@@ -188,8 +189,8 @@ export const kopfzeile = {
 
 export const einstieg = {
   kleinzeile: SITE_NAME,
-  titel: `Kurzzeit${SHY}vermietung, die zu deinem Familien${SHY}leben passt`,
-  text: "Wir begleiten dich drei Monate lang beim Aufbau deiner Kurzzeitvermietung. Ehrlich gerechnet, klar strukturiert und mit Blick auf das, was deine Familie tragen kann.",
+  titel: `Ein Business aufbauen, das zu deinem Familien${SHY}leben passt`,
+  text: "Wir begleiten dich persönlich beim Aufbau. Unser Schwerpunkt ist die Kurzzeitvermietung. Damit haben wir selbst 24 Ferienwohnungen aufgebaut.",
   primaer: erstgespraechVerweis,
   sekundaer: {
     label: "Passt das zu uns? Zum Selbsttest",
@@ -292,7 +293,10 @@ export const inhalte = {
   id: "inhalte",
   kleinzeile: "Woran wir arbeiten",
   titel: "Sechs Themen, ein roter Faden",
-  text: "Wir gehen die Schritte in der Reihenfolge durch, in der sie bei dir anstehen. Du bekommst Werkzeuge und Vorlagen an die Hand und wendest sie auf deine Situation an.",
+  text: [
+    "Wir gehen die Schritte in der Reihenfolge durch, in der sie bei dir anstehen. Du bekommst Werkzeuge und Vorlagen an die Hand und wendest sie auf deine Situation an.",
+    "Unser Schwerpunkt ist die Kurzzeitvermietung. Du baust ein anderes Business auf? Viele Fragen sind dieselben: Zahlen, Struktur, Abläufe und deine Zeit. Auch dabei begleiten wir dich.",
+  ],
   themen: [
     {
       titel: `Markt und Positio${SHY}nierung`,

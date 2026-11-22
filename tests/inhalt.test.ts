@@ -68,6 +68,13 @@ describe("Inhalte in content/site.ts", () => {
     }
   });
 
+  it("halten die Beschreibung für Suchmaschinen bei höchstens 155 Zeichen", () => {
+    expect(inhalt.meta.beschreibung.length).toBeLessThanOrEqual(155);
+    expect(inhalt.meta.titel).toBe(
+      "Mentoring by Anna & Thilo: Ein Business, das zum Familienleben passt",
+    );
+  });
+
   it("setzen die Schalter für den ersten Wurf", () => {
     expect(inhalt.SHOW_PLACEHOLDER_MARKS).toBe(true);
     expect(inhalt.ALLOW_INDEXING).toBe(false);

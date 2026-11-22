@@ -39,14 +39,18 @@ export function AbschnittsKopf({
   kleinzeile?: string;
   titel: string;
   titelId: string;
-  text?: string;
+  /** Ein Absatz oder mehrere Absätze. */
+  text?: string | string[];
   className?: string;
 }) {
+  const absaetze = text === undefined ? [] : [text].flat();
   return (
     <div className={`${EINBLENDEN} flex flex-col gap-4 ${className}`}>
       {kleinzeile ? <p className="kleinzeile">{kleinzeile}</p> : null}
       <h2 id={titelId}>{titel}</h2>
-      {text ? <p>{text}</p> : null}
+      {absaetze.map((absatz) => (
+        <p key={absatz}>{absatz}</p>
+      ))}
     </div>
   );
 }
