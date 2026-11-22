@@ -364,6 +364,29 @@ export const inhalte = {
   },
   hinweis:
     "Das Mentoring ersetzt keine Rechts- oder Steuerberatung. Wir sagen dir, an welchen Stellen du sie brauchst.",
+  /*
+   * Partner: nur Firmennamen, keine Ansprechpartner, keine Logos. Die Links
+   * tragen keine Tracking-Parameter und öffnen in neuem Tab. Bewusst keine
+   * Aussage zu Vergütung oder Provision.
+   */
+  partner: {
+    titel: "Unsere Partner",
+    text: "Für Baurecht und Steuern holen wir Fachleute dazu, mit denen wir selbst zusammenarbeiten.",
+    karten: [
+      {
+        titel: "GoLet GmbH",
+        text: "Nutzungsänderung und Bauantrag für Ferienwohnungen.",
+        link: { label: "golet.de", href: "https://golet.de" },
+      },
+      {
+        titel: "Mertens Schabow Steuerberatung",
+        text: "Steuerberatung aus Hamburg, unter anderem für Immobilien.",
+        link: { label: "mertens-schabow.de", href: "https://mertens-schabow.de" },
+      },
+    ] satisfies (TitelText & { link: Verweis })[],
+    schlusszeile:
+      "Die Leistungen unserer Partner beauftragst du direkt bei ihnen. Ob du das tust, entscheidest du selbst.",
+  },
 };
 
 /* ------------------------------------------------------------------ */
@@ -620,7 +643,7 @@ export const fragen = {
     {
       frage: "Ist das Mentoring eine Rechts- oder Steuerberatung?",
       antwort:
-        "Nein. Wir teilen unsere Erfahrung aus der Praxis. Für Verträge, Nutzungsänderung und Steuern brauchst du Fachleute. Wir sagen dir, wann.",
+        "Nein. Wir teilen unsere Erfahrung aus der Praxis. Für Verträge, Nutzungsänderung und Steuern brauchst du Fachleute. Wir sagen dir, wann. Für diese Fragen kannst du auf unsere Partner zurückgreifen.",
     },
     {
       frage: "Wie lange dauert das Mentoring?",

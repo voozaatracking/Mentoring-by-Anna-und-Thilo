@@ -1,3 +1,4 @@
+import { Partner } from "@/components/abschnitte/Partner";
 import { Abschnitt, AbschnittsKopf } from "@/components/ui/Abschnitt";
 import { Bild } from "@/components/ui/Bild";
 import { Hinweis } from "@/components/ui/Hinweis";
@@ -65,6 +66,9 @@ export function Inhalte() {
       <Hinweis className={`${EINBLENDEN} mt-10 md:mt-14`}>
         <p>{inhalte.hinweis}</p>
       </Hinweis>
+
+      {/* Partner direkt unter dem Hinweis zur Rechts- und Steuerberatung */}
+      <Partner />
     </Abschnitt>
   );
 }
