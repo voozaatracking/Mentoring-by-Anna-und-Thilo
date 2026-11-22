@@ -630,8 +630,7 @@ export const erstgespraech = {
   id: "erstgespraech",
   kleinzeile: "Erstgespräch",
   titel: "Lass uns sprechen",
-  text: "Im Erstgespräch lernen wir uns kennen und klären, wo du stehst und ob das Mentoring zu dir passt. Schreib uns kurz, wir melden uns bei dir.",
-  rahmen:
+  text:
     "Das Erstgespräch führst du mit Anna oder Thilo. Es ist kostenlos und dauert rund 30 Minuten. Wir schauen auf deinen aktuellen Stand und darauf, wo du in den nächsten Monaten stehen willst. Innerhalb von ein bis vier Tagen bekommst du einen klaren Plan, wie wir dein Ziel gemeinsam erreichen können. Ins Mentoring nehmen wir nur Menschen auf, die wirklich umsetzen wollen.",
 };
 
