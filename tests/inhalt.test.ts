@@ -60,8 +60,8 @@ describe("Inhalte in content/site.ts", () => {
       for (const eintrag of Object.values(wert)) sammle(eintrag);
     };
     sammle(inhalt);
-    // weitere Bestandteile, Preis, Rahmen des Erstgesprächs
-    expect(platzhalter).toHaveLength(3);
+    // Rahmen des Erstgesprächs
+    expect(platzhalter).toHaveLength(1);
     for (const eintrag of platzhalter) {
       expect(eintrag.hinweis.trim().length).toBeGreaterThan(5);
     }
@@ -83,6 +83,24 @@ describe("Inhalte in content/site.ts", () => {
         dauer.some((muster) => muster.test(text)),
     );
     expect(treffer).toEqual([]);
+  });
+
+  it("nennen keinen Preis, keinen Euro-Betrag, keinen Stundensatz und keinen Rabatt", () => {
+    // Entscheidung: Auf der Seite steht niemals ein Preis.
+    const preis = [
+      /\d[\d.,]*\s*(€|Euro\b|EUR\b)/i,
+      /€/,
+      /Stundensatz/i,
+      /Rabatt/i,
+      /\bStunden\b[^.]*\b(im|pro|je) Monat/i,
+    ];
+    const treffer = texte.filter(([, text]) =>
+      preis.some((muster) => muster.test(text)),
+    );
+    // Offen bis Paket 9: die Faustformel zur Einrichtung in den Fragen.
+    expect(treffer.map(([pfad]) => pfad)).toEqual([
+      "site.fragen.eintraege[3].antwort",
+    ]);
   });
 
   it("zeigen keine Teilnehmerstimmen", () => {

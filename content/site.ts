@@ -498,30 +498,56 @@ export const zahlen = {
 };
 
 /* ------------------------------------------------------------------ */
-/* 10. Paket                                                           */
+/* 10. Beispielpaket                                                   */
 /* ------------------------------------------------------------------ */
 
+/*
+ * Nur in diesem Abschnitt darf eine Dauer stehen ("zwölf Wochen",
+ * "90 Tage"), weil er ausdrücklich ein Beispiel zeigt. Ein Preis, ein
+ * Euro-Betrag oder Stunden pro Monat stehen auch hier nicht.
+ */
 export const paket = {
   id: "paket",
-  titel: "Das Paket",
-  karte: {
-    titel: "Persönliches Mentoring",
+  titel: "Ein Beispiel",
+  text: "Jedes Mentoring stellen wir individuell zusammen. So kann es aussehen: unser Einstieg in die Kurzzeitvermietung über zwölf Wochen.",
+  phasenLabel: "Phasen des Beispiels",
+  phasen: [
+    {
+      titel: "Start und Standort",
+      text: "Ziel, Zeitbudget und Wunschregion festlegen. Standorte bewerten, Objektsuche starten.",
+    },
+    {
+      titel: "Objektsuche und Kalkulation",
+      text: "Objekte finden, Vermieter ansprechen, mit Szenarien rechnen und entscheiden.",
+    },
+    {
+      titel: "Einrichtung und Abläufe",
+      text: "Budget und Ausstattung planen, Reinigung, Check-in und Dienstleister organisieren.",
+    },
+    {
+      titel: "Vermarktung, Verträge, Betrieb",
+      text: "Inserat und Preise vorbereiten, rechtliche Fragen sammeln und mit Fachleuten klären, Kennzahlen festlegen.",
+    },
+    {
+      titel: "Abschluss",
+      text: "Ergebnisse sichern und einen Plan für die nächsten 90 Tage machen.",
+    },
+  ] satisfies TitelText[],
+  enthalten: {
+    titel: "Enthalten",
+    /* Die Objektanalyse wird bewusst nicht verlinkt. */
     punkte: [
-      "Persönliche Begleitung",
-      "Werkzeuge und Vorlagen für jeden Schritt",
-      {
-        placeholder: true,
-        hinweis: "Weitere Bestandteile des Pakets ergänzen.",
-      },
-    ] satisfies (string | Platzhalter)[],
-    preisLabel: "Preis",
-    preis: {
-      placeholder: true,
-      hinweis: "Preis des Mentorings ergänzen.",
-    } satisfies Platzhalter,
-    satz: "Den genauen Rahmen besprechen wir im Erstgespräch.",
-    cta: erstgespraechVerweis,
+      "Einzelcalls",
+      "Gruppencalls",
+      "WhatsApp-Austausch zwischen den Terminen",
+      "Lernvideos und Vorlagen",
+      "Zugang zu unserer Objektanalyse im vereinbarten Umfang",
+      "Dein persönlicher Fahrplan",
+    ],
   },
+  schlusszeile:
+    "Umfang, Dauer und Preis stimmen wir im Erstgespräch individuell ab.",
+  cta: erstgespraechVerweis,
 };
 
 /* ------------------------------------------------------------------ */
