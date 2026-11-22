@@ -96,10 +96,7 @@ describe("Inhalte in content/site.ts", () => {
     const treffer = texte.filter(([, text]) =>
       preis.some((muster) => muster.test(text)),
     );
-    // Offen bis Paket 9: die Faustformel zur Einrichtung in den Fragen.
-    expect(treffer.map(([pfad]) => pfad)).toEqual([
-      "site.fragen.eintraege[3].antwort",
-    ]);
+    expect(treffer).toEqual([]);
   });
 
   it("zeigen keine Teilnehmerstimmen", () => {
