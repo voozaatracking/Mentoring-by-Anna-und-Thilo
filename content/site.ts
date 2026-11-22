@@ -33,6 +33,16 @@ export const PODCAST_URL =
 
 export const HYGGE_HOMES_URL = "https://hygge-homes.de";
 
+/** Telefonnummer, wie sie auf der Seite steht. */
+export const TELEFON = "+49 4171 60 888 20";
+
+/** Ziel des Telefonlinks: dieselbe Nummer ohne Leerzeichen. */
+export const TELEFON_HREF = "tel:+4941716088820";
+
+export const INSTAGRAM_NAME = "@hyggehomes.official";
+
+export const INSTAGRAM_URL = "https://www.instagram.com/hyggehomes.official/";
+
 /** Weiches Trennzeichen für lange Wörter in Überschriften. */
 const SHY = "­";
 
@@ -701,14 +711,33 @@ export const mail = {
 /* 13. Fußzeile                                                        */
 /* ------------------------------------------------------------------ */
 
+export type FussVerweis = Verweis & {
+  /** Öffnet in neuem Tab. */
+  extern?: boolean;
+  /** Wert für rel bei externen Verweisen, sonst gilt noopener. */
+  rel?: string;
+};
+
 export const fusszeile = {
   text: "Mentoring by Anna & Thilo. Ein Angebot der Westerwiede & Westerwiede GbR.",
+  kontaktLabel: "Kontakt",
+  /* Instagram ist nur ein Link. Nichts wird eingebettet, kein Skript geladen. */
+  kontakt: [
+    { art: "Telefon", label: TELEFON, href: TELEFON_HREF },
+    {
+      art: "Instagram",
+      label: INSTAGRAM_NAME,
+      href: INSTAGRAM_URL,
+      extern: true,
+      rel: "noopener noreferrer",
+    },
+  ] satisfies (FussVerweis & { art: string })[],
   links: [
     { label: "Impressum", href: "/impressum" },
     { label: "Datenschutz", href: "/datenschutz" },
     { label: "Podcast", href: PODCAST_URL, extern: true },
     { label: "hygge-homes.de", href: HYGGE_HOMES_URL, extern: true },
-  ] satisfies (Verweis & { extern?: boolean })[],
+  ] satisfies FussVerweis[],
 };
 
 /* ------------------------------------------------------------------ */
@@ -741,7 +770,7 @@ const anbieterZeilen = [
 
 const kontaktZeilen = [
   `E-Mail: ${CONTACT_EMAIL}`,
-  "Telefon: +49 4171 60 888 20",
+  `Telefon: ${TELEFON}`,
 ];
 
 export const impressum: RechtsSeite = {

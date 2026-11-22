@@ -99,6 +99,16 @@ describe("Inhalte in content/site.ts", () => {
     expect(treffer).toEqual([]);
   });
 
+  it("verlinken Telefon und Instagram in der Fußzeile richtig", () => {
+    const [telefon, instagram] = inhalt.fusszeile.kontakt;
+    expect(telefon.label).toBe("+49 4171 60 888 20");
+    // Im href steht die Nummer ohne Leerzeichen.
+    expect(telefon.href).toBe("tel:+4941716088820");
+    expect(instagram.label).toBe("@hyggehomes.official");
+    expect(instagram.href).toBe("https://www.instagram.com/hyggehomes.official/");
+    expect(instagram.rel).toBe("noopener noreferrer");
+  });
+
   it("zeigen keine Teilnehmerstimmen", () => {
     // Entscheidung: Es gibt noch keine Teilnehmerstimmen.
     expect(Object.keys(inhalt.zahlen)).not.toContain("stimmen");
