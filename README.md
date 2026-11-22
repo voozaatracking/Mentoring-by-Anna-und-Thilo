@@ -87,6 +87,7 @@ Schalter in `content/site.ts`:
 | `SHOW_PLACEHOLDER_MARKS` | Zeigt die Etiketten „Platzhalter“. Steht auf `false`, weil es keinen Platzhalter gibt |
 | `ALLOW_INDEXING` | Solange `false`, steht robots auf noindex |
 | `CONTACT_EMAIL` | Sichtbare Ausweichadresse im Formular |
+| `STAND` | Zahlen zu Hygge Homes (Wohnungen, Betten, Standorte, Orte). Nur hier ändern, sie fließen in Einstieg, Über uns und Zahlen |
 
 ## Feste Entscheidungen für die Inhalte
 
@@ -151,7 +152,7 @@ Zuordnung:
 | `2026_09_10_Hygge_Homes-100.jpg` | `thilo-portrait.jpg` | Rollenkarte Thilo, 4:5 |
 | `2026_09_10_Hygge_Homes-50.jpg` | `anna-thilo-laptop.jpg` | Inhalte |
 | `2026_09_10_Hygge_Homes-77.jpg` | `anna-thilo-weg.jpg` | Ablauf, Hochformat |
-| `2026_09_10_Hygge_Homes-57.jpg` | `hygge-homes-ruecken.jpg` | Zahlen |
+| `2026_09_10_Hygge_Homes-57.jpg` | `hygge-homes-ruecken.jpg` | Zahlen. Seit November 2026 liegt hier die bearbeitete Fassung (1376 x 768 Pixel) |
 | `2026_09_10_Hygge_Homes-37.jpg` | `anna-thilo-erstgespraech.jpg` | Formular |
 | `gamleby_slider01-2.jpg` | `wohnung-schlafen.jpg` | Kachel Schlafen |
 | `celle_1og_homeslider-600x600.png` | `wohnung-wohnen.png` | Kachel Wohnen |

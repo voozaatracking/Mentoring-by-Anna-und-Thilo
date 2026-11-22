@@ -1,6 +1,6 @@
 # Roadmap
 
-Stand: Feedback von Thilo eingearbeitet (Runde 1), Rechtstexte final. Diese Datei sammelt Entscheidungen, Platzhalter und offene Punkte.
+Stand: Zahlen auf Stand November 2026, Partner ergänzt, Rechtstexte final. Diese Datei sammelt Entscheidungen, Platzhalter und offene Punkte.
 
 ## Entscheidungen
 
@@ -16,6 +16,13 @@ Diese Punkte sind entschieden und werden nicht neu diskutiert. Tests in `tests/i
 ## Geplant
 
 - Gruppencalls geplant, freiwillig, erst nach Start auf die Seite.
+- Teilnehmerstimmen folgen, sobald es welche gibt. Bis dahin steht kein Block dazu auf der Seite.
+
+## Stand der Inhalte
+
+- **Zahlen, Stand November 2026:** 29 Ferienwohnungen, rund 145 Betten, 6 Standorte. Die Werte stehen einmal in `content/site.ts` (Konstante `STAND`) und fließen in Einstieg, Über uns und den Abschnitt Zahlen. Der sechste Standort wird nicht benannt, die Orte stehen mit „unter anderem“.
+- **Partner ergänzt:** Block „Unsere Partner“ im Abschnitt Inhalte, unter dem Hinweis zur Rechts- und Steuerberatung. GoLet GmbH und Mertens Schabow Steuerberatung, nur Firmennamen und einfache Links, keine Aussage zu Vergütung oder Provision.
+- **Bild getauscht:** `hygge-homes-ruecken.jpg` ist die bearbeitete Fassung (1376 x 768 Pixel, 16:9).
 
 ## Platzhalter auf der Seite
 
@@ -39,6 +46,7 @@ Alle zwölf Bilder liegen unter ihren Zielnamen in `assets/images/`. Es gibt kei
 
 - Alt-Texte sind anhand der Fotos formuliert, ohne Ortsangaben.
 - Bildausschnitte sind geprüft: Einstieg (mobil und Desktop), Porträts (4:5, Gesicht im oberen Drittel), übrige Fotos im Originalformat 3:2 oder 2:3.
+- Ausnahme: `hygge-homes-ruecken.jpg` ist seit dem Tausch 16:9 und steht mittig im Rahmen 3:2. Beide Personen sind ganz sichtbar. Die Auflösung ist mit 1376 Pixel Breite geringer als bei den übrigen Fotos (2500 Pixel).
 - Die vier Wohnungsbilder haben keine Beschriftung mehr.
 - Das Open-Graph-Bild entsteht automatisch aus dem Einstiegsbild.
 
@@ -49,16 +57,18 @@ Final. Die freigegebenen Fassungen liegen unverändert unter `docs/rechtstexte/`
 - Der Hinweis „Entwurf“ und alle Prüfhinweise sind entfernt.
 - Das Kästchen im Formular lautet „Ich habe die Datenschutzerklärung gelesen.“ Es formuliert keine Einwilligung.
 - Änderungen an den Rechtstexten: zuerst die Datei unter `docs/rechtstexte/` freigeben lassen, dann `content/site.ts` nachziehen.
+- Die Datenschutzerklärung nennt in Abschnitt 6 die Links zu den Partnern.
 
 ## Offen bis zum Livegang
 
-Offen sind nur noch diese drei Punkte:
+Offen sind diese vier Punkte:
 
+- [ ] **MAIL_CC.** In Vercel setzen. Die Datenschutzerklärung nennt eine Kopie an ein zweites Postfach. Ohne `MAIL_CC` geht keine Kopie raus.
 - [ ] **Domain.** Festlegen, in Vercel verbinden und als `SITE_URL` setzen.
 - [ ] **Vercel Pro.** Projekt auf Vercel Pro umstellen.
-- [ ] **Livegang.** Umgebungsvariablen prüfen, Testanfrage senden, dann `ALLOW_INDEXING = true`. Die Datenschutzerklärung nennt eine Kopie an ein zweites Postfach, dafür muss `MAIL_CC` gesetzt sein.
+- [ ] **Livegang.** Umgebungsvariablen prüfen, Testanfrage senden, dann `ALLOW_INDEXING = true`.
 
-Erledigt: Platzhalter ersetzt, Bilder geliefert, Rechtstexte final.
+Erledigt: Platzhalter ersetzt, Bilder geliefert, Rechtstexte final, Zahlen aktualisiert, Partner ergänzt.
 
 ## Beantwortete Rückfragen aus Runde 1
 

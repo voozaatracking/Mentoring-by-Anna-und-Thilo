@@ -92,6 +92,25 @@ export type TitelText = { titel: string; text: string };
 
 export type Kennzahl = { vorsatz?: string; wert: number; label: string };
 
+/*
+ * Zahlen zu Hygge Homes, Stand November 2026. Sie stehen nur hier und
+ * fließen in Einstieg, Über uns und den Abschnitt Zahlen. Der sechste
+ * Standort wird nicht benannt, deshalb heißt es bei den Orten "unter
+ * anderem".
+ */
+export const STAND = {
+  wohnungen: 29,
+  betten: 145,
+  standorte: 6,
+  orte: "unter anderem in Lüneburg, Winsen (Luhe), Rosengarten, Celle und Amelinghausen",
+} as const;
+
+const kennzahlenKern = [
+  { wert: STAND.wohnungen, label: "Ferienwohnungen" },
+  { vorsatz: "rund", wert: STAND.betten, label: "Betten" },
+  { wert: STAND.standorte, label: "Standorte" },
+] satisfies Kennzahl[];
+
 /* ------------------------------------------------------------------ */
 /* Metadaten und allgemeine Beschriftungen                             */
 /* ------------------------------------------------------------------ */
@@ -203,18 +222,14 @@ export const kopfzeile = {
 export const einstieg = {
   kleinzeile: SITE_NAME,
   titel: `Ein Business aufbauen, das zu deinem Familien${SHY}leben passt`,
-  text: "Wir begleiten dich persönlich beim Aufbau. Unser Schwerpunkt ist die Kurzzeitvermietung. Damit haben wir selbst 24 Ferienwohnungen aufgebaut.",
+  text: `Wir begleiten dich persönlich beim Aufbau. Unser Schwerpunkt ist die Kurzzeitvermietung. Damit haben wir selbst ${STAND.wohnungen} Ferienwohnungen aufgebaut.`,
   primaer: erstgespraechVerweis,
   sekundaer: {
     label: "Passt das zu uns? Zum Selbsttest",
     href: "/#selbsttest",
   } satisfies Verweis,
   zahlenLabel: "Hygge Homes in Zahlen",
-  zahlen: [
-    { wert: 24, label: "Ferienwohnungen" },
-    { vorsatz: "rund", wert: 125, label: "Betten" },
-    { wert: 5, label: "Standorte" },
-  ] satisfies Kennzahl[],
+  zahlen: kennzahlenKern,
 };
 
 /* ------------------------------------------------------------------ */
@@ -267,7 +282,7 @@ export const ueberUns = {
     },
     {
       titel: "Heute",
-      text: "24 Ferienwohnungen und rund 125 Betten in Lüneburg, Winsen (Luhe), Rosengarten, Celle und Amelinghausen. Mit einem festen Team und klaren Abläufen.",
+      text: `${STAND.wohnungen} Ferienwohnungen und rund ${STAND.betten} Betten, ${STAND.orte}. Mit einem festen Team und klaren Abläufen.`,
     },
   ] satisfies TitelText[],
   rollen: [
@@ -349,6 +364,29 @@ export const inhalte = {
   },
   hinweis:
     "Das Mentoring ersetzt keine Rechts- oder Steuerberatung. Wir sagen dir, an welchen Stellen du sie brauchst.",
+  /*
+   * Partner: nur Firmennamen, keine Ansprechpartner, keine Logos. Die Links
+   * tragen keine Tracking-Parameter und öffnen in neuem Tab. Bewusst keine
+   * Aussage zu Vergütung oder Provision.
+   */
+  partner: {
+    titel: "Unsere Partner",
+    text: "Für Baurecht und Steuern holen wir Fachleute dazu, mit denen wir selbst zusammenarbeiten.",
+    karten: [
+      {
+        titel: "GoLet GmbH",
+        text: "Nutzungsänderung und Bauantrag für Ferienwohnungen.",
+        link: { label: "golet.de", href: "https://golet.de" },
+      },
+      {
+        titel: "Mertens Schabow Steuerberatung",
+        text: "Steuerberatung aus Hamburg, unter anderem für Immobilien.",
+        link: { label: "mertens-schabow.de", href: "https://mertens-schabow.de" },
+      },
+    ] satisfies (TitelText & { link: Verweis })[],
+    schlusszeile:
+      "Die Leistungen unserer Partner beauftragst du direkt bei ihnen. Ob du das tust, entscheidest du selbst.",
+  },
 };
 
 /* ------------------------------------------------------------------ */
@@ -496,9 +534,7 @@ export const zahlen = {
   kleinzeile: "Hygge Homes in Zahlen",
   titel: "Woher unsere Erfahrung kommt",
   kennzahlen: [
-    { wert: 24, label: "Ferienwohnungen" },
-    { vorsatz: "rund", wert: 125, label: "Betten" },
-    { wert: 5, label: "Standorte" },
+    ...kennzahlenKern,
     {
       vorsatz: "über",
       wert: 100,
@@ -607,7 +643,7 @@ export const fragen = {
     {
       frage: "Ist das Mentoring eine Rechts- oder Steuerberatung?",
       antwort:
-        "Nein. Wir teilen unsere Erfahrung aus der Praxis. Für Verträge, Nutzungsänderung und Steuern brauchst du Fachleute. Wir sagen dir, wann.",
+        "Nein. Wir teilen unsere Erfahrung aus der Praxis. Für Verträge, Nutzungsänderung und Steuern brauchst du Fachleute. Wir sagen dir, wann. Für diese Fragen kannst du auf unsere Partner zurückgreifen.",
     },
     {
       frage: "Wie lange dauert das Mentoring?",
@@ -1019,7 +1055,7 @@ export const datenschutz: RechtsSeite = {
       bloecke: [
         {
           zeilen: [
-            "Diese Seite enthält Links zu Instagram, Spotify und hygge-homes.de. Es handelt sich um einfache Links, nichts davon ist eingebettet. Eine Verbindung zu diesen Anbietern entsteht erst, wenn du einen Link anklickst. Dann gilt die Datenschutzerklärung des jeweiligen Anbieters.",
+            "Diese Seite enthält Links zu Instagram, Spotify, hygge-homes.de und zu den Websites unserer Partner GoLet GmbH und Mertens Schabow Steuerberatung. Es handelt sich um einfache Links, nichts davon ist eingebettet. Eine Verbindung zu diesen Anbietern entsteht erst, wenn du einen Link anklickst. Dann gilt die Datenschutzerklärung des jeweiligen Anbieters.",
           ],
         },
       ],
