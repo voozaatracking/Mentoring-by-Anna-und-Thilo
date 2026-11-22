@@ -592,7 +592,7 @@ export const fragen = {
     {
       frage: "Was kostet die Einrichtung einer Wohnung?",
       antwort:
-        "Das hängt von Größe und Zustand der Wohnung ab. Die Reihenfolge ist wichtiger als die Summe: erst Betten, dann Sitzmöbel, Licht und Küche, zuletzt Dekoration. Den Budgetrahmen planen wir im Mentoring für deine Wohnung.",
+        "Als Faustformel rechnen wir mit 140 bis 180 Euro je Quadratmeter. Die Reihenfolge ist wichtiger als die Summe: erst Betten, dann Sitzmöbel, Licht und Küche, zuletzt Dekoration.",
     },
     {
       frage: "Geht das neben dem Beruf?",
