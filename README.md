@@ -2,7 +2,7 @@
 
 Verkaufsseite für das Mentoring von Hygge Homes. Ein Onepager mit zwei Rechtsseiten und einem Anfrageformular, das per E-Mail versendet.
 
-Stand: Feedback von Thilo eingearbeitet (Runde 1). Es gibt keine Platzhalter mehr. Offene Punkte stehen in [ROADMAP.md](ROADMAP.md).
+Stand: Feedback von Thilo eingearbeitet (Runde 1), Rechtstexte final. Es gibt keine Platzhalter mehr. Offene Punkte stehen in [ROADMAP.md](ROADMAP.md).
 
 ## Technik
 
@@ -43,8 +43,8 @@ Vor jedem Commit: Lint, Tests und Build. Vor dem Build den Ordner `.next` lösch
 | Pfad | Inhalt |
 | --- | --- |
 | `/` | Onepager |
-| `/impressum` | Entwurf mit Markierungen `[PRÜFEN: ...]` |
-| `/datenschutz` | Entwurf mit Markierungen `[PRÜFEN: ...]` |
+| `/impressum` | Finale Fassung aus `docs/rechtstexte/impressum.md` |
+| `/datenschutz` | Finale Fassung aus `docs/rechtstexte/datenschutz.md` |
 | `POST /api/anfrage` | Nimmt das Formular entgegen und versendet eine E-Mail |
 
 ## Umgebungsvariablen
@@ -59,7 +59,7 @@ Vorlage: `.env.example`. Lokal als `.env.local` anlegen, bei Vercel in den Proje
 | `SMTP_PASS` | ja | Passwort des Postfachs |
 | `MAIL_FROM` | ja | Absenderadresse. Muss `SMTP_USER` entsprechen |
 | `MAIL_TO` | ja | Empfänger der Anfragen |
-| `MAIL_CC` | nein | Kopie an eine weitere Adresse |
+| `MAIL_CC` | nein | Kopie an eine weitere Adresse. Die Datenschutzerklärung nennt eine Kopie an ein zweites Postfach, deshalb für den Livegang setzen |
 | `SITE_URL` | nein | Öffentliche Adresse der Seite für Metadaten. Ohne Angabe wird die Adresse von Vercel verwendet |
 
 Verhalten, wenn Variablen fehlen:
@@ -117,6 +117,18 @@ So nutzt du ihn:
 
 Eine Suche nach `placeholder: true` in `content/site.ts` findet alle Stellen.
 
+## Rechtstexte
+
+Impressum und Datenschutzerklärung sind final. Die freigegebenen Fassungen liegen unverändert unter `docs/rechtstexte/`. Die Seiten zeigen denselben Wortlaut aus `content/site.ts` (Objekte `impressum` und `datenschutz`). Die Seite parst kein Markdown.
+
+Der Test `tests/rechtstexte.test.ts` baut aus den Inhalten wieder das Markdown und vergleicht es Zeichen für Zeichen mit den Dateien. So änderst du einen Rechtstext:
+
+1. Neue Fassung freigeben lassen und unter `docs/rechtstexte/` ablegen.
+2. Denselben Wortlaut in `content/site.ts` nachziehen. Ein Block ist ein Absatz, mehrere Zeilen eines Blocks stehen untereinander.
+3. `npm run test` ausführen. Der Test zeigt jede Abweichung.
+
+Das Kästchen im Formular lautet „Ich habe die Datenschutzerklärung gelesen.“ Es formuliert bewusst keine Einwilligung.
+
 ## Bilder
 
 Quelle ist der Ordner `assets/images/`. Die Seite bindet Bilder über statische Importe mit `next/image` ein. Fehlt eine Datei, zeigt die Seite an der Stelle eine Fläche mit dem Text „Bild folgt: <Zielname>“.
@@ -163,4 +175,3 @@ Sicherheits-Header setzt `next.config.ts`. HSTS ist nur in Production aktiv.
 ## Bekannte Grenzen
 
 - Das Rate-Limit (5 Anfragen je IP und Stunde) liegt im Arbeitsspeicher. Bei Vercel gilt es je laufender Instanz, nicht global.
-- Die Rechtsseiten sind Entwürfe und keine Rechtsberatung.

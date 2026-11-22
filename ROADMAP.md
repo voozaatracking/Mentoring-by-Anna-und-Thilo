@@ -1,6 +1,6 @@
 # Roadmap
 
-Stand: Feedback von Thilo eingearbeitet (Runde 1, Branch `feat/feedback-thilo-1`). Diese Datei sammelt Entscheidungen, Platzhalter und offene Punkte.
+Stand: Feedback von Thilo eingearbeitet (Runde 1), Rechtstexte final. Diese Datei sammelt Entscheidungen, Platzhalter und offene Punkte.
 
 ## Entscheidungen
 
@@ -42,38 +42,23 @@ Alle zwölf Bilder liegen unter ihren Zielnamen in `assets/images/`. Es gibt kei
 - Die vier Wohnungsbilder haben keine Beschriftung mehr.
 - Das Open-Graph-Bild entsteht automatisch aus dem Einstiegsbild.
 
-## Rechtsseiten
+## Rechtstexte
 
-Beide Seiten sind Entwürfe. Vor der Veröffentlichung alle Markierungen `[PRÜFEN: ...]` klären und den Hinweis „Entwurf“ entfernen.
+Final. Die freigegebenen Fassungen liegen unverändert unter `docs/rechtstexte/`. Die Seiten `/impressum` und `/datenschutz` zeigen denselben Wortlaut. Ein Test vergleicht beide Zeichen für Zeichen.
 
-Impressum:
+- Der Hinweis „Entwurf“ und alle Prüfhinweise sind entfernt.
+- Das Kästchen im Formular lautet „Ich habe die Datenschutzerklärung gelesen.“ Es formuliert keine Einwilligung.
+- Änderungen an den Rechtstexten: zuerst die Datei unter `docs/rechtstexte/` freigeben lassen, dann `content/site.ts` nachziehen.
 
-- Bezeichnung der Rechtsgrundlage für die Anbieterkennzeichnung
-- Kontaktadresse für das Mentoring
-- USt-IdNr. oder Kleinunternehmerregelung
-- Inhaltlich verantwortliche Person, falls erforderlich
-- Hinweis zur Verbraucherstreitbeilegung, falls erforderlich
+## Offen bis zum Livegang
 
-Datenschutz:
+Offen sind nur noch diese drei Punkte:
 
-- Anschriften der Dienstleister (Vercel, Strato)
-- Rechtsgrundlagen (Hosting, Anfrageformular)
-- Erforderlichkeit der Telefonnummer als Pflichtangabe (neu in Runde 1)
-- Auftragsverarbeitung mit Vercel und Strato, Übermittlung in Drittländer
-- Umfang und Speicherdauer der Verbindungsdaten bei Vercel
-- Speicherdauer der Anfragen im Postfach
-- Verweise auf die Artikel der DSGVO
-- Zuständige Aufsichtsbehörde
-- Datum der Fassung
+- [ ] **Domain.** Festlegen, in Vercel verbinden und als `SITE_URL` setzen.
+- [ ] **Vercel Pro.** Projekt auf Vercel Pro umstellen.
+- [ ] **Livegang.** Umgebungsvariablen prüfen, Testanfrage senden, dann `ALLOW_INDEXING = true`. Die Datenschutzerklärung nennt eine Kopie an ein zweites Postfach, dafür muss `MAIL_CC` gesetzt sein.
 
-## Vor dem Livegang
-
-- [x] Alle Platzhalter ersetzt, `SHOW_PLACEHOLDER_MARKS = false`
-- [x] Bilder geliefert, Alt-Texte geprüft
-- [ ] Rechtsseiten geprüft, Hinweis „Entwurf“ entfernt
-- [ ] Umgebungsvariablen in Vercel gesetzt, Testanfrage auf der Preview gesendet
-- [ ] Endgültige Domain festgelegt und als `SITE_URL` gesetzt
-- [ ] `ALLOW_INDEXING = true`
+Erledigt: Platzhalter ersetzt, Bilder geliefert, Rechtstexte final.
 
 ## Beantwortete Rückfragen aus Runde 1
 
