@@ -471,7 +471,7 @@ export const fuerWen = {
 };
 
 /* ------------------------------------------------------------------ */
-/* 9. Zahlen und Stimmen                                               */
+/* 9. Zahlen                                                           */
 /* ------------------------------------------------------------------ */
 
 export const zahlen = {
@@ -488,17 +488,9 @@ export const zahlen = {
       label: "Besichtigungen bis zur ersten Wohnung",
     },
   ] satisfies Kennzahl[],
-  erfahrungswert: {
-    placeholder: true,
-    hinweis:
-      "Erfahrungswert je Wohnung. Nur nach Freigabe durch Thilo, mit Zusatz „eigene Erfahrung, kein Versprechen“.",
-  } satisfies Platzhalter,
-  stimmenTitel: "Stimmen von Teilnehmern",
-  stimmen: [
-    { placeholder: true, hinweis: "Stimme eines Teilnehmers ergänzen (1)." },
-    { placeholder: true, hinweis: "Stimme eines Teilnehmers ergänzen (2)." },
-    { placeholder: true, hinweis: "Stimme eines Teilnehmers ergänzen (3)." },
-  ] satisfies Platzhalter[],
+  /* Bewusst ohne Zahl: kein Erfahrungswert je Wohnung, kein Versprechen. */
+  hinweis:
+    "Jede Wohnung und jeder Standort ist anders. Was sich rechnet, prüfen wir für dein Objekt im Detail.",
   podcast: {
     text: "Im Podcast „HYGGE HOMES family & business“ erzählen wir offen, was gut läuft und was nicht.",
     link: { label: "Zum Podcast", href: PODCAST_URL } satisfies Verweis,

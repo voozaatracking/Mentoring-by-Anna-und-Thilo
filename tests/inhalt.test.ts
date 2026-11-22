@@ -60,9 +60,8 @@ describe("Inhalte in content/site.ts", () => {
       for (const eintrag of Object.values(wert)) sammle(eintrag);
     };
     sammle(inhalt);
-    // Erfahrungswert, 3 Stimmen, weitere Bestandteile, Preis,
-    // Rahmen des Erstgesprächs
-    expect(platzhalter).toHaveLength(7);
+    // weitere Bestandteile, Preis, Rahmen des Erstgesprächs
+    expect(platzhalter).toHaveLength(3);
     for (const eintrag of platzhalter) {
       expect(eintrag.hinweis.trim().length).toBeGreaterThan(5);
     }
@@ -83,6 +82,13 @@ describe("Inhalte in content/site.ts", () => {
         !pfad.startsWith("site.paket") &&
         dauer.some((muster) => muster.test(text)),
     );
+    expect(treffer).toEqual([]);
+  });
+
+  it("zeigen keine Teilnehmerstimmen", () => {
+    // Entscheidung: Es gibt noch keine Teilnehmerstimmen.
+    expect(Object.keys(inhalt.zahlen)).not.toContain("stimmen");
+    const treffer = texte.filter(([, text]) => /Teilnehmerstimme|Stimmen von/i.test(text));
     expect(treffer).toEqual([]);
   });
 
