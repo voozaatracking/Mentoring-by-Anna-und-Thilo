@@ -237,7 +237,7 @@ export const ueberUns = {
   id: "ueber-uns",
   kleinzeile: "Wer wir sind",
   titel: "Wir haben selbst so angefangen",
-  text: "Wir sind Anna und Thilo Westerwiede. Wir leben mit unserer Familie in einem Schwedenhaus in der Lüneburger Heide und führen Hygge Homes. Alles, was wir im Mentoring weitergeben, haben wir selbst ausprobiert, falsch gemacht und besser gelöst.",
+  text: "Wir sind Anna und Thilo Westerwiede. Wir leben mit unserer Familie in einem Schwedenhaus in der Lüneburger Heide und führen Hygge Homes. Alles, was wir im Mentoring weitergeben, haben wir selbst ausprobiert, Herausforderungen angenommen und gelöst.",
   stationenLabel: "Unser Weg in vier Stationen",
   stationen: [
     {
