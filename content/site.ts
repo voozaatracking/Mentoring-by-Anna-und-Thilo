@@ -629,7 +629,7 @@ export const formular = {
   titel: "Anfrage für ein Erstgespräch",
   pflichtHinweis: "Felder mit Stern sind Pflichtfelder.",
   pflichtZeichen: "*",
-  /* Pflichtfelder: Name, E-Mail, Telefon, Stand und Zustimmung. */
+  /* Pflichtfelder: Name, E-Mail, Telefon, Stand und die Bestätigung zum Datenschutz. */
   felder: {
     name: "Name",
     email: "E-Mail",
@@ -649,10 +649,15 @@ export const formular = {
   } satisfies Record<Stand, string>,
   /** {anzahl} und {max} werden ersetzt. */
   nachrichtZaehler: "{anzahl} von {max} Zeichen",
+  /*
+   * Bewusst keine Einwilligung: Die Anfrage wird als vorvertragliche
+   * Maßnahme bearbeitet (siehe Datenschutzerklärung). Das Kästchen
+   * bestätigt nur, dass die Erklärung gelesen wurde.
+   */
   zustimmung: {
     vor: "Ich habe die ",
     link: { label: "Datenschutzerklärung", href: "/datenschutz" },
-    nach: " gelesen und bin einverstanden, dass meine Angaben zur Bearbeitung meiner Anfrage verwendet werden.",
+    nach: " gelesen.",
   },
   honeypotLabel: "Website (bitte leer lassen)",
   senden: "Anfrage senden",
@@ -685,7 +690,7 @@ export const formular = {
     },
     stand: { pflicht: "Bitte wähle aus, wo du gerade stehst." },
     zustimmung: {
-      pflicht: "Bitte stimme der Datenschutzerklärung zu.",
+      pflicht: "Bitte bestätige, dass du die Datenschutzerklärung gelesen hast.",
     },
   } satisfies Partial<Record<Feld, Partial<Record<Fehlercode, string>>>>,
 };
@@ -704,11 +709,11 @@ export const mail = {
     telefon: "Telefon",
     stand: "Stand",
     nachricht: "Nachricht",
-    zustimmung: "Zustimmung Datenschutz",
+    zustimmung: "Datenschutzerklärung",
     zeitpunkt: "Zeitpunkt",
   },
   leer: "(keine Angabe)",
-  zustimmungErteilt: "erteilt",
+  zustimmungErteilt: "gelesen",
   antwortHinweis:
     "Antworten auf diese E-Mail gehen direkt an die anfragende Person.",
 };
@@ -747,189 +752,319 @@ export const fusszeile = {
 };
 
 /* ------------------------------------------------------------------ */
-/* Rechtsseiten (Entwürfe)                                             */
+/* Rechtsseiten (final)                                                */
 /* ------------------------------------------------------------------ */
 
 /*
- * Markierungen der Form [PRÜFEN: ...] werden auf der Seite sichtbar
- * hervorgehoben. Die Texte sind Entwürfe und keine Rechtsberatung.
+ * Finale, freigegebene Fassungen. Quelle sind die Dateien unter
+ * docs/rechtstexte/. Die Texte hier stimmen Wort für Wort damit überein,
+ * ein Test vergleicht beide. Änderungen deshalb immer zuerst in der Datei
+ * unter docs/rechtstexte/ freigeben lassen und dann hier nachziehen.
  */
+
+export type RechtsBlock = {
+  /** Fett gesetzter Beginn des Absatzes. */
+  vorspann?: string;
+  /** Eine Zeile ist ein Absatz. Mehrere Zeilen stehen untereinander. */
+  zeilen: string[];
+};
 
 export type RechtsAbschnitt = {
   titel: string;
-  absaetze?: string[];
-  liste?: string[];
+  bloecke: RechtsBlock[];
 };
 
 export type RechtsSeite = {
   titel: string;
-  entwurfTitel: string;
-  entwurfText: string;
+  /** Blöcke zwischen Überschrift und erstem Abschnitt, zum Beispiel der Stand. */
+  vorab: RechtsBlock[];
   abschnitte: RechtsAbschnitt[];
 };
 
-const anbieterZeilen = [
-  "Westerwiede & Westerwiede GbR",
-  "Habichtsweg 21",
-  "21385 Amelinghausen",
-];
-
-const kontaktZeilen = [
-  `E-Mail: ${CONTACT_EMAIL}`,
-  `Telefon: ${TELEFON}`,
-];
-
 export const impressum: RechtsSeite = {
   titel: "Impressum",
-  entwurfTitel: "Entwurf",
-  entwurfText:
-    "Diese Seite ist ein Entwurf und noch nicht rechtlich geprüft. Alle mit [PRÜFEN: ...] markierten Stellen müssen vor der Veröffentlichung geklärt werden.",
+  vorab: [],
   abschnitte: [
     {
-      titel: "Anbieter",
-      liste: anbieterZeilen,
-      absaetze: [
-        "[PRÜFEN: Bezeichnung der Rechtsgrundlage für die Anbieterkennzeichnung]",
+      titel: "Angaben gemäß § 5 DDG",
+      bloecke: [
+        {
+          zeilen: [
+            "Westerwiede & Westerwiede GbR",
+            "Habichtsweg 21",
+            "21385 Amelinghausen",
+          ],
+        },
+        {
+          zeilen: [
+            "Vertreten durch die Gesellschafter:",
+            "Thilo Westerwiede",
+            "Anna Westerwiede",
+          ],
+        },
       ],
-    },
-    {
-      titel: "Gesellschafter",
-      liste: ["Thilo Westerwiede", "Anna Westerwiede"],
     },
     {
       titel: "Kontakt",
-      liste: kontaktZeilen,
-      absaetze: ["[PRÜFEN: Kontaktadresse für das Mentoring]"],
-    },
-    {
-      titel: "Umsatzsteuer",
-      absaetze: ["[PRÜFEN: USt-IdNr. oder Kleinunternehmerregelung]"],
-    },
-    {
-      titel: "Verantwortlich für den Inhalt",
-      absaetze: [
-        "[PRÜFEN: Angabe einer inhaltlich verantwortlichen Person, falls erforderlich]",
+      bloecke: [
+        {
+          zeilen: [
+            "Telefon: +49 4171 60 888 20",
+            "E-Mail: info@hygge-homes.de",
+          ],
+        },
       ],
     },
     {
-      titel: "Hinweis zum Angebot",
-      absaetze: [
-        "Das Mentoring ist ein Angebot der Westerwiede & Westerwiede GbR. Es ersetzt keine Rechts- oder Steuerberatung.",
-        "[PRÜFEN: Hinweis zur Verbraucherstreitbeilegung, falls erforderlich]",
+      titel: "Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV",
+      bloecke: [
+        {
+          zeilen: [
+            "Thilo Westerwiede",
+            "Habichtsweg 21",
+            "21385 Amelinghausen",
+          ],
+        },
+      ],
+    },
+    {
+      titel: "Verbraucherstreitbeilegung",
+      bloecke: [
+        {
+          zeilen: [
+            "Wir sind nicht bereit und nicht verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.",
+          ],
+        },
+      ],
+    },
+    {
+      titel: "Anbieter des Mentorings",
+      bloecke: [
+        {
+          zeilen: [
+            "Das Mentoring wird von der Westerwiede & Westerwiede GbR angeboten. Hygge Homes ist die Marke unserer Ferienwohnungen. Die Hygge Homes ND GmbH ist nicht Anbieterin dieser Website und des Mentorings.",
+          ],
+        },
+      ],
+    },
+    {
+      titel: "Bildnachweis",
+      bloecke: [
+        {
+          zeilen: [
+            "Fotos von Anna und Thilo: Die Nutzungsrechte liegen bei Anna und Thilo Westerwiede.",
+            "Wohnungsfotos: Hygge Homes ND GmbH, Nutzung mit Freigabe.",
+          ],
+        },
+      ],
+    },
+    {
+      titel: "Haftung für Inhalte",
+      bloecke: [
+        {
+          zeilen: [
+            "Wir erstellen die Inhalte dieser Seite mit Sorgfalt. Für Richtigkeit, Vollständigkeit und Aktualität übernehmen wir keine Gewähr. Als Diensteanbieter sind wir für eigene Inhalte nach den allgemeinen Gesetzen verantwortlich.",
+          ],
+        },
+      ],
+    },
+    {
+      titel: "Haftung für Links",
+      bloecke: [
+        {
+          zeilen: [
+            "Diese Seite enthält Links zu Websites Dritter. Für deren Inhalte ist der jeweilige Anbieter verantwortlich. Erhalten wir Hinweise auf Rechtsverletzungen, entfernen wir den betreffenden Link.",
+          ],
+        },
+      ],
+    },
+    {
+      titel: "Urheberrecht",
+      bloecke: [
+        {
+          zeilen: [
+            "Texte und Fotos auf dieser Seite sind urheberrechtlich geschützt. Eine Verwendung außerhalb dieser Seite ist nur mit unserer schriftlichen Zustimmung erlaubt.",
+          ],
+        },
       ],
     },
   ],
 };
 
 export const datenschutz: RechtsSeite = {
-  titel: "Datenschutz",
-  entwurfTitel: "Entwurf",
-  entwurfText:
-    "Diese Datenschutzerklärung ist ein Entwurf und noch nicht rechtlich geprüft. Alle mit [PRÜFEN: ...] markierten Stellen müssen vor der Veröffentlichung geklärt werden. [PRÜFEN: Anschriften der Dienstleister, Rechtsgrundlagen, Auftragsverarbeitung]",
+  titel: "Datenschutzerklärung",
+  vorab: [
+    {
+      zeilen: [
+        "Stand: November 2026",
+      ],
+    },
+  ],
   abschnitte: [
     {
-      titel: "1. Verantwortlicher",
-      absaetze: [
-        "Verantwortlich für die Verarbeitung deiner Daten auf dieser Website ist:",
-      ],
-      liste: [...anbieterZeilen, ...kontaktZeilen],
-    },
-    {
-      titel: "2. Hosting bei Vercel",
-      absaetze: [
-        "Diese Website wird bei Vercel gehostet. Beim Aufruf der Seite verarbeitet der Anbieter die technisch nötigen Verbindungsdaten, um die Seite auszuliefern.",
-        "[PRÜFEN: Anschrift von Vercel]",
-        "[PRÜFEN: Umfang und Speicherdauer der Verbindungsdaten bei Vercel]",
-        "[PRÜFEN: Rechtsgrundlage für das Hosting]",
-        "[PRÜFEN: Vertrag zur Auftragsverarbeitung mit Vercel und Übermittlung in Drittländer]",
+      titel: "1. Das Wichtigste in Kürze",
+      bloecke: [
+        {
+          zeilen: [
+            "Diese Seite setzt keine Cookies und nutzt kein Tracking und keine Analyse-Tools. Die Schriften sind auf dem eigenen Server eingebunden, es besteht keine Verbindung zu Google oder anderen Schriftanbietern. Personenbezogene Daten verarbeiten wir nur in zwei Fällen: beim technischen Aufruf der Seite und wenn du uns über das Formular eine Anfrage schickst.",
+          ],
+        },
       ],
     },
     {
-      titel: "3. Anfrageformular",
-      absaetze: [
-        "Wenn du uns über das Formular schreibst, verarbeiten wir diese Angaben:",
-      ],
-      liste: [
-        "Name (Pflichtangabe)",
-        "E-Mail-Adresse (Pflichtangabe)",
-        "Telefonnummer (Pflichtangabe)",
-        "deine Auswahl zur Frage, wo du gerade stehst",
-        "deine Nachricht, wenn du eine schreibst",
-        "Zeitpunkt der Anfrage",
-      ],
-    },
-    {
-      titel: "Zweck der Verarbeitung",
-      absaetze: [
-        "Wir nutzen deine Angaben nur, um deine Anfrage zu bearbeiten und uns für ein Erstgespräch bei dir zu melden.",
-        "[PRÜFEN: Rechtsgrundlage für die Verarbeitung der Anfrage]",
-        "[PRÜFEN: Erforderlichkeit der Telefonnummer als Pflichtangabe]",
-      ],
-    },
-    {
-      titel: "Versand per E-Mail über Strato",
-      absaetze: [
-        "Das Formular sendet deine Angaben als E-Mail an unser Postfach. Der Versand läuft über den Mailserver unseres Anbieters Strato. Auf der Website selbst speichern wir deine Angaben nicht in einer Datenbank.",
-        "Zum Schutz vor Missbrauch zählt der Server die Anfragen je IP-Adresse. Diese Zählung liegt für höchstens eine Stunde im Arbeitsspeicher und wird nicht dauerhaft gespeichert.",
-        "[PRÜFEN: Anschrift von Strato]",
-        "[PRÜFEN: Vertrag zur Auftragsverarbeitung mit Strato]",
+      titel: "2. Verantwortlicher",
+      bloecke: [
+        {
+          zeilen: [
+            "Westerwiede & Westerwiede GbR",
+            "Gesellschafter: Thilo Westerwiede, Anna Westerwiede",
+            "Habichtsweg 21",
+            "21385 Amelinghausen",
+          ],
+        },
+        {
+          zeilen: [
+            "Telefon: +49 4171 60 888 20",
+            "E-Mail: info@hygge-homes.de",
+          ],
+        },
+        {
+          zeilen: [
+            "Ansprechpartner für alle Fragen zum Datenschutz ist Thilo Westerwiede, erreichbar über die oben genannten Kontaktdaten.",
+          ],
+        },
       ],
     },
     {
-      titel: "Speicherdauer",
-      absaetze: ["[PRÜFEN: Speicherdauer der Anfragen im Postfach]"],
-    },
-    {
-      titel: "4. Keine Cookies und keine Analyse",
-      absaetze: [
-        "Diese Website setzt keine Cookies. Wir nutzen keine Werkzeuge zur Analyse oder zum Tracking deines Besuchs.",
+      titel: "3. Hosting",
+      bloecke: [
+        {
+          zeilen: [
+            "Diese Seite wird gehostet bei der Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, USA.",
+          ],
+        },
+        {
+          zeilen: [
+            "Beim Aufruf der Seite verarbeitet Vercel technisch notwendige Daten: IP-Adresse, Datum und Uhrzeit, aufgerufene Adresse, zuvor besuchte Seite, Browser und Betriebssystem. Diese Daten werden in Server-Logdateien gespeichert. Sie dienen der Auslieferung der Seite, ihrer Stabilität und ihrer Sicherheit. Rechtsgrundlage ist unser berechtigtes Interesse an einer sicheren und zuverlässigen Bereitstellung (Art. 6 Abs. 1 lit. f DSGVO).",
+          ],
+        },
+        {
+          zeilen: [
+            "Vercel speichert diese Logdateien nur so lange, wie es für den technischen Betrieb nötig ist. Wir selbst speichern sie nicht gesondert und werten sie nicht aus.",
+          ],
+        },
+        {
+          zeilen: [
+            "Vercel hat seinen Sitz in den USA. Die Übermittlung erfolgt auf Grundlage des EU-US Data Privacy Framework (Angemessenheitsbeschluss nach Art. 45 DSGVO) und ergänzend auf Grundlage von Standardvertragsklauseln (Art. 46 DSGVO).",
+          ],
+        },
       ],
     },
     {
-      titel: "5. Lokal eingebundene Schriften",
-      absaetze: [
-        "Die Schriften Oswald und Jost liegen auf unserem eigenen Webspace. Beim Laden der Schriften wird keine Verbindung zu Servern anderer Anbieter aufgebaut.",
+      titel: "4. Anfrageformular",
+      bloecke: [
+        {
+          zeilen: [
+            "Wenn du uns über das Formular eine Anfrage schickst, verarbeiten wir folgende Angaben: Name, E-Mail-Adresse, Telefonnummer, deinen aktuellen Stand (Auswahl) und, falls du sie ausfüllst, deine Nachricht. Name, E-Mail-Adresse, Telefonnummer und Stand sind Pflichtangaben. Ohne sie können wir deine Anfrage nicht bearbeiten. Die Telefonnummer brauchen wir, um das Erstgespräch mit dir abzustimmen.",
+          ],
+        },
+        {
+          zeilen: [
+            "Wir nutzen diese Daten, um deine Anfrage zu bearbeiten und mit dir ein Erstgespräch zu vereinbaren. Rechtsgrundlage ist die Durchführung vorvertraglicher Maßnahmen auf deine Anfrage (Art. 6 Abs. 1 lit. b DSGVO).",
+          ],
+        },
+        {
+          zeilen: [
+            "So läuft die Übermittlung: Der Server bei Vercel nimmt deine Anfrage entgegen und versendet sie als E-Mail über den Mailserver der STRATO GmbH, Otto-Ostrowski-Straße 7, 10249 Berlin, an unser Postfach. Eine Kopie geht zur Absicherung an ein zweites Postfach von uns. Auf der Website selbst wird deine Anfrage nicht gespeichert, es gibt keine Datenbank. Eine automatische Bestätigung senden wir nicht.",
+          ],
+        },
+        {
+          zeilen: [
+            "Empfänger sind Vercel und STRATO als Auftragsverarbeiter.",
+          ],
+        },
+        {
+          zeilen: [
+            "Schutz vor Missbrauch: Um zu verhindern, dass das Formular massenhaft genutzt wird, verarbeitet der Server deine IP-Adresse kurzzeitig im Arbeitsspeicher und begrenzt die Zahl der Anfragen je Stunde. Die IP-Adresse wird dabei nicht dauerhaft gespeichert. Rechtsgrundlage ist unser berechtigtes Interesse am Schutz vor Missbrauch (Art. 6 Abs. 1 lit. f DSGVO).",
+          ],
+        },
+        {
+          zeilen: [
+            "Speicherdauer: Anfragen, aus denen kein Mentoring entsteht, löschen wir spätestens sechs Monate nach dem letzten Kontakt. Entsteht ein Vertrag, bewahren wir die Daten auf, solange gesetzliche Aufbewahrungspflichten es verlangen.",
+          ],
+        },
       ],
     },
     {
-      titel: "6. Externer Link zu Spotify",
-      absaetze: [
-        "Unser Podcast ist als einfacher Link zu Spotify hinterlegt. Auf dieser Website ist nichts von Spotify eingebettet. Erst wenn du den Link anklickst, verlässt du unsere Seite. Dann gelten die Datenschutzhinweise von Spotify.",
-        "Dasselbe gilt für den Link zu hygge-homes.de.",
+      titel: "5. Kontakt per E-Mail oder Telefon",
+      bloecke: [
+        {
+          zeilen: [
+            "Wenn du uns per E-Mail oder Telefon kontaktierst, verarbeiten wir deine Angaben, um dein Anliegen zu bearbeiten. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO, wenn es um ein mögliches Mentoring geht, sonst unser berechtigtes Interesse an der Beantwortung deiner Anfrage (Art. 6 Abs. 1 lit. f DSGVO). Für die Speicherdauer gilt Abschnitt 4.",
+          ],
+        },
       ],
     },
     {
-      titel: "7. Rechte der Betroffenen",
-      absaetze: [
-        "Du hast gegenüber uns diese Rechte in Bezug auf deine Daten:",
-      ],
-      liste: [
-        "Auskunft",
-        "Berichtigung",
-        "Löschung",
-        "Einschränkung der Verarbeitung",
-        "Datenübertragbarkeit",
-        "Widerspruch gegen die Verarbeitung",
-        "Widerruf einer erteilten Einwilligung mit Wirkung für die Zukunft",
+      titel: "6. Links zu anderen Seiten",
+      bloecke: [
+        {
+          zeilen: [
+            "Diese Seite enthält Links zu Instagram, Spotify und hygge-homes.de. Es handelt sich um einfache Links, nichts davon ist eingebettet. Eine Verbindung zu diesen Anbietern entsteht erst, wenn du einen Link anklickst. Dann gilt die Datenschutzerklärung des jeweiligen Anbieters.",
+          ],
+        },
       ],
     },
     {
-      titel: "So erreichst du uns dazu",
-      absaetze: [
-        `Schreib uns dafür an ${CONTACT_EMAIL}.`,
-        "[PRÜFEN: Verweise auf die einschlägigen Artikel der DSGVO]",
+      titel: "7. Verschlüsselung",
+      bloecke: [
+        {
+          zeilen: [
+            "Diese Seite nutzt eine TLS-Verschlüsselung. Du erkennst sie an „https://“ in der Adresszeile und am Schloss-Symbol deines Browsers. Daten, die du über das Formular schickst, können während der Übertragung nicht von Dritten mitgelesen werden.",
+          ],
+        },
       ],
     },
     {
-      titel: "8. Beschwerderecht",
-      absaetze: [
-        "Du kannst dich bei einer Aufsichtsbehörde für den Datenschutz beschweren, wenn du meinst, dass wir deine Daten nicht rechtmäßig verarbeiten.",
-        "[PRÜFEN: zuständige Aufsichtsbehörde mit Anschrift]",
+      titel: "8. Deine Rechte",
+      bloecke: [
+        {
+          zeilen: [
+            "Du hast das Recht auf Auskunft über deine bei uns gespeicherten Daten (Art. 15 DSGVO), auf Berichtigung (Art. 16 DSGVO), auf Löschung (Art. 17 DSGVO), auf Einschränkung der Verarbeitung (Art. 18 DSGVO) und auf Datenübertragbarkeit (Art. 20 DSGVO). Wende dich dafür an die Kontaktdaten in Abschnitt 2.",
+          ],
+        },
+        {
+          vorspann: "Widerspruchsrecht (Art. 21 DSGVO):",
+          zeilen: [
+            "Verarbeiten wir deine Daten auf Grundlage unseres berechtigten Interesses (Art. 6 Abs. 1 lit. f DSGVO), kannst du dieser Verarbeitung aus Gründen, die sich aus deiner besonderen Situation ergeben, jederzeit widersprechen. Wir verarbeiten deine Daten dann nicht mehr, es sei denn, wir können zwingende schutzwürdige Gründe nachweisen oder die Verarbeitung dient der Geltendmachung, Ausübung oder Verteidigung von Rechtsansprüchen.",
+          ],
+        },
+        {
+          zeilen: [
+            "Du hast außerdem das Recht, dich bei einer Datenschutz-Aufsichtsbehörde zu beschweren. Für uns zuständig ist der Landesbeauftragte für den Datenschutz Niedersachsen, Prinzenstraße 5, 30159 Hannover.",
+          ],
+        },
       ],
     },
     {
-      titel: "Stand",
-      absaetze: ["[PRÜFEN: Datum der Fassung]"],
+      titel: "9. Keine automatisierte Entscheidung",
+      bloecke: [
+        {
+          zeilen: [
+            "Wir treffen keine Entscheidungen, die ausschließlich auf einer automatisierten Verarbeitung beruhen, und erstellen keine Profile.",
+          ],
+        },
+      ],
+    },
+    {
+      titel: "10. Änderungen",
+      bloecke: [
+        {
+          zeilen: [
+            "Wir passen diese Datenschutzerklärung an, wenn sich die Seite oder die Rechtslage ändert. Es gilt die jeweils hier veröffentlichte Fassung.",
+          ],
+        },
+      ],
     },
   ],
 };

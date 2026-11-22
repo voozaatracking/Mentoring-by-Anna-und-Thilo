@@ -355,17 +355,6 @@
     padding: 14px 16px;
   }
 
-  /* Markierung [PRÜFEN: ...] auf den Rechtsseiten */
-  .pruefen {
-    border: 1px solid var(--ochre);
-    border-radius: 4px;
-    background: var(--ochre-light);
-    color: var(--text);
-    padding: 0.05rem 0.35rem;
-    box-decoration-break: clone;
-    -webkit-box-decoration-break: clone;
-  }
-
   /* Sprunglink: erst bei Fokus sichtbar */
   .sprunglink {
     position: absolute;

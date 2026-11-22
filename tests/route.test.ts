@@ -75,7 +75,7 @@ afterEach(() => {
 });
 
 describe("POST /api/anfrage", () => {
-  it("antwortet mit 400, wenn die Zustimmung fehlt", async () => {
+  it("antwortet mit 400, wenn die Bestätigung zum Datenschutz fehlt", async () => {
     setzeSmtp();
     const antwort = await POST(anfrage({ ...gueltig, zustimmung: false }));
     expect(antwort.status).toBe(400);
@@ -149,6 +149,8 @@ describe("POST /api/anfrage", () => {
     expect(text).toContain("Stand: Ich habe eine Wohnung in Aussicht");
     expect(text).toContain("Wir haben eine Wohnung in Aussicht.");
     expect(text).toMatch(/Zeitpunkt: .+ Uhr/);
+    expect(text).toContain("Datenschutzerklärung: gelesen");
+    expect(text).not.toMatch(/Zustimmung|Einwilligung/);
     // Nur-Text-Mail, keine automatische Antwort an die anfragende Person.
     expect(mail).not.toHaveProperty("html");
     expect(String(mail.to)).not.toContain("erika@example.org");

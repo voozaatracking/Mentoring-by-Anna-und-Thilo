@@ -147,15 +147,24 @@ describe("Inhalte in content/site.ts", () => {
     }
   });
 
-  it("markieren offene Punkte der Rechtsseiten mit [PRÜFEN: ...]", () => {
-    const rechtstexte: [string, string][] = [];
-    alleTexte(inhalt.impressum, "impressum", rechtstexte);
-    alleTexte(inhalt.datenschutz, "datenschutz", rechtstexte);
-    const markierungen = rechtstexte.filter(([, text]) =>
-      text.includes("[PRÜFEN:"),
+  it("formulieren am Kästchen zum Datenschutz keine Einwilligung", () => {
+    const { vor, link, nach } = inhalt.formular.zustimmung;
+    expect(`${vor}${link.label}${nach}`).toBe(
+      "Ich habe die Datenschutzerklärung gelesen.",
     );
-    expect(markierungen.length).toBeGreaterThanOrEqual(10);
-    expect(inhalt.impressum.entwurfTitel).toBe("Entwurf");
-    expect(inhalt.datenschutz.entwurfTitel).toBe("Entwurf");
+    expect(link.href).toBe("/datenschutz");
+    const formulartexte: [string, string][] = [];
+    alleTexte(inhalt.formular, "formular", formulartexte);
+    const treffer = formulartexte.filter(([, text]) =>
+      /einverstanden|einwillig|stimme .* zu\b/i.test(text),
+    );
+    expect(treffer).toEqual([]);
+  });
+
+  it("enthalten keine Prüfhinweise und keinen Entwurfshinweis mehr", () => {
+    const treffer = texte.filter(([, text]) => /\[PRÜFEN|Entwurf/i.test(text));
+    expect(treffer).toEqual([]);
+    expect(Object.keys(inhalt.impressum)).not.toContain("entwurfTitel");
+    expect(Object.keys(inhalt.datenschutz)).not.toContain("entwurfTitel");
   });
 });
