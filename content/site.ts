@@ -359,7 +359,7 @@ export const ablauf = {
   id: "ablauf",
   titel: "So läuft es ab",
   unterzeile: "Schritt für Schritt",
-  text: "In persönlichen 1:1-Calls sind wir deine Begleiter im Mentoring. Den genauen Ablauf stimmen wir auf dein Ziel ab.",
+  text: "In persönlichen 1:1-Calls sind wir deine Begleiter im Mentoring. Wir begleiten dich so lange, wie es für dein Ziel sinnvoll ist. Dauer, Umfang und Ablauf stimmen wir gemeinsam ab.",
   zeitleisteLabel: "Ablauf des Mentorings",
   /*
    * Vier Schritte ohne Zeitangabe. Das Mentoring hat keine feste Dauer.
