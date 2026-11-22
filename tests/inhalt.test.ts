@@ -119,6 +119,25 @@ describe("Inhalte in content/site.ts", () => {
     expect(inhalt.paket.enthalten.punkte).toHaveLength(5);
   });
 
+  it("beantworten Dauer und Kosten des Mentorings ohne Zahl", () => {
+    const fragen = inhalt.fragen.eintraege;
+    expect(fragen).toHaveLength(9);
+    expect(fragen.slice(-2)).toEqual([
+      {
+        frage: "Wie lange dauert das Mentoring?",
+        antwort:
+          "Das stimmen wir individuell ab. Es hängt davon ab, wo du gerade stehst und was du erreichen willst.",
+      },
+      {
+        frage: "Was kostet das Mentoring?",
+        antwort:
+          "Das hängt vom Umfang ab. Wir stimmen es im Erstgespräch mit dir ab. Das Erstgespräch selbst ist kostenlos.",
+      },
+    ]);
+    // Jede Frage steht nur einmal da.
+    expect(new Set(fragen.map((eintrag) => eintrag.frage)).size).toBe(9);
+  });
+
   it("zeigen keine Teilnehmerstimmen", () => {
     // Entscheidung: Es gibt noch keine Teilnehmerstimmen.
     expect(Object.keys(inhalt.zahlen)).not.toContain("stimmen");

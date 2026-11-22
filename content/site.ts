@@ -609,6 +609,16 @@ export const fragen = {
       antwort:
         "Nein. Wir teilen unsere Erfahrung aus der Praxis. Für Verträge, Nutzungsänderung und Steuern brauchst du Fachleute. Wir sagen dir, wann.",
     },
+    {
+      frage: "Wie lange dauert das Mentoring?",
+      antwort:
+        "Das stimmen wir individuell ab. Es hängt davon ab, wo du gerade stehst und was du erreichen willst.",
+    },
+    {
+      frage: "Was kostet das Mentoring?",
+      antwort:
+        "Das hängt vom Umfang ab. Wir stimmen es im Erstgespräch mit dir ab. Das Erstgespräch selbst ist kostenlos.",
+    },
   ],
 };
 
