@@ -342,54 +342,31 @@ export const inhalte = {
 /* 6. Ablauf                                                           */
 /* ------------------------------------------------------------------ */
 
-const ablaufHinweis = "Ablauf laut Thilo ergänzen";
-
-export type AblaufEintrag = Vorlaeufig<{
-  label: string;
-  titel: string;
-  text: string;
-}>;
-
 export const ablauf = {
   id: "ablauf",
-  kleinzeile: "So läuft es ab",
-  titel: "Schritt für Schritt",
-  text: "Wir begleiten dich so lange, wie es für dein Ziel sinnvoll ist. Dauer und Umfang stimmen wir gemeinsam ab.",
+  titel: "So läuft es ab",
+  unterzeile: "Schritt für Schritt",
+  text: "In Einzelcalls und Gruppencalls sind wir deine persönlichen Begleiter im Mentoring. Den genauen Ablauf stimmen wir auf dein Ziel ab.",
   zeitleisteLabel: "Ablauf des Mentorings",
-  eintraege: [
+  /* Vier Schritte ohne Zeitangabe. Das Mentoring hat keine feste Dauer. */
+  schritte: [
     {
-      placeholder: true,
-      hinweis: ablaufHinweis,
-      label: "Schritt 1",
-      titel: "Standort und Fundament",
-      text: "Markt, Positionierung, Zahlen und Rollen.",
+      titel: "Erstgespräch",
+      text: "Du lernst uns kennen, wir lernen dich kennen. Wir schauen auf deinen aktuellen Stand und darauf, wo du hinwillst. Kostenlos, rund 30 Minuten.",
     },
     {
-      placeholder: true,
-      hinweis: ablaufHinweis,
-      label: "Schritt 2",
-      titel: "Wohnung und Vermieter",
-      text: "Suche, Objektprüfung, Gespräche und Vertrag.",
+      titel: "Dein Plan",
+      text: "Innerhalb von ein bis vier Tagen bekommst du einen klaren Plan, wie wir dein Ziel gemeinsam erreichen.",
     },
     {
-      placeholder: true,
-      hinweis: ablaufHinweis,
-      label: "Schritt 3",
-      titel: "Einrichtung und Start",
-      text: "Einrichtung, Inserat, Preise und erste Gäste.",
+      titel: "Umsetzung mit Begleitung",
+      text: "Du setzt um, wir begleiten dich. In Einzelcalls, in Gruppencalls und per WhatsApp zwischen den Terminen. Dazu Videos und Vorlagen, die du nutzt, wenn es in deinen Alltag passt.",
     },
     {
-      placeholder: true,
-      hinweis: ablaufHinweis,
-      label: "Danach",
-      titel: "Weiter begleitet",
-      text: "Danach kannst du die Begleitung fortsetzen.",
+      titel: "Wie es weitergeht",
+      text: "Am Ende schauen wir gemeinsam, was erreicht ist und was als Nächstes kommt. Auf Wunsch begleiten wir dich weiter.",
     },
-  ] satisfies AblaufEintrag[],
-  format: {
-    placeholder: true,
-    hinweis: "Format der Termine (Video oder vor Ort, einzeln oder Gruppe).",
-  } satisfies Platzhalter,
+  ] satisfies TitelText[],
 };
 
 /* ------------------------------------------------------------------ */

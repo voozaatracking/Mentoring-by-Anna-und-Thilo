@@ -191,6 +191,18 @@
     color: var(--link);
   }
 
+  /* Unterzeile direkt unter einer Überschrift */
+  .unterzeile {
+    margin-top: -0.25rem;
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--link);
+  }
+
   .text-klein {
     font-size: 1rem;
     line-height: 1.6;

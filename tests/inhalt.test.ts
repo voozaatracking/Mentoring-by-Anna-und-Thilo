@@ -60,9 +60,9 @@ describe("Inhalte in content/site.ts", () => {
       for (const eintrag of Object.values(wert)) sammle(eintrag);
     };
     sammle(inhalt);
-    // 4 Einträge im Ablauf, Format der Termine, Erfahrungswert, 3 Stimmen,
-    // weitere Bestandteile, Preis, Rahmen des Erstgesprächs
-    expect(platzhalter).toHaveLength(12);
+    // Erfahrungswert, 3 Stimmen, weitere Bestandteile, Preis,
+    // Rahmen des Erstgesprächs
+    expect(platzhalter).toHaveLength(7);
     for (const eintrag of platzhalter) {
       expect(eintrag.hinweis.trim().length).toBeGreaterThan(5);
     }
