@@ -34,6 +34,9 @@ export function Zahlen() {
           name="ruecken"
           sizes="(min-width: 1024px) 50vw, 100vw"
           className={`${EINBLENDEN} aspect-[3/2] w-full`}
+          // Das Foto ist 16:9 (1376 x 768), der Rahmen 3:2. Mittig bleiben
+          // beide Personen ganz im Bild, beschnitten werden nur die Ränder.
+          bildKlasse="object-center"
         />
       </div>
 
