@@ -156,6 +156,36 @@ describe("Inhalte in content/site.ts", () => {
     expect(new Set(fragen.map((eintrag) => eintrag.frage)).size).toBe(9);
   });
 
+  it("nennen die Zahlen mit Stand November 2026", () => {
+    expect(inhalt.STAND).toMatchObject({ wohnungen: 29, betten: 145, standorte: 6 });
+    expect(inhalt.einstieg.text).toBe(
+      "Wir begleiten dich persönlich beim Aufbau. Unser Schwerpunkt ist die Kurzzeitvermietung. Damit haben wir selbst 29 Ferienwohnungen aufgebaut.",
+    );
+    expect(inhalt.einstieg.zahlen).toEqual([
+      { wert: 29, label: "Ferienwohnungen" },
+      { vorsatz: "rund", wert: 145, label: "Betten" },
+      { wert: 6, label: "Standorte" },
+    ]);
+    expect(inhalt.zahlen.kennzahlen).toEqual([
+      { wert: 29, label: "Ferienwohnungen" },
+      { vorsatz: "rund", wert: 145, label: "Betten" },
+      { wert: 6, label: "Standorte" },
+      { vorsatz: "über", wert: 100, label: "Besichtigungen bis zur ersten Wohnung" },
+    ]);
+    // Der sechste Standort wird nicht benannt: Die Orte stehen mit "unter anderem".
+    expect(inhalt.ueberUns.stationen[3].text).toBe(
+      "29 Ferienwohnungen und rund 145 Betten, unter anderem in Lüneburg, Winsen (Luhe), Rosengarten, Celle und Amelinghausen. Mit einem festen Team und klaren Abläufen.",
+    );
+    // Die Geschichte bleibt: Gästezimmer, erste Wohnung Anfang 2024.
+    expect(inhalt.ueberUns.stationen[0].titel).toBe("Ein Gästezimmer");
+    expect(inhalt.ueberUns.stationen[2].text).toContain("Anfang 2024");
+    // Die alten Zahlen kommen nirgends mehr vor.
+    const alt = texte.filter(([, text]) =>
+      /\b24 Ferienwohnungen|\b125 Betten|\b5 Standorte|fünf Standorte/i.test(text),
+    );
+    expect(alt).toEqual([]);
+  });
+
   it("zeigen keine Teilnehmerstimmen", () => {
     // Entscheidung: Es gibt noch keine Teilnehmerstimmen.
     expect(Object.keys(inhalt.zahlen)).not.toContain("stimmen");
