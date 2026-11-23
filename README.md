@@ -2,7 +2,7 @@
 
 Verkaufsseite für das Mentoring von Hygge Homes. Ein Onepager mit zwei Rechtsseiten und einem Anfrageformular, das per E-Mail versendet.
 
-Stand: Feedback von Thilo eingearbeitet (Runde 1), Rechtstexte final. Es gibt keine Platzhalter mehr. Offene Punkte stehen in [ROADMAP.md](ROADMAP.md).
+Stand: Drittes Feedback von Thilo eingearbeitet, Zahlen auf Stand November 2026, Rechtstexte final. Es gibt keine Platzhalter mehr. Offene Punkte stehen in [ROADMAP.md](ROADMAP.md).
 
 ## Technik
 
@@ -98,7 +98,10 @@ Diese Punkte sind entschieden. Tests in `tests/inhalt.test.ts` schützen sie.
 - Schwerpunkt ist die Kurzzeitvermietung. Der Überbau ist Business-Aufbau, der zum Familienleben passt.
 - Es gibt noch keine Teilnehmerstimmen.
 - Telefon ist Pflichtfeld im Formular.
-- Das Mentoring läuft über persönliche 1:1-Calls. Gruppencalls werden auf der Seite nicht erwähnt.
+- Das Mentoring läuft über persönliche 1:1-Calls. Gruppencalls werden auf der Seite nicht erwähnt, das Wort „Gruppe“ auch nicht.
+- Calls und Videos der Partner sind Teil des Mentorings. Beratung zum Einzelfall beauftragen Teilnehmer direkt bei den Partnern.
+- Das Wort „Architekt“ erscheint nicht auf der Seite.
+- Keine Stundenangabe, auch nicht in der Frage zur Zeit.
 
 ## Platzhalter
 
