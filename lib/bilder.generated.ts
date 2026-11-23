@@ -15,6 +15,10 @@ import bild8 from "@/assets/images/wohnung-schlafen.jpg";
 import bild9 from "@/assets/images/wohnung-wohnen.png";
 import bild10 from "@/assets/images/wohnung-essen.png";
 import bild11 from "@/assets/images/wohnung-studio.jpg";
+import bild12 from "@/assets/images/partner-golet.png";
+import bild13 from "@/assets/images/partner-mertens-schabow.webp";
+import bild14 from "@/assets/images/logo-golet.png";
+import bild15 from "@/assets/images/logo-mertens-schabow.jpeg";
 
 /** Vorhandene Bilder nach Zielname. Fehlende Bilder sind nicht enthalten. */
 export const bildDateien: Record<string, StaticImageData | undefined> = {
@@ -30,4 +34,8 @@ export const bildDateien: Record<string, StaticImageData | undefined> = {
   "wohnung-wohnen.png": bild9,
   "wohnung-essen.png": bild10,
   "wohnung-studio.jpg": bild11,
+  "partner-golet.png": bild12,
+  "partner-mertens-schabow.webp": bild13,
+  "logo-golet.png": bild14,
+  "logo-mertens-schabow.jpeg": bild15,
 };

@@ -80,7 +80,11 @@ export type BildName =
   | "wohnungSchlafen"
   | "wohnungWohnen"
   | "wohnungEssen"
-  | "wohnungStudio";
+  | "wohnungStudio"
+  | "partnerGolet"
+  | "partnerMertensSchabow"
+  | "logoGolet"
+  | "logoMertensSchabow";
 
 export type BildEintrag = {
   /** Zielname der Datei in assets/images/. */
@@ -191,6 +195,23 @@ export const bilder: Record<BildName, BildEintrag> = {
   wohnungStudio: {
     datei: "wohnung-studio.jpg",
     alt: "Studio mit Essplatz am Fenster, Bett und Holzboden",
+  },
+  /* Fotos und Logos der Partner, Nutzung mit Freigabe der Partner. */
+  partnerGolet: {
+    datei: "partner-golet.png",
+    alt: "Johannes Leutgeb im grauen Pullover sitzt an einem Holztisch und lacht in die Kamera",
+  },
+  partnerMertensSchabow: {
+    datei: "partner-mertens-schabow.webp",
+    alt: "Sechs Personen aus dem Team von Mertens Schabow auf und hinter einem grauen Sofa, alle lächeln in die Kamera",
+  },
+  logoGolet: {
+    datei: "logo-golet.png",
+    alt: "Logo der GoLet GmbH",
+  },
+  logoMertensSchabow: {
+    datei: "logo-mertens-schabow.jpeg",
+    alt: "Logo von Mertens Schabow",
   },
 };
 
@@ -365,8 +386,11 @@ export const inhalte = {
   hinweis:
     "Das Mentoring ersetzt keine Rechts- oder Steuerberatung. Wir sagen dir, an welchen Stellen du sie brauchst.",
   /*
-   * Partner: nur Firmennamen, keine Ansprechpartner, keine Logos. Die Links
-   * tragen keine Tracking-Parameter und öffnen in neuem Tab.
+   * Partner: Fotos, ein Name und Logos der Partner sind erlaubt. Logos
+   * Dritter bleiben farblich unverändert, ohne Filter und ohne Umfärben.
+   * Sie sind die einzige Ausnahme von der Regel "kein Schwarz". Die Bilder
+   * sind nicht verlinkt. Die Links tragen keine Tracking-Parameter und
+   * öffnen in neuem Tab.
    *
    * Die Seite sagt, dass es Calls mit den Partnern und Videos von ihnen
    * gibt. Sie sagt nicht, ob diese enthalten sind. Beratung zum Einzelfall
@@ -379,16 +403,28 @@ export const inhalte = {
     text: "Für Baurecht und Steuern holen wir Fachleute dazu, mit denen wir selbst zusammenarbeiten. Im Mentoring gibt es Calls mit unseren Partnern und Videos von ihnen.",
     karten: [
       {
+        bild: "partnerGolet",
+        logo: "logoGolet",
         titel: "GoLet GmbH",
+        bildzeile: "Johannes Leutgeb, Geschäftsführer",
         text: "Nutzungsänderung und Bauantrag für Ferienwohnungen.",
         link: { label: "golet.de", href: "https://golet.de" },
       },
       {
+        bild: "partnerMertensSchabow",
+        logo: "logoMertensSchabow",
         titel: "Mertens Schabow Steuerberatung",
+        bildzeile: "Das Team der Kanzlei",
         text: "Steuerberatung aus Hamburg, unter anderem für Immobilien.",
         link: { label: "mertens-schabow.de", href: "https://mertens-schabow.de" },
       },
-    ] satisfies (TitelText & { link: Verweis })[],
+    ] satisfies (TitelText & {
+      bild: BildName;
+      logo: BildName;
+      /** Zeile unter dem Titel: wer auf dem Foto zu sehen ist. */
+      bildzeile: string;
+      link: Verweis;
+    })[],
     schlusszeile:
       "Brauchst du Beratung für dein Objekt, beauftragst du unsere Partner direkt. Ob du das tust, entscheidest du selbst.",
   },
@@ -909,6 +945,7 @@ export const impressum: RechtsSeite = {
           zeilen: [
             "Fotos von Anna und Thilo: Die Nutzungsrechte liegen bei Anna und Thilo Westerwiede.",
             "Wohnungsfotos: Hygge Homes ND GmbH, Nutzung mit Freigabe.",
+            "Fotos und Logos unserer Partner: GoLet GmbH und Mertens Schabow Steuerberatung, Nutzung mit Freigabe.",
           ],
         },
       ],

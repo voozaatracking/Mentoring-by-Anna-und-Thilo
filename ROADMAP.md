@@ -14,6 +14,7 @@ Diese Punkte sind entschieden und werden nicht neu diskutiert. Tests in `tests/i
 - **Persönliche 1:1-Calls.** Das Mentoring läuft über persönliche 1:1-Calls. Gruppencalls werden auf der Seite nicht erwähnt. Das Wort „Gruppe“ erscheint nicht auf der Seite.
 - **Calls mit den Partnern.** Die Seite sagt, dass es Calls mit den Partnern gibt. Sie sagt nicht, ob diese enthalten sind. Die Liste „Enthalten“ im Beispielpaket nennt die Partner nicht und hat fünf Punkte. Beratung zum Einzelfall beauftragen Teilnehmer direkt bei den Partnern.
 - **Kein „Architekt“.** Das Wort erscheint nicht auf der Seite.
+- **Fotos und Logos der Partner.** Fotos, ein Name und Logos der Partner sind erlaubt. Die frühere Regel „nur Firmennamen, keine Ansprechpartner, keine Logos“ ist aufgehoben. Logos Dritter bleiben farblich unverändert, ohne Filter und ohne Umfärben. Sie sind die einzige Ausnahme von der Regel „kein Schwarz“.
 - **Keine Stundenangabe.** Auch die Frage zur Zeit nennt keine Zahl.
 
 ## Geplant
@@ -24,7 +25,7 @@ Diese Punkte sind entschieden und werden nicht neu diskutiert. Tests in `tests/i
 ## Stand der Inhalte
 
 - **Zahlen, Stand November 2026:** 29 Ferienwohnungen, rund 145 Betten, 6 Standorte. Die Werte stehen einmal in `content/site.ts` (Konstante `STAND`) und fließen in Einstieg, Über uns und den Abschnitt Zahlen. Der sechste Standort wird nicht benannt, die Orte stehen mit „unter anderem“.
-- **Partner ergänzt:** Block „Unsere Partner“ im Abschnitt Inhalte, unter dem Hinweis zur Rechts- und Steuerberatung. GoLet GmbH und Mertens Schabow Steuerberatung, nur Firmennamen und einfache Links, keine Aussage zu Vergütung oder Provision.
+- **Partner ergänzt:** Block „Unsere Partner“ im Abschnitt Inhalte, unter dem Hinweis zur Rechts- und Steuerberatung. GoLet GmbH und Mertens Schabow Steuerberatung mit Foto, Logo, Bildzeile und einfachem Link. Keine Aussage zu Vergütung oder Provision.
 - **Calls mit den Partnern (drittes Feedback):** Schritt 3 im Ablauf, der Partnerblock und die Frage zur Rechts- oder Steuerberatung sagen, dass es Calls mit den Partnern gibt. Die Liste „Enthalten“ im Beispielpaket bleibt bei fünf Punkten ohne Partner.
 - **Einstieg und Frage zur Zeit (drittes Feedback):** Die Unterzeile im Einstieg spricht vom Aufbau des Business und vom Wachsen auf 29 Ferienwohnungen. Die Antwort auf „Wie viel Zeit muss ich einplanen?“ verweist auf die individuelle Planung.
 - **Bild getauscht:** `hygge-homes-ruecken.jpg` ist die bearbeitete Fassung (1376 x 768 Pixel, 16:9).
@@ -47,13 +48,14 @@ Erledigt in Runde 1:
 
 ## Bilder
 
-Alle zwölf Bilder liegen unter ihren Zielnamen in `assets/images/`. Es gibt kein Platzhalterbild.
+Alle 16 Bilder liegen unter ihren Zielnamen in `assets/images/`: zwölf eigene Bilder und vier Dateien der Partner (zwei Fotos, zwei Logos). Es gibt kein Platzhalterbild.
 
 - Alt-Texte sind anhand der Fotos formuliert, ohne Ortsangaben.
 - Bildausschnitte sind geprüft: Einstieg (mobil und Desktop), Porträts (4:5, Gesicht im oberen Drittel), übrige Fotos im Originalformat 3:2 oder 2:3.
 - Ausnahme: `hygge-homes-ruecken.jpg` ist seit dem Tausch 16:9 und steht mittig im Rahmen 3:2. Beide Personen sind ganz sichtbar. Die Auflösung ist mit 1376 Pixel Breite geringer als bei den übrigen Fotos (2500 Pixel).
 - Die vier Wohnungsbilder haben keine Beschriftung mehr.
 - Das Open-Graph-Bild entsteht automatisch aus dem Einstiegsbild.
+- Partnerfotos stehen im Rahmen 3:2. `partner-golet.png` hat transparente Ecken und rechts eine halbtransparente Pixelspalte. Der Ausschnitt (18 Prozent von oben, Skalierung 1,03) verdeckt beides. Das Teamfoto steht mittig, kein Gesicht ist angeschnitten.
 
 ## Rechtstexte
 
@@ -63,11 +65,13 @@ Final. Die freigegebenen Fassungen liegen unverändert unter `docs/rechtstexte/`
 - Das Kästchen im Formular lautet „Ich habe die Datenschutzerklärung gelesen.“ Es formuliert keine Einwilligung.
 - Änderungen an den Rechtstexten: zuerst die Datei unter `docs/rechtstexte/` freigeben lassen, dann `content/site.ts` nachziehen.
 - Die Datenschutzerklärung nennt in Abschnitt 6 die Links zu den Partnern.
+- Das Impressum nennt im Bildnachweis die Fotos und Logos der Partner. Diese Zeile muss Thilo noch freigeben.
 
 ## Offen bis zum Livegang
 
-Offen sind diese vier Punkte:
+Offen sind diese fünf Punkte:
 
+- [ ] **Freigaben der Partner.** GoLet und Mertens Schabow müssen Fotos, Namen und Logos freigeben. Die Schreibweise „Johannes Leutgeb, Geschäftsführer“ gegen das Impressum von GoLet prüfen. Thilo gibt die neue Zeile im Bildnachweis frei.
 - [ ] **MAIL_CC.** In Vercel setzen. Die Datenschutzerklärung nennt eine Kopie an ein zweites Postfach. Ohne `MAIL_CC` geht keine Kopie raus.
 - [ ] **Domain.** Festlegen, in Vercel verbinden und als `SITE_URL` setzen.
 - [ ] **Vercel Pro.** Projekt auf Vercel Pro umstellen.

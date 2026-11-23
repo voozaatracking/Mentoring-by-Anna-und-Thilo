@@ -37,6 +37,11 @@ export const ZUORDNUNG = {
   "celle_1og_homeslider-600x600.png": "wohnung-wohnen.png",
   "scandi-sunset_card_slide_01.png": "wohnung-essen.png",
   "rosengarten_titel_quadratisch.jpg": "wohnung-studio.jpg",
+  // Fotos und Logos der Partner (Nutzung mit Freigabe der Partner)
+  "sm2x.png": "partner-golet.png",
+  "xl-wide.webp": "partner-mertens-schabow.webp",
+  "lg.png": "logo-golet.png",
+  "images.jpeg": "logo-mertens-schabow.jpeg",
 };
 
 export const ZIELNAMEN = Object.values(ZUORDNUNG);

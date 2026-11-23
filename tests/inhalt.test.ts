@@ -150,6 +150,20 @@ describe("Inhalte in content/site.ts", () => {
     expect(enthalten).toEqual([]);
   });
 
+  it("geben beiden Partnerkarten Bild, Logo und Bildzeile", () => {
+    const karten = inhalt.inhalte.partner.karten;
+    expect(karten).toHaveLength(2);
+    for (const karte of karten) {
+      expect(Object.keys(inhalt.bilder)).toContain(karte.bild);
+      expect(Object.keys(inhalt.bilder)).toContain(karte.logo);
+      expect(karte.bildzeile.trim().length).toBeGreaterThan(0);
+    }
+    expect(karten.map((karte) => [karte.bild, karte.logo, karte.bildzeile])).toEqual([
+      ["partnerGolet", "logoGolet", "Johannes Leutgeb, Geschäftsführer"],
+      ["partnerMertensSchabow", "logoMertensSchabow", "Das Team der Kanzlei"],
+    ]);
+  });
+
   it("enthalten das Wort Architekt nicht", () => {
     // Entscheidung: Das Wort erscheint nicht auf der Seite. Geprüft werden
     // alle Texte und zusätzlich die ganze Datei samt Kommentaren.
