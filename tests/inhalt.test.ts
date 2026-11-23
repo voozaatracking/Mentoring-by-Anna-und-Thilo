@@ -201,6 +201,19 @@ describe("Inhalte in content/site.ts", () => {
     expect(alt).toEqual([]);
   });
 
+  it("beantworten die Frage zur Zeit ohne Zahl", () => {
+    const fragen = inhalt.fragen.eintraege;
+    const index = fragen.findIndex(
+      (eintrag) => eintrag.frage === "Wie viel Zeit muss ich einplanen?",
+    );
+    // Die Frage bleibt an dritter Stelle.
+    expect(index).toBe(2);
+    expect(fragen[index].antwort).toBe(
+      "Das planen wir individuell mit dir. Wir schauen auf deinen Stand, dein Ziel und deine Woche. Daraus ergibt sich ein Tempo, das in deinen Alltag passt.",
+    );
+    expect(fragen[index].antwort).not.toMatch(/\d/);
+  });
+
   it("zeigen keine Teilnehmerstimmen", () => {
     // Entscheidung: Es gibt noch keine Teilnehmerstimmen.
     expect(Object.keys(inhalt.zahlen)).not.toContain("stimmen");

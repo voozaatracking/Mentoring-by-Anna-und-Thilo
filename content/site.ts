@@ -629,7 +629,7 @@ export const fragen = {
     {
       frage: "Wie viel Zeit muss ich einplanen?",
       antwort:
-        "Mehr, als die meisten denken. Zur reinen Arbeitszeit kommen Abstimmung, Erreichbarkeit und Bereitschaft bei Problemen. Im Mentoring planen wir das ehrlich mit deiner Woche.",
+        "Das planen wir individuell mit dir. Wir schauen auf deinen Stand, dein Ziel und deine Woche. Daraus ergibt sich ein Tempo, das in deinen Alltag passt.",
     },
     {
       frage: "Was kostet die Einrichtung einer Wohnung?",
