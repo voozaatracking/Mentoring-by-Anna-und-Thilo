@@ -1,6 +1,6 @@
 # Roadmap
 
-Stand: Drittes Feedback von Thilo eingearbeitet. Zahlen auf Stand November 2026, Partner im Mentoring, Rechtstexte final. Diese Datei sammelt Entscheidungen, Platzhalter und offene Punkte.
+Stand: Drittes Feedback von Thilo eingearbeitet. Zahlen auf Stand November 2026, Calls mit den Partnern neutral benannt, Rechtstexte final. Diese Datei sammelt Entscheidungen, Platzhalter und offene Punkte.
 
 ## Entscheidungen
 
@@ -12,7 +12,7 @@ Diese Punkte sind entschieden und werden nicht neu diskutiert. Tests in `tests/i
 - **Keine Teilnehmerstimmen.** Es gibt noch keine. Der Block ist entfernt.
 - **Telefon ist Pflichtfeld** im Formular.
 - **Persönliche 1:1-Calls.** Das Mentoring läuft über persönliche 1:1-Calls. Gruppencalls werden auf der Seite nicht erwähnt. Das Wort „Gruppe“ erscheint nicht auf der Seite.
-- **Partner im Mentoring.** Calls und Videos der Partner sind Teil des Mentorings. Beratung zum Einzelfall beauftragen Teilnehmer weiter direkt bei den Partnern.
+- **Calls mit den Partnern.** Die Seite sagt, dass es Calls mit den Partnern gibt. Sie sagt nicht, ob diese enthalten sind. Die Liste „Enthalten“ im Beispielpaket nennt die Partner nicht und hat fünf Punkte. Beratung zum Einzelfall beauftragen Teilnehmer direkt bei den Partnern.
 - **Kein „Architekt“.** Das Wort erscheint nicht auf der Seite.
 - **Keine Stundenangabe.** Auch die Frage zur Zeit nennt keine Zahl.
 
@@ -25,7 +25,7 @@ Diese Punkte sind entschieden und werden nicht neu diskutiert. Tests in `tests/i
 
 - **Zahlen, Stand November 2026:** 29 Ferienwohnungen, rund 145 Betten, 6 Standorte. Die Werte stehen einmal in `content/site.ts` (Konstante `STAND`) und fließen in Einstieg, Über uns und den Abschnitt Zahlen. Der sechste Standort wird nicht benannt, die Orte stehen mit „unter anderem“.
 - **Partner ergänzt:** Block „Unsere Partner“ im Abschnitt Inhalte, unter dem Hinweis zur Rechts- und Steuerberatung. GoLet GmbH und Mertens Schabow Steuerberatung, nur Firmennamen und einfache Links, keine Aussage zu Vergütung oder Provision.
-- **Partner im Mentoring (drittes Feedback):** Schritt 3 im Ablauf, die Liste „Enthalten“ im Beispielpaket (sechs Punkte), der Partnerblock und die Frage zur Rechts- oder Steuerberatung nennen die Calls und Videos der Partner.
+- **Calls mit den Partnern (drittes Feedback):** Schritt 3 im Ablauf, der Partnerblock und die Frage zur Rechts- oder Steuerberatung sagen, dass es Calls mit den Partnern gibt. Die Liste „Enthalten“ im Beispielpaket bleibt bei fünf Punkten ohne Partner.
 - **Einstieg und Frage zur Zeit (drittes Feedback):** Die Unterzeile im Einstieg spricht vom Aufbau des Business und vom Wachsen auf 29 Ferienwohnungen. Die Antwort auf „Wie viel Zeit muss ich einplanen?“ verweist auf die individuelle Planung.
 - **Bild getauscht:** `hygge-homes-ruecken.jpg` ist die bearbeitete Fassung (1376 x 768 Pixel, 16:9).
 

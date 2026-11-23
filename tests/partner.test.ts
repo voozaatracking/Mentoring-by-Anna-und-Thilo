@@ -17,12 +17,12 @@ describe("Partnerblock im Abschnitt Inhalte", () => {
     ]);
     for (const text of [
       "Unsere Partner",
-      "Für Baurecht und Steuern holen wir Fachleute dazu, mit denen wir selbst zusammenarbeiten. Im Mentoring sind sie mit eigenen Calls und Videos dabei.",
+      "Für Baurecht und Steuern holen wir Fachleute dazu, mit denen wir selbst zusammenarbeiten. Im Mentoring gibt es Calls mit unseren Partnern und Videos von ihnen.",
       "GoLet GmbH",
       "Nutzungsänderung und Bauantrag für Ferienwohnungen.",
       "Mertens Schabow Steuerberatung",
       "Steuerberatung aus Hamburg, unter anderem für Immobilien.",
-      "Brauchst du darüber hinaus Beratung für dein Objekt, beauftragst du unsere Partner direkt. Ob du das tust, entscheidest du selbst.",
+      "Brauchst du Beratung für dein Objekt, beauftragst du unsere Partner direkt. Ob du das tust, entscheidest du selbst.",
     ]) {
       expect(html).toContain(text);
     }
@@ -55,17 +55,17 @@ describe("Partnerblock im Abschnitt Inhalte", () => {
     expect(html).not.toMatch(/Provision|Vergütung|Affiliate|Werbung/i);
   });
 
-  it("nennt die Partner in Schritt 3 des Ablaufs und im Beispielpaket", () => {
-    // Entscheidung: Calls und Videos der Partner sind Teil des Mentorings.
+  it("nennt die Calls mit den Partnern in Schritt 3, aber nicht in der Liste Enthalten", () => {
+    // Entscheidung: Die Seite sagt, dass es Calls mit den Partnern gibt.
+    // Sie sagt nicht, ob diese enthalten sind.
     expect(ablauf.schritte[2]).toEqual({
       titel: "Umsetzung mit Begleitung",
-      text: "Du setzt um, wir begleiten dich. In persönlichen 1:1-Calls und per WhatsApp zwischen den Terminen. Für Baurecht und Steuern gibt es Calls mit unseren Partnern. Dazu Videos und Vorlagen von uns und unseren Partnern, die du nutzt, wenn es in deinen Alltag passt.",
+      text: "Du setzt um, wir begleiten dich. In persönlichen 1:1-Calls und per WhatsApp zwischen den Terminen. Dazu Videos und Vorlagen, die du nutzt, wenn es in deinen Alltag passt. Für Baurecht und Steuern gibt es Calls mit unseren Partnern.",
     });
     expect(paket.enthalten.punkte).toEqual([
       "Persönliche 1:1-Calls",
-      "Calls mit unseren Partnern für Baurecht und Steuern",
       "WhatsApp-Austausch zwischen den Terminen",
-      "Lernvideos und Vorlagen, auch von unseren Partnern",
+      "Lernvideos und Vorlagen",
       "Zugang zu unserer Objektanalyse im vereinbarten Umfang",
       "Dein persönlicher Fahrplan",
     ]);
@@ -80,7 +80,7 @@ describe("Partnerblock im Abschnitt Inhalte", () => {
       (frage) => frage.frage === "Ist das Mentoring eine Rechts- oder Steuerberatung?",
     );
     expect(eintrag?.antwort).toBe(
-      "Nein. Wir teilen unsere Erfahrung aus der Praxis. Für Verträge, Nutzungsänderung und Steuern brauchst du Fachleute. Wir sagen dir, wann. In den Calls mit unseren Partnern kannst du deine Fragen stellen. Eine Beratung zu deinem Einzelfall beauftragst du direkt bei ihnen.",
+      "Nein. Wir teilen unsere Erfahrung aus der Praxis. Für Verträge, Nutzungsänderung und Steuern brauchst du Fachleute. Wir sagen dir, wann. Dafür gibt es Calls mit unseren Partnern. Eine Beratung zu deinem Einzelfall beauftragst du direkt bei ihnen.",
     );
     // Keine neue Frage: Es bleibt bei neun.
     expect(fragen.eintraege).toHaveLength(9);

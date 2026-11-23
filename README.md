@@ -99,7 +99,7 @@ Diese Punkte sind entschieden. Tests in `tests/inhalt.test.ts` schützen sie.
 - Es gibt noch keine Teilnehmerstimmen.
 - Telefon ist Pflichtfeld im Formular.
 - Das Mentoring läuft über persönliche 1:1-Calls. Gruppencalls werden auf der Seite nicht erwähnt, das Wort „Gruppe“ auch nicht.
-- Calls und Videos der Partner sind Teil des Mentorings. Beratung zum Einzelfall beauftragen Teilnehmer direkt bei den Partnern.
+- Die Seite sagt, dass es Calls mit den Partnern gibt. Sie sagt nicht, ob diese enthalten sind. Die Liste „Enthalten“ nennt die Partner nicht. Beratung zum Einzelfall beauftragen Teilnehmer direkt bei den Partnern.
 - Das Wort „Architekt“ erscheint nicht auf der Seite.
 - Keine Stundenangabe, auch nicht in der Frage zur Zeit.
 

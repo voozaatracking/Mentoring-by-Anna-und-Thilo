@@ -134,10 +134,20 @@ describe("Inhalte in content/site.ts", () => {
     );
     expect(treffer).toEqual([]);
     expect(inhalt.paket.enthalten.punkte).toContain("Persönliche 1:1-Calls");
-    expect(inhalt.paket.enthalten.punkte).toContain(
-      "Calls mit unseren Partnern für Baurecht und Steuern",
+    expect(inhalt.paket.enthalten.punkte).toHaveLength(5);
+  });
+
+  it("nennen die Partner nicht in der Liste Enthalten", () => {
+    // Entscheidung: Die Seite sagt, dass es Calls mit den Partnern gibt.
+    // Sie sagt nicht, ob diese enthalten sind.
+    const treffer = inhalt.paket.enthalten.punkte.filter((punkt) =>
+      /partner/i.test(punkt),
     );
-    expect(inhalt.paket.enthalten.punkte).toHaveLength(6);
+    expect(treffer).toEqual([]);
+    const enthalten = texte.filter(([, text]) =>
+      /Partner[^.]*\b(enthalten|inklusive|inbegriffen|Teil des Mentorings)\b/i.test(text),
+    );
+    expect(enthalten).toEqual([]);
   });
 
   it("enthalten das Wort Architekt nicht", () => {

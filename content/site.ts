@@ -368,14 +368,15 @@ export const inhalte = {
    * Partner: nur Firmennamen, keine Ansprechpartner, keine Logos. Die Links
    * tragen keine Tracking-Parameter und öffnen in neuem Tab.
    *
-   * Calls und Videos der Partner sind Teil des Mentorings. Beratung zum
-   * Einzelfall beauftragen Teilnehmer weiter direkt bei den Partnern.
-   * Bewusst keine Aussage zu Vergütung oder Provision. Berufsbezeichnungen
-   * der Partner stehen nicht auf der Seite, ein Test prüft das.
+   * Die Seite sagt, dass es Calls mit den Partnern und Videos von ihnen
+   * gibt. Sie sagt nicht, ob diese enthalten sind. Beratung zum Einzelfall
+   * beauftragen Teilnehmer direkt bei den Partnern. Bewusst keine Aussage
+   * zu Vergütung oder Provision. Ein Test prüft, dass zwei bestimmte Wörter
+   * nicht auf der Seite stehen (siehe tests/inhalt.test.ts).
    */
   partner: {
     titel: "Unsere Partner",
-    text: "Für Baurecht und Steuern holen wir Fachleute dazu, mit denen wir selbst zusammenarbeiten. Im Mentoring sind sie mit eigenen Calls und Videos dabei.",
+    text: "Für Baurecht und Steuern holen wir Fachleute dazu, mit denen wir selbst zusammenarbeiten. Im Mentoring gibt es Calls mit unseren Partnern und Videos von ihnen.",
     karten: [
       {
         titel: "GoLet GmbH",
@@ -389,7 +390,7 @@ export const inhalte = {
       },
     ] satisfies (TitelText & { link: Verweis })[],
     schlusszeile:
-      "Brauchst du darüber hinaus Beratung für dein Objekt, beauftragst du unsere Partner direkt. Ob du das tust, entscheidest du selbst.",
+      "Brauchst du Beratung für dein Objekt, beauftragst du unsere Partner direkt. Ob du das tust, entscheidest du selbst.",
   },
 };
 
@@ -405,9 +406,10 @@ export const ablauf = {
   zeitleisteLabel: "Ablauf des Mentorings",
   /*
    * Vier Schritte ohne Zeitangabe. Das Mentoring hat keine feste Dauer.
-   * Es läuft über persönliche 1:1-Calls mit Anna und Thilo. Für Baurecht
-   * und Steuern kommen Calls und Videos der Partner dazu. Andere Formate
-   * stehen erst auf der Seite, wenn es sie gibt (siehe ROADMAP).
+   * Es läuft über persönliche 1:1-Calls mit Anna und Thilo. Die Seite
+   * sagt, dass es für Baurecht und Steuern Calls mit den Partnern gibt.
+   * Sie sagt nicht, ob diese enthalten sind. Andere Formate stehen erst
+   * auf der Seite, wenn es sie gibt (siehe ROADMAP).
    */
   schritte: [
     {
@@ -420,7 +422,7 @@ export const ablauf = {
     },
     {
       titel: "Umsetzung mit Begleitung",
-      text: "Du setzt um, wir begleiten dich. In persönlichen 1:1-Calls und per WhatsApp zwischen den Terminen. Für Baurecht und Steuern gibt es Calls mit unseren Partnern. Dazu Videos und Vorlagen von uns und unseren Partnern, die du nutzt, wenn es in deinen Alltag passt.",
+      text: "Du setzt um, wir begleiten dich. In persönlichen 1:1-Calls und per WhatsApp zwischen den Terminen. Dazu Videos und Vorlagen, die du nutzt, wenn es in deinen Alltag passt. Für Baurecht und Steuern gibt es Calls mit unseren Partnern.",
     },
     {
       titel: "Wie es weitergeht",
@@ -593,12 +595,14 @@ export const paket = {
   ] satisfies TitelText[],
   enthalten: {
     titel: "Enthalten",
-    /* Die Objektanalyse wird bewusst nicht verlinkt. */
+    /*
+     * Die Objektanalyse wird bewusst nicht verlinkt. Die Liste nennt die
+     * Partner nicht: Ob ihre Calls enthalten sind, sagt die Seite nicht.
+     */
     punkte: [
       "Persönliche 1:1-Calls",
-      "Calls mit unseren Partnern für Baurecht und Steuern",
       "WhatsApp-Austausch zwischen den Terminen",
-      "Lernvideos und Vorlagen, auch von unseren Partnern",
+      "Lernvideos und Vorlagen",
       "Zugang zu unserer Objektanalyse im vereinbarten Umfang",
       "Dein persönlicher Fahrplan",
     ],
@@ -649,7 +653,7 @@ export const fragen = {
     {
       frage: "Ist das Mentoring eine Rechts- oder Steuerberatung?",
       antwort:
-        "Nein. Wir teilen unsere Erfahrung aus der Praxis. Für Verträge, Nutzungsänderung und Steuern brauchst du Fachleute. Wir sagen dir, wann. In den Calls mit unseren Partnern kannst du deine Fragen stellen. Eine Beratung zu deinem Einzelfall beauftragst du direkt bei ihnen.",
+        "Nein. Wir teilen unsere Erfahrung aus der Praxis. Für Verträge, Nutzungsänderung und Steuern brauchst du Fachleute. Wir sagen dir, wann. Dafür gibt es Calls mit unseren Partnern. Eine Beratung zu deinem Einzelfall beauftragst du direkt bei ihnen.",
     },
     {
       frage: "Wie lange dauert das Mentoring?",
