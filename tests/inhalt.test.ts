@@ -134,7 +134,22 @@ describe("Inhalte in content/site.ts", () => {
     );
     expect(treffer).toEqual([]);
     expect(inhalt.paket.enthalten.punkte).toContain("Persönliche 1:1-Calls");
-    expect(inhalt.paket.enthalten.punkte).toHaveLength(5);
+    expect(inhalt.paket.enthalten.punkte).toContain(
+      "Calls mit unseren Partnern für Baurecht und Steuern",
+    );
+    expect(inhalt.paket.enthalten.punkte).toHaveLength(6);
+  });
+
+  it("enthalten das Wort Architekt nicht", () => {
+    // Entscheidung: Das Wort erscheint nicht auf der Seite. Geprüft werden
+    // alle Texte und zusätzlich die ganze Datei samt Kommentaren.
+    const treffer = texte.filter(([, text]) => /architekt/i.test(text));
+    expect(treffer).toEqual([]);
+    const zeilen = quelltext
+      .split("\n")
+      .map((zeile, index) => `${index + 1}: ${zeile}`)
+      .filter((zeile) => /architekt/i.test(zeile));
+    expect(zeilen).toEqual([]);
   });
 
   it("beantworten Dauer und Kosten des Mentorings ohne Zahl", () => {

@@ -366,12 +366,16 @@ export const inhalte = {
     "Das Mentoring ersetzt keine Rechts- oder Steuerberatung. Wir sagen dir, an welchen Stellen du sie brauchst.",
   /*
    * Partner: nur Firmennamen, keine Ansprechpartner, keine Logos. Die Links
-   * tragen keine Tracking-Parameter und öffnen in neuem Tab. Bewusst keine
-   * Aussage zu Vergütung oder Provision.
+   * tragen keine Tracking-Parameter und öffnen in neuem Tab.
+   *
+   * Calls und Videos der Partner sind Teil des Mentorings. Beratung zum
+   * Einzelfall beauftragen Teilnehmer weiter direkt bei den Partnern.
+   * Bewusst keine Aussage zu Vergütung oder Provision. Berufsbezeichnungen
+   * der Partner stehen nicht auf der Seite, ein Test prüft das.
    */
   partner: {
     titel: "Unsere Partner",
-    text: "Für Baurecht und Steuern holen wir Fachleute dazu, mit denen wir selbst zusammenarbeiten.",
+    text: "Für Baurecht und Steuern holen wir Fachleute dazu, mit denen wir selbst zusammenarbeiten. Im Mentoring sind sie mit eigenen Calls und Videos dabei.",
     karten: [
       {
         titel: "GoLet GmbH",
@@ -385,7 +389,7 @@ export const inhalte = {
       },
     ] satisfies (TitelText & { link: Verweis })[],
     schlusszeile:
-      "Die Leistungen unserer Partner beauftragst du direkt bei ihnen. Ob du das tust, entscheidest du selbst.",
+      "Brauchst du darüber hinaus Beratung für dein Objekt, beauftragst du unsere Partner direkt. Ob du das tust, entscheidest du selbst.",
   },
 };
 
@@ -401,8 +405,9 @@ export const ablauf = {
   zeitleisteLabel: "Ablauf des Mentorings",
   /*
    * Vier Schritte ohne Zeitangabe. Das Mentoring hat keine feste Dauer.
-   * Es läuft über persönliche 1:1-Calls. Andere Formate stehen erst auf der
-   * Seite, wenn es sie gibt (siehe ROADMAP).
+   * Es läuft über persönliche 1:1-Calls mit Anna und Thilo. Für Baurecht
+   * und Steuern kommen Calls und Videos der Partner dazu. Andere Formate
+   * stehen erst auf der Seite, wenn es sie gibt (siehe ROADMAP).
    */
   schritte: [
     {
@@ -415,7 +420,7 @@ export const ablauf = {
     },
     {
       titel: "Umsetzung mit Begleitung",
-      text: "Du setzt um, wir begleiten dich. In persönlichen 1:1-Calls und per WhatsApp zwischen den Terminen. Dazu Videos und Vorlagen, die du nutzt, wenn es in deinen Alltag passt.",
+      text: "Du setzt um, wir begleiten dich. In persönlichen 1:1-Calls und per WhatsApp zwischen den Terminen. Für Baurecht und Steuern gibt es Calls mit unseren Partnern. Dazu Videos und Vorlagen von uns und unseren Partnern, die du nutzt, wenn es in deinen Alltag passt.",
     },
     {
       titel: "Wie es weitergeht",
@@ -591,8 +596,9 @@ export const paket = {
     /* Die Objektanalyse wird bewusst nicht verlinkt. */
     punkte: [
       "Persönliche 1:1-Calls",
+      "Calls mit unseren Partnern für Baurecht und Steuern",
       "WhatsApp-Austausch zwischen den Terminen",
-      "Lernvideos und Vorlagen",
+      "Lernvideos und Vorlagen, auch von unseren Partnern",
       "Zugang zu unserer Objektanalyse im vereinbarten Umfang",
       "Dein persönlicher Fahrplan",
     ],
@@ -643,7 +649,7 @@ export const fragen = {
     {
       frage: "Ist das Mentoring eine Rechts- oder Steuerberatung?",
       antwort:
-        "Nein. Wir teilen unsere Erfahrung aus der Praxis. Für Verträge, Nutzungsänderung und Steuern brauchst du Fachleute. Wir sagen dir, wann. Für diese Fragen kannst du auf unsere Partner zurückgreifen.",
+        "Nein. Wir teilen unsere Erfahrung aus der Praxis. Für Verträge, Nutzungsänderung und Steuern brauchst du Fachleute. Wir sagen dir, wann. In den Calls mit unseren Partnern kannst du deine Fragen stellen. Eine Beratung zu deinem Einzelfall beauftragst du direkt bei ihnen.",
     },
     {
       frage: "Wie lange dauert das Mentoring?",

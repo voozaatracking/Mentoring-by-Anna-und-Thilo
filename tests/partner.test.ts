@@ -2,7 +2,7 @@ import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 import { Partner } from "@/components/abschnitte/Partner";
-import { fragen, inhalte } from "@/content/site";
+import { ablauf, fragen, inhalte, paket } from "@/content/site";
 
 const html = renderToStaticMarkup(createElement(Partner));
 const links = [...html.matchAll(/<a [^>]*>/g)].map((treffer) => treffer[0]);
@@ -17,12 +17,12 @@ describe("Partnerblock im Abschnitt Inhalte", () => {
     ]);
     for (const text of [
       "Unsere Partner",
-      "Für Baurecht und Steuern holen wir Fachleute dazu, mit denen wir selbst zusammenarbeiten.",
+      "Für Baurecht und Steuern holen wir Fachleute dazu, mit denen wir selbst zusammenarbeiten. Im Mentoring sind sie mit eigenen Calls und Videos dabei.",
       "GoLet GmbH",
       "Nutzungsänderung und Bauantrag für Ferienwohnungen.",
       "Mertens Schabow Steuerberatung",
       "Steuerberatung aus Hamburg, unter anderem für Immobilien.",
-      "Die Leistungen unserer Partner beauftragst du direkt bei ihnen. Ob du das tust, entscheidest du selbst.",
+      "Brauchst du darüber hinaus Beratung für dein Objekt, beauftragst du unsere Partner direkt. Ob du das tust, entscheidest du selbst.",
     ]) {
       expect(html).toContain(text);
     }
@@ -55,12 +55,32 @@ describe("Partnerblock im Abschnitt Inhalte", () => {
     expect(html).not.toMatch(/Provision|Vergütung|Affiliate|Werbung/i);
   });
 
+  it("nennt die Partner in Schritt 3 des Ablaufs und im Beispielpaket", () => {
+    // Entscheidung: Calls und Videos der Partner sind Teil des Mentorings.
+    expect(ablauf.schritte[2]).toEqual({
+      titel: "Umsetzung mit Begleitung",
+      text: "Du setzt um, wir begleiten dich. In persönlichen 1:1-Calls und per WhatsApp zwischen den Terminen. Für Baurecht und Steuern gibt es Calls mit unseren Partnern. Dazu Videos und Vorlagen von uns und unseren Partnern, die du nutzt, wenn es in deinen Alltag passt.",
+    });
+    expect(paket.enthalten.punkte).toEqual([
+      "Persönliche 1:1-Calls",
+      "Calls mit unseren Partnern für Baurecht und Steuern",
+      "WhatsApp-Austausch zwischen den Terminen",
+      "Lernvideos und Vorlagen, auch von unseren Partnern",
+      "Zugang zu unserer Objektanalyse im vereinbarten Umfang",
+      "Dein persönlicher Fahrplan",
+    ]);
+    // Der Hinweis zur Rechts- und Steuerberatung bleibt unverändert.
+    expect(inhalte.hinweis).toBe(
+      "Das Mentoring ersetzt keine Rechts- oder Steuerberatung. Wir sagen dir, an welchen Stellen du sie brauchst.",
+    );
+  });
+
   it("verweist in der Frage zur Rechts- und Steuerberatung auf die Partner", () => {
     const eintrag = fragen.eintraege.find(
       (frage) => frage.frage === "Ist das Mentoring eine Rechts- oder Steuerberatung?",
     );
     expect(eintrag?.antwort).toBe(
-      "Nein. Wir teilen unsere Erfahrung aus der Praxis. Für Verträge, Nutzungsänderung und Steuern brauchst du Fachleute. Wir sagen dir, wann. Für diese Fragen kannst du auf unsere Partner zurückgreifen.",
+      "Nein. Wir teilen unsere Erfahrung aus der Praxis. Für Verträge, Nutzungsänderung und Steuern brauchst du Fachleute. Wir sagen dir, wann. In den Calls mit unseren Partnern kannst du deine Fragen stellen. Eine Beratung zu deinem Einzelfall beauftragst du direkt bei ihnen.",
     );
     // Keine neue Frage: Es bleibt bei neun.
     expect(fragen.eintraege).toHaveLength(9);
