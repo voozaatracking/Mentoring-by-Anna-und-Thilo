@@ -2,7 +2,7 @@
 
 Verkaufsseite für das Mentoring von Hygge Homes. Ein Onepager mit zwei Rechtsseiten und einem Anfrageformular, das per E-Mail versendet.
 
-Stand: Feedback von Thilo eingearbeitet (Runde 1), Rechtstexte final. Es gibt keine Platzhalter mehr. Offene Punkte stehen in [ROADMAP.md](ROADMAP.md).
+Stand: Drittes Feedback von Thilo eingearbeitet, Zahlen auf Stand November 2026, Rechtstexte final. Es gibt keine Platzhalter mehr. Offene Punkte stehen in [ROADMAP.md](ROADMAP.md).
 
 ## Technik
 
@@ -98,7 +98,11 @@ Diese Punkte sind entschieden. Tests in `tests/inhalt.test.ts` schützen sie.
 - Schwerpunkt ist die Kurzzeitvermietung. Der Überbau ist Business-Aufbau, der zum Familienleben passt.
 - Es gibt noch keine Teilnehmerstimmen.
 - Telefon ist Pflichtfeld im Formular.
-- Das Mentoring läuft über persönliche 1:1-Calls. Gruppencalls werden auf der Seite nicht erwähnt.
+- Das Mentoring läuft über persönliche 1:1-Calls. Gruppencalls werden auf der Seite nicht erwähnt, das Wort „Gruppe“ auch nicht.
+- Die Seite sagt, dass es Calls mit den Partnern gibt. Sie sagt nicht, ob diese enthalten sind. Die Liste „Enthalten“ nennt die Partner nicht. Beratung zum Einzelfall beauftragen Teilnehmer direkt bei den Partnern.
+- Das Wort „Architekt“ erscheint nicht auf der Seite.
+- Fotos, ein Name und Logos der Partner sind erlaubt. Logos Dritter bleiben farblich unverändert, ohne Filter und ohne Umfärben. Sie sind die einzige Ausnahme von der Regel „kein Schwarz“.
+- Keine Stundenangabe, auch nicht in der Frage zur Zeit.
 
 ## Platzhalter
 
@@ -158,6 +162,10 @@ Zuordnung:
 | `celle_1og_homeslider-600x600.png` | `wohnung-wohnen.png` | Kachel Wohnen |
 | `scandi-sunset_card_slide_01.png` | `wohnung-essen.png` | Kachel Essen |
 | `rosengarten_titel_quadratisch.jpg` | `wohnung-studio.jpg` | Kachel Studio |
+| `sm2x.png` | `partner-golet.png` | Partnerkarte GoLet GmbH, Foto 3:2 |
+| `xl-wide.webp` | `partner-mertens-schabow.webp` | Partnerkarte Mertens Schabow, Teamfoto 3:2 |
+| `lg.png` | `logo-golet.png` | Logo GoLet, 28 Pixel hoch |
+| `images.jpeg` | `logo-mertens-schabow.jpeg` | Logo Mertens Schabow, 40 mal 40 Pixel |
 
 Die vier Wohnungsbilder haben geringe Auflösung. Sie erscheinen nur als quadratische Kacheln mit höchstens 280 Pixeln Kantenlänge.
 

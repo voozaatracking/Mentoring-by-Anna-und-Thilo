@@ -137,6 +137,45 @@ describe("Inhalte in content/site.ts", () => {
     expect(inhalt.paket.enthalten.punkte).toHaveLength(5);
   });
 
+  it("nennen die Partner nicht in der Liste Enthalten", () => {
+    // Entscheidung: Die Seite sagt, dass es Calls mit den Partnern gibt.
+    // Sie sagt nicht, ob diese enthalten sind.
+    const treffer = inhalt.paket.enthalten.punkte.filter((punkt) =>
+      /partner/i.test(punkt),
+    );
+    expect(treffer).toEqual([]);
+    const enthalten = texte.filter(([, text]) =>
+      /Partner[^.]*\b(enthalten|inklusive|inbegriffen|Teil des Mentorings)\b/i.test(text),
+    );
+    expect(enthalten).toEqual([]);
+  });
+
+  it("geben beiden Partnerkarten Bild, Logo und Bildzeile", () => {
+    const karten = inhalt.inhalte.partner.karten;
+    expect(karten).toHaveLength(2);
+    for (const karte of karten) {
+      expect(Object.keys(inhalt.bilder)).toContain(karte.bild);
+      expect(Object.keys(inhalt.bilder)).toContain(karte.logo);
+      expect(karte.bildzeile.trim().length).toBeGreaterThan(0);
+    }
+    expect(karten.map((karte) => [karte.bild, karte.logo, karte.bildzeile])).toEqual([
+      ["partnerGolet", "logoGolet", "Johannes Leutgeb, Geschäftsführer"],
+      ["partnerMertensSchabow", "logoMertensSchabow", "Das Team der Kanzlei"],
+    ]);
+  });
+
+  it("enthalten das Wort Architekt nicht", () => {
+    // Entscheidung: Das Wort erscheint nicht auf der Seite. Geprüft werden
+    // alle Texte und zusätzlich die ganze Datei samt Kommentaren.
+    const treffer = texte.filter(([, text]) => /architekt/i.test(text));
+    expect(treffer).toEqual([]);
+    const zeilen = quelltext
+      .split("\n")
+      .map((zeile, index) => `${index + 1}: ${zeile}`)
+      .filter((zeile) => /architekt/i.test(zeile));
+    expect(zeilen).toEqual([]);
+  });
+
   it("beantworten Dauer und Kosten des Mentorings ohne Zahl", () => {
     const fragen = inhalt.fragen.eintraege;
     expect(fragen).toHaveLength(9);
@@ -159,7 +198,7 @@ describe("Inhalte in content/site.ts", () => {
   it("nennen die Zahlen mit Stand November 2026", () => {
     expect(inhalt.STAND).toMatchObject({ wohnungen: 29, betten: 145, standorte: 6 });
     expect(inhalt.einstieg.text).toBe(
-      "Wir begleiten dich persönlich beim Aufbau. Unser Schwerpunkt ist die Kurzzeitvermietung. Damit haben wir selbst 29 Ferienwohnungen aufgebaut.",
+      "Wir begleiten dich persönlich beim Aufbau deines Business. Unser Schwerpunkt ist die Kurzzeitvermietung. Damit sind wir selbst auf 29 Ferienwohnungen gewachsen.",
     );
     expect(inhalt.einstieg.zahlen).toEqual([
       { wert: 29, label: "Ferienwohnungen" },
@@ -184,6 +223,19 @@ describe("Inhalte in content/site.ts", () => {
       /\b24 Ferienwohnungen|\b125 Betten|\b5 Standorte|fünf Standorte/i.test(text),
     );
     expect(alt).toEqual([]);
+  });
+
+  it("beantworten die Frage zur Zeit ohne Zahl", () => {
+    const fragen = inhalt.fragen.eintraege;
+    const index = fragen.findIndex(
+      (eintrag) => eintrag.frage === "Wie viel Zeit muss ich einplanen?",
+    );
+    // Die Frage bleibt an dritter Stelle.
+    expect(index).toBe(2);
+    expect(fragen[index].antwort).toBe(
+      "Das planen wir individuell mit dir. Wir schauen auf deinen Stand, dein Ziel und deine Woche. Daraus ergibt sich ein Tempo, das in deinen Alltag passt.",
+    );
+    expect(fragen[index].antwort).not.toMatch(/\d/);
   });
 
   it("zeigen keine Teilnehmerstimmen", () => {

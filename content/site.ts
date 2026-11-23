@@ -80,7 +80,11 @@ export type BildName =
   | "wohnungSchlafen"
   | "wohnungWohnen"
   | "wohnungEssen"
-  | "wohnungStudio";
+  | "wohnungStudio"
+  | "partnerGolet"
+  | "partnerMertensSchabow"
+  | "logoGolet"
+  | "logoMertensSchabow";
 
 export type BildEintrag = {
   /** Zielname der Datei in assets/images/. */
@@ -192,6 +196,23 @@ export const bilder: Record<BildName, BildEintrag> = {
     datei: "wohnung-studio.jpg",
     alt: "Studio mit Essplatz am Fenster, Bett und Holzboden",
   },
+  /* Fotos und Logos der Partner, Nutzung mit Freigabe der Partner. */
+  partnerGolet: {
+    datei: "partner-golet.png",
+    alt: "Johannes Leutgeb im grauen Pullover sitzt an einem Holztisch und lacht in die Kamera",
+  },
+  partnerMertensSchabow: {
+    datei: "partner-mertens-schabow.webp",
+    alt: "Sechs Personen aus dem Team von Mertens Schabow auf und hinter einem grauen Sofa, alle lächeln in die Kamera",
+  },
+  logoGolet: {
+    datei: "logo-golet.png",
+    alt: "Logo der GoLet GmbH",
+  },
+  logoMertensSchabow: {
+    datei: "logo-mertens-schabow.jpeg",
+    alt: "Logo von Mertens Schabow",
+  },
 };
 
 /* ------------------------------------------------------------------ */
@@ -222,7 +243,7 @@ export const kopfzeile = {
 export const einstieg = {
   kleinzeile: SITE_NAME,
   titel: `Ein Business aufbauen, das zu deinem Familien${SHY}leben passt`,
-  text: `Wir begleiten dich persönlich beim Aufbau. Unser Schwerpunkt ist die Kurzzeitvermietung. Damit haben wir selbst ${STAND.wohnungen} Ferienwohnungen aufgebaut.`,
+  text: `Wir begleiten dich persönlich beim Aufbau deines Business. Unser Schwerpunkt ist die Kurzzeitvermietung. Damit sind wir selbst auf ${STAND.wohnungen} Ferienwohnungen gewachsen.`,
   primaer: erstgespraechVerweis,
   sekundaer: {
     label: "Passt das zu uns? Zum Selbsttest",
@@ -365,27 +386,47 @@ export const inhalte = {
   hinweis:
     "Das Mentoring ersetzt keine Rechts- oder Steuerberatung. Wir sagen dir, an welchen Stellen du sie brauchst.",
   /*
-   * Partner: nur Firmennamen, keine Ansprechpartner, keine Logos. Die Links
-   * tragen keine Tracking-Parameter und öffnen in neuem Tab. Bewusst keine
-   * Aussage zu Vergütung oder Provision.
+   * Partner: Fotos, ein Name und Logos der Partner sind erlaubt. Logos
+   * Dritter bleiben farblich unverändert, ohne Filter und ohne Umfärben.
+   * Sie sind die einzige Ausnahme von der Regel "kein Schwarz". Die Bilder
+   * sind nicht verlinkt. Die Links tragen keine Tracking-Parameter und
+   * öffnen in neuem Tab.
+   *
+   * Die Seite sagt, dass es Calls mit den Partnern und Videos von ihnen
+   * gibt. Sie sagt nicht, ob diese enthalten sind. Beratung zum Einzelfall
+   * beauftragen Teilnehmer direkt bei den Partnern. Bewusst keine Aussage
+   * zu Vergütung oder Provision. Ein Test prüft, dass zwei bestimmte Wörter
+   * nicht auf der Seite stehen (siehe tests/inhalt.test.ts).
    */
   partner: {
     titel: "Unsere Partner",
-    text: "Für Baurecht und Steuern holen wir Fachleute dazu, mit denen wir selbst zusammenarbeiten.",
+    text: "Für Baurecht und Steuern holen wir Fachleute dazu, mit denen wir selbst zusammenarbeiten. Im Mentoring gibt es Calls mit unseren Partnern und Videos von ihnen.",
     karten: [
       {
+        bild: "partnerGolet",
+        logo: "logoGolet",
         titel: "GoLet GmbH",
+        bildzeile: "Johannes Leutgeb, Geschäftsführer",
         text: "Nutzungsänderung und Bauantrag für Ferienwohnungen.",
         link: { label: "golet.de", href: "https://golet.de" },
       },
       {
+        bild: "partnerMertensSchabow",
+        logo: "logoMertensSchabow",
         titel: "Mertens Schabow Steuerberatung",
+        bildzeile: "Das Team der Kanzlei",
         text: "Steuerberatung aus Hamburg, unter anderem für Immobilien.",
         link: { label: "mertens-schabow.de", href: "https://mertens-schabow.de" },
       },
-    ] satisfies (TitelText & { link: Verweis })[],
+    ] satisfies (TitelText & {
+      bild: BildName;
+      logo: BildName;
+      /** Zeile unter dem Titel: wer auf dem Foto zu sehen ist. */
+      bildzeile: string;
+      link: Verweis;
+    })[],
     schlusszeile:
-      "Die Leistungen unserer Partner beauftragst du direkt bei ihnen. Ob du das tust, entscheidest du selbst.",
+      "Brauchst du Beratung für dein Objekt, beauftragst du unsere Partner direkt. Ob du das tust, entscheidest du selbst.",
   },
 };
 
@@ -401,8 +442,10 @@ export const ablauf = {
   zeitleisteLabel: "Ablauf des Mentorings",
   /*
    * Vier Schritte ohne Zeitangabe. Das Mentoring hat keine feste Dauer.
-   * Es läuft über persönliche 1:1-Calls. Andere Formate stehen erst auf der
-   * Seite, wenn es sie gibt (siehe ROADMAP).
+   * Es läuft über persönliche 1:1-Calls mit Anna und Thilo. Die Seite
+   * sagt, dass es für Baurecht und Steuern Calls mit den Partnern gibt.
+   * Sie sagt nicht, ob diese enthalten sind. Andere Formate stehen erst
+   * auf der Seite, wenn es sie gibt (siehe ROADMAP).
    */
   schritte: [
     {
@@ -415,7 +458,7 @@ export const ablauf = {
     },
     {
       titel: "Umsetzung mit Begleitung",
-      text: "Du setzt um, wir begleiten dich. In persönlichen 1:1-Calls und per WhatsApp zwischen den Terminen. Dazu Videos und Vorlagen, die du nutzt, wenn es in deinen Alltag passt.",
+      text: "Du setzt um, wir begleiten dich. In persönlichen 1:1-Calls und per WhatsApp zwischen den Terminen. Dazu Videos und Vorlagen, die du nutzt, wenn es in deinen Alltag passt. Für Baurecht und Steuern gibt es Calls mit unseren Partnern.",
     },
     {
       titel: "Wie es weitergeht",
@@ -588,7 +631,10 @@ export const paket = {
   ] satisfies TitelText[],
   enthalten: {
     titel: "Enthalten",
-    /* Die Objektanalyse wird bewusst nicht verlinkt. */
+    /*
+     * Die Objektanalyse wird bewusst nicht verlinkt. Die Liste nennt die
+     * Partner nicht: Ob ihre Calls enthalten sind, sagt die Seite nicht.
+     */
     punkte: [
       "Persönliche 1:1-Calls",
       "WhatsApp-Austausch zwischen den Terminen",
@@ -623,7 +669,7 @@ export const fragen = {
     {
       frage: "Wie viel Zeit muss ich einplanen?",
       antwort:
-        "Mehr, als die meisten denken. Zur reinen Arbeitszeit kommen Abstimmung, Erreichbarkeit und Bereitschaft bei Problemen. Im Mentoring planen wir das ehrlich mit deiner Woche.",
+        "Das planen wir individuell mit dir. Wir schauen auf deinen Stand, dein Ziel und deine Woche. Daraus ergibt sich ein Tempo, das in deinen Alltag passt.",
     },
     {
       frage: "Was kostet die Einrichtung einer Wohnung?",
@@ -643,7 +689,7 @@ export const fragen = {
     {
       frage: "Ist das Mentoring eine Rechts- oder Steuerberatung?",
       antwort:
-        "Nein. Wir teilen unsere Erfahrung aus der Praxis. Für Verträge, Nutzungsänderung und Steuern brauchst du Fachleute. Wir sagen dir, wann. Für diese Fragen kannst du auf unsere Partner zurückgreifen.",
+        "Nein. Wir teilen unsere Erfahrung aus der Praxis. Für Verträge, Nutzungsänderung und Steuern brauchst du Fachleute. Wir sagen dir, wann. Dafür gibt es Calls mit unseren Partnern. Eine Beratung zu deinem Einzelfall beauftragst du direkt bei ihnen.",
     },
     {
       frage: "Wie lange dauert das Mentoring?",
@@ -899,6 +945,7 @@ export const impressum: RechtsSeite = {
           zeilen: [
             "Fotos von Anna und Thilo: Die Nutzungsrechte liegen bei Anna und Thilo Westerwiede.",
             "Wohnungsfotos: Hygge Homes ND GmbH, Nutzung mit Freigabe.",
+            "Fotos und Logos unserer Partner: GoLet GmbH und Mertens Schabow Steuerberatung, Nutzung mit Freigabe.",
           ],
         },
       ],

@@ -5,6 +5,9 @@
  * Warmes Creme, Greige und dunkles warmes Grau. Kein Schwarz, kein reines
  * Weiß, keine Schatten (Ausnahme: Overlays). Salbei ist der Hauptakzent,
  * Ziegel steht nur für Fehlermeldungen.
+ *
+ * Einzige Ausnahme von "kein Schwarz": Logos Dritter (Partner). Sie bleiben
+ * farblich unverändert, ohne Filter und ohne Umfärben.
  */
 :root {
   /* Kein Dark Mode: Die Seite ist bewusst nur hell gestaltet. */

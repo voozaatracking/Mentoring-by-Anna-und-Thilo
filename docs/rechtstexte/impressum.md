@@ -33,6 +33,7 @@ Das Mentoring wird von der Westerwiede & Westerwiede GbR angeboten. Hygge Homes 
 
 Fotos von Anna und Thilo: Die Nutzungsrechte liegen bei Anna und Thilo Westerwiede.
 Wohnungsfotos: Hygge Homes ND GmbH, Nutzung mit Freigabe.
+Fotos und Logos unserer Partner: GoLet GmbH und Mertens Schabow Steuerberatung, Nutzung mit Freigabe.
 
 ## Haftung für Inhalte
 
