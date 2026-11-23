@@ -159,7 +159,7 @@ describe("Inhalte in content/site.ts", () => {
   it("nennen die Zahlen mit Stand November 2026", () => {
     expect(inhalt.STAND).toMatchObject({ wohnungen: 29, betten: 145, standorte: 6 });
     expect(inhalt.einstieg.text).toBe(
-      "Wir begleiten dich persönlich beim Aufbau. Unser Schwerpunkt ist die Kurzzeitvermietung. Damit haben wir selbst 29 Ferienwohnungen aufgebaut.",
+      "Wir begleiten dich persönlich beim Aufbau deines Business. Unser Schwerpunkt ist die Kurzzeitvermietung. Damit sind wir selbst auf 29 Ferienwohnungen gewachsen.",
     );
     expect(inhalt.einstieg.zahlen).toEqual([
       { wert: 29, label: "Ferienwohnungen" },

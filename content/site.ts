@@ -222,7 +222,7 @@ export const kopfzeile = {
 export const einstieg = {
   kleinzeile: SITE_NAME,
   titel: `Ein Business aufbauen, das zu deinem Familien${SHY}leben passt`,
-  text: `Wir begleiten dich persönlich beim Aufbau. Unser Schwerpunkt ist die Kurzzeitvermietung. Damit haben wir selbst ${STAND.wohnungen} Ferienwohnungen aufgebaut.`,
+  text: `Wir begleiten dich persönlich beim Aufbau deines Business. Unser Schwerpunkt ist die Kurzzeitvermietung. Damit sind wir selbst auf ${STAND.wohnungen} Ferienwohnungen gewachsen.`,
   primaer: erstgespraechVerweis,
   sekundaer: {
     label: "Passt das zu uns? Zum Selbsttest",
